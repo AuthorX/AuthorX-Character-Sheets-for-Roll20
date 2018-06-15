@@ -7,6 +7,6 @@ To do:
 * Support for Pair stats
 * "Menu" page for features
 * Add Destiny Improvements
-** Add Drop-down menu
-** Add Core destinies
-** Add Expansion destinies
+	* Add Drop-down menu
+	* Add Core destinies
+	* Add Expansion destinies
