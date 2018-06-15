@@ -364,12 +364,14 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 
 .sheet-hasIron:not(:checked) ~ .sheet-iron,
 .sheet-hasDoom:not(:checked) ~ .sheet-doom,
+.sheet-hasDestiny:not(:checked) ~ .sheet-destiny,
 .sheet-necrotic {
     display: none;
 }
 
 .sheet-hasIron:checked ~ .sheet-iron 
-.sheet-hasDoom:checked ~ .sheet-doom {
+.sheet-hasDoom:checked ~ .sheet-doom, 
+.sheet-hasDestiny:checked ~ .sheet-destiny {
     display: block;
 }
 
