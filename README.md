@@ -3,11 +3,12 @@
 To do:
 
 * Clean up NPC sheet
+* Clean up Overlord sheet
+* Style text buttons
 * Hide button for each section
 * Support for Pair stats
-* "Menu" page for features
 * Buttons to auto-add spells
-    * Elf
+	* Elf
 	* Orc
 	* Dragon
 * Add Destiny Improvements
