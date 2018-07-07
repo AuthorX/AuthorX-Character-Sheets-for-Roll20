@@ -334,7 +334,7 @@ on("sheet:opened", function(eventInfo){
                     <input type="text" name="attr_NPC5stat" /> <input type='checkbox' name='attr_NPCdamaged5stat' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
                 </div>
             </div>
-            <div class="sheet-box">
+            <div class="sheet-box sheet-pcBox">
                 <label class="sheet-improvements sheet-section-title"><span data-i18n="improvements">Improvements</span>:</label>
                 <div>
                     <label class="sheet-level sheet-name"><span data-i18n="level">Level</span>:</label>
@@ -583,36 +583,50 @@ on("sheet:opened", function(eventInfo){
 
         <div class="sheet-col even">
             
-            <input type="checkbox" name="attr_class" class="sheet-isSquire" value='Squire' style="display: none;" />
-            <input type="checkbox" name="attr_class" class="sheet-isRemnant" value='Remnant' style="display: none;" />
-            <input type="checkbox" name="attr_class" class="sheet-isOverlord" value='Overlord' style="display: none;" />
-            <input type="checkbox" name="attr_class" class="sheet-isConstructed" value='Constructed' style="display: none;" />
-            <input type="checkbox" name="attr_class" class="sheet-isPair" value='Pair' style="display: none;" />
-            
-            <label class="sheet-people"><span data-i18n="what-are-you">What Are Your People?</span></label>
-            <label class="sheet-purpose"><span data-i18n="what-is-purpose">What Is Your Purpose?</span></label>
-            <label class="sheet-madeof"><span data-i18n="what-are-you-made-of">What Are You Made of?</span></label>
-            <label class="sheet-curse"><span data-i18n="what-is-curse">What Is Your Curse?</span></label>
-            <label class="sheet-whopair"><span data-i18n="who-are-pair">Who are the Pair?</span></label>
-            <textarea rows="4" cols="50" name="attr_whatis"></textarea>
-            <label class="sheet-core-moves sheet-section-title"><span data-i18n="core-moves">Core Moves</span>:</label>
-            <fieldset class="repeating_moves">
-                <label class="sheet-movename"><span data-i18n="move">Move</span>:</label>
-                <input type="text" name="attr_coremovename" />
-                    <label class="sheet-desc"><span data-i18n="description">Description</span>:</label>
-                    <textarea rows="4" cols="50" name="attr_coremovedesc" ></textarea>
-            </fieldset>
-            <label class="sheet-other-moves sheet-section-title"><span data-i18n="other-moves">Custom Moves</span>:</label>
-            <fieldset class="repeating_othermoves">
-                <label class="sheet-movename"><span data-i18n="move">Move</span>:</label>
-                <input type="text" name="attr_movename" />
-                <label class="sheet-desc"><span data-i18n="description">Description</span>:</label>
-                <textarea rows="4" cols="50" name="attr_movedesc" ></textarea>
-            </fieldset>
+			<input type="checkbox" name="attr_class" class="sheet-isNPC" value='NPC' style="display: none;" />
+			
+			<div class="sheet-box">
+				<input type="checkbox" name="attr_class" class="sheet-isSquire" value='Squire' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isRemnant" value='Remnant' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isOverlord" value='Overlord' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isConstructed" value='Constructed' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isPair" value='Pair' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isNPC" value='NPC' style="display: none;" />
+				
+				<label class="sheet-people"><span data-i18n="what-are-you">What Are Your People?</span></label>
+				<label class="sheet-purpose"><span data-i18n="what-is-purpose">What Is Your Purpose?</span></label>
+				<label class="sheet-madeof"><span data-i18n="what-are-you-made-of">What Are You Made of?</span></label>
+				<label class="sheet-curse"><span data-i18n="what-is-curse">What Is Your Curse?</span></label>
+				<label class="sheet-whopair"><span data-i18n="who-are-pair">Who are the Pair?</span></label>
+				<label class="sheet-threats"><span data-i18n="threats">Threats</span></label>
+				<textarea rows="4" cols="50" name="attr_whatis"></textarea>
+			</div>
+			
+			<div class="sheet-box sheet-pcBox">
+				<label class="sheet-core-moves sheet-section-title"><span data-i18n="core-moves">Core Moves</span>:</label>
+				<fieldset class="repeating_moves">
+					<label class="sheet-movename"><span data-i18n="move">Move</span>:</label>
+					<input type="text" name="attr_coremovename" />
+						<label class="sheet-desc"><span data-i18n="description">Description</span>:</label>
+						<textarea rows="4" cols="50" name="attr_coremovedesc" ></textarea>
+				</fieldset>
+			</div>
+			
+			<div class="sheet-box sheet-pcBox">
+				<label class="sheet-other-moves sheet-section-title"><span data-i18n="other-moves">Custom Moves</span>:</label>
+				<fieldset class="repeating_othermoves">
+					<label class="sheet-movename"><span data-i18n="move">Move</span>:</label>
+					<input type="text" name="attr_movename" />
+					<label class="sheet-desc"><span data-i18n="description">Description</span>:</label>
+					<textarea rows="4" cols="50" name="attr_movedesc" ></textarea>
+				</fieldset>
+			</div>
         </div>
 
         <div class="sheet-col">
-            <div class="sheet-box">
+			<input type="checkbox" name="attr_class" class="sheet-isNPC" value='NPC' style="display: none;" />
+			
+            <div class="sheet-box sheet-pcBox">
                 <label class="sheet-agendas sheet-section-title"><span data-i18n="agendas">Agendas</span>:</label>
                 <textarea rows="4" cols="50" name="attr_agendas" class="sheet-largetextarea" data-i18n="starting-agendas">Be Brave, Take Risks
 Tell Us Of Your People
@@ -623,7 +637,7 @@ Improve The World Around You</textarea>
                 <textarea rows="4" cols="50" name="attr_bonds" class="sheet-largetextarea" ></textarea>
             </div>
             
-            <div class="sheet-box">
+            <div class="sheet-box sheet-pcBox">
                 <label class="sheet-companions sheet-section-title"><span data-i18n="companions">Companions</span>: <span/></label>
                 <fieldset class="repeating_companions">
                     <label class="sheet-companion-name"><input type="text" name="attr_companionName" data-i18n-placeholder="companion-name" placeholder="Companion Name"/></label>
@@ -647,7 +661,7 @@ Improve The World Around You</textarea>
                 </fieldset>
             </div>
 
-            <div class="sheet-box">
+            <div class="sheet-box sheet-pcBox">
                 <!-- Class Selected -->
                 <input type="checkbox" name="attr_class" class="sheet-isElf" value='Elf' style="display: none;" />
                 
@@ -671,31 +685,32 @@ Improve The World Around You</textarea>
                     <label class="sheet-custom"><span data-i18n="custom-weapons">Orc-Made Weapons</span>:</label>
                     <textarea rows="4" cols="50" name="attr_custom"></textarea>
                 </div>
+				
+				<input type="checkbox" name="attr_class" class="sheet-isSpider" value='Spider' style="display: none;" />
+				<div class="sheet-box sheet-spider">
+					<label class="sheet-custom"><span data-i18n="webs">Webs</span>:</label> <input type="number" name="attr_Webs" value="0" />
+				</div>
+				
+				<div class="sheet-box sheet-pcBox">
+					<label class="sheet-custom"><span data-i18n="spells">Spells</span>:</label>
+					<fieldset class="repeating_magic">
+						<input type='checkbox' name='attr_usedSpell' value='1' /><input type="text" name="attr_nameSpell" />
+					</fieldset>
+					<span data-i18n="camouflage" style="display: none;">Camouflage</span>
+					<span data-i18n="keen-senses" style="display: none;">Keen Senses</span>
+					<span data-i18n="sense-magic" style="display: none;">Sense Magic</span>
+					<span data-i18n="whisper" style="display: none;">Whisper on the Wind</span>
+					<span data-i18n="seance" style="display: none;">Séance</span>
+					<span data-i18n="smell-danger" style="display: none;">Smell Danger</span>
+					<span data-i18n="bound-by-blood" style="display: none;">Bound by Blood</span>
+					<span data-i18n="blessing-strength" style="display: none;">Blessing of Strength</span>
+					<span data-i18n="blessing-speed" style="display: none;">Blessing of Speed</span>
+					<span data-i18n="blessing-glory" style="display: none;">Blessing of Glory</span>
+				</div>
             </div>
             <!-- Class Selected -->
-            <input type="checkbox" name="attr_class" class="sheet-isElf" value='Elf' style="display: none;" />
-            <input type="checkbox" name="attr_class" class="sheet-isSpider" value='Spider' style="display: none;" />
+            
             <!-- End Class Selected -->
-            
-            <div class="sheet-box sheet-spider">
-                <h3><span data-i18n="webs">Webs</span>:</h3> <input type="number" name="attr_Webs" value="0" />
-            </div>
-            
-            <div class="sheet-box">
-                <h3><span data-i18n="magic-spells">Magic Spells</span></h3>
-                <fieldset class="repeating_magic">
-                    <input type='checkbox' name='attr_usedSpell' value='1' /><input type="text" name="attr_nameSpell" />
-                </fieldset>
-                <span data-i18n="camouflage" style="display: none;">Camouflage</span>
-                <span data-i18n="keen-senses" style="display: none;">Keen Senses</span>
-                <span data-i18n="sense-magic" style="display: none;">Sense Magic</span>
-                <span data-i18n="whisper" style="display: none;">Whisper on the Wind</span>
-                <span data-i18n="blessing-strength" style="display: none;">Blessing of Strength</span>
-                <span data-i18n="blessing-speed" style="display: none;">Blessing of Speed</span>
-                <span data-i18n="blessing-glory" style="display: none;">Blessing of Glory</span>
-            </div>
-            
-            
         </div>
     </div>
 </div>

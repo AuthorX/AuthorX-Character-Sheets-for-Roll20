@@ -383,7 +383,8 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isConstructed:not(:checked) ~ .sheet-madeof,
 .sheet-isRemnant:not(:checked) ~ .sheet-curse,
 .sheet-isPair:not(:checked) ~ .sheet-whopair, 
-.sheet-isNPC:not(:checked) ~ .sheet-npcStats,
+.sheet-isNPC:not(:checked) ~ .sheet-npcStats, 
+.sheet-isNPC:not(:checked) ~ .sheet-threats,
 .sheet-isOverlord:not(:checked) ~ .sheet-npcStats {
     display: none;
 }
@@ -396,7 +397,8 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isConstructed:checked ~ .sheet-madeof,
 .sheet-isRemnant:checked ~ .sheet-curse,
 .sheet-hasNecrotic:checked ~ .sheet-necrotic, 
-.sheet-isNPC:checked ~ .sheet-npcStats,
+.sheet-isNPC:checked ~ .sheet-npcStats, 
+.sheet-isNPC:checked ~ .sheet-threats,
 .sheet-isOverlord:checked ~ .sheet-npcStats{
     display: inline;
 }
@@ -406,6 +408,8 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isConstructed:checked ~ .sheet-people,
 .sheet-isRemnant:checked ~ .sheet-people,
 .sheet-isNPC:checked ~ .sheet-pcStats,
+.sheet-isNPC:checked ~ .sheet-pcBox,
+.sheet-isNPC:checked ~ .sheet-people,
 .sheet-isOverlord:checked ~ .sheet-pcStats {
     display: none;
 }
