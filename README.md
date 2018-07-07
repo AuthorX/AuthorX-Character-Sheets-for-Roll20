@@ -7,6 +7,9 @@ To do:
 * Style text buttons
 * Hide button for each section
 * Support for Pair stats
+	* ~~HTML for Pair~~
+	* ~~HTML for Trio~~
+	* Rolling for Trio
 * Buttons to auto-add spells
 	* Elf
 	* Orc

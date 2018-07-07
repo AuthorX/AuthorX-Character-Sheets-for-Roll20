@@ -159,7 +159,7 @@ on("sheet:opened", function(eventInfo){
 		<option value='Constructed' data-i18n="constructed">The Constructed</option>
 		<option value='Spider' data-i18n="spider">The Spider</option>
 		<option value='Remnant' data-i18n="remnant">The Remnant</option>
-		<option value='Pair' data-i18n="remnant">The Pair</option>
+		<option value='Pair' data-i18n="pair">The Pair</option>
 		<option value='Overlord' data-i18n="overlord">The Overlord</option>
 		<option value='NPC' data-i18n="npc">NPC</option>
     </select>
@@ -193,6 +193,7 @@ on("sheet:opened", function(eventInfo){
         <div class="sheet-col odd">
             <input type="checkbox" name="attr_class" class="sheet-isOverlord" value='Overlord' style="display: none;" />
             <input type="checkbox" name="attr_class" class="sheet-isNPC" value='NPC' style="display: none;" />
+			<input type="checkbox" name="attr_class" class="sheet-isPair" value='Pair' style="display: none;" />
             <div class="sheet-pcStats">
                 <label class="sheet-class-moves sheet-section-title"><span data-i18n="stats">Stats</span>:</label>
                 <span title="For The Dwarf and those that have shared a Dwarf move" data-i18n-title="for-dwarf">
@@ -207,7 +208,7 @@ on("sheet:opened", function(eventInfo){
                     <label class="sheet-necrotic sheet-damage"><span data-i18n="necrotic">Necrotic</span>:</label>
                     <input type='checkbox' name='attr_hasNecrotic' value='1' class='sheet-attr-show-input'>
                 </span>
-                <div class="sheet-attr-box">
+                <div class="sheet-attrBox">
                     <label class="sheet-blood sheet-name"><span data-i18n="blood">Blood</span>:</label>
                     <input type="number" name="attr_blood" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -221,7 +222,7 @@ on("sheet:opened", function(eventInfo){
                     <!--<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{blood}}} {{roll_mod=@{blood}}} @{rollquery} + @{blood}]]}}' name='roll_blood'></button>-->
                     </div>
                 </div>
-                <div class="sheet-attr-box">
+                <div class="sheet-attrBox">
                     <label class="sheet-courage sheet-name"><span data-i18n="courage">Courage</span>:</label>
                     <input type="number" name="attr_courage" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -235,7 +236,7 @@ on("sheet:opened", function(eventInfo){
                     </div>
                 </div>
     
-                <div class="sheet-attr-box">
+                <div class="sheet-attrBox">
                     <label class="sheet-grace sheet-name"><span data-i18n="grace">Grace</span>:</label>
                     <input type="number" name="attr_grace" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -249,7 +250,7 @@ on("sheet:opened", function(eventInfo){
                     </div>
                 </div>
     
-                <div class="sheet-attr-box">
+                <div class="sheet-attrBox">
                     <label class="sheet-sense sheet-name"><span data-i18n="sense">Sense</span>:</label>
                     <input type="number" name="attr_sense" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -263,7 +264,7 @@ on("sheet:opened", function(eventInfo){
                     </div>
                 </div>
     
-                <div class="sheet-attr-box">
+                <div class="sheet-attrBox">
                     <label class="sheet-wisdom sheet-name"><span data-i18n="wisdom">Wisdom</span>:</label>
                     <input type="number" name="attr_wisdom" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -279,7 +280,7 @@ on("sheet:opened", function(eventInfo){
                 
                 <input type="checkbox" name="attr_hasIron" class="sheet-hasIron" value="1" style="display: none;" />
                 
-                <div class="sheet-attr-box sheet-iron">
+                <div class="sheet-attrBox sheet-iron">
                     <label class="sheet-name"><span data-i18n="iron">Iron</span>:</label>
                     <input type="number" name="attr_iron" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -296,7 +297,7 @@ on("sheet:opened", function(eventInfo){
                 
                 <input type="checkbox" name="attr_hasDoom" class="sheet-hasDoom" value="1" style="display: none;" />
                 
-                <div class="sheet-attr-box sheet-doom">
+                <div class="sheet-attrBox sheet-doom">
                     <label class="sheet-name"><span data-i18n="doom">Doom</span>:</label>
                     <input type="number" name="attr_doom" value="0" />
                     <input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
@@ -312,6 +313,279 @@ on("sheet:opened", function(eventInfo){
                 </div>
             </div>
             
+			<div class="sheet-pair">
+                <label class="sheet-class-moves sheet-section-title"><span data-i18n="stats">Stats</span>:</label>
+                <span title="For The Dwarf and those that have shared a Dwarf move" data-i18n-title="for-dwarf">
+                    <label class="sheet-iron sheet-damage"><span data-i18n="iron">Iron</span>:</label>
+                    <input type='checkbox' name='attr_hasIron' value='1' class='sheet-attr-show-input'>
+                </span>
+                <span title="For The Harbinger and those that have shared a Harbinger move" data-i18n-title="for-harbinger">
+                    <label class="sheet-doom sheet-damage" ><span data-i18n="doom">Doom</span>:</label>
+                    <input type='checkbox' name='attr_hasDoom' value='1' class='sheet-attr-show-input'>
+                </span>
+                <span title="To mark necrotic damage" data-i18n-title="for-necrotic">
+                    <label class="sheet-necrotic sheet-damage"><span data-i18n="necrotic-abbreviated">Necr</span>:</label>
+                    <input type='checkbox' name='attr_hasNecrotic' value='1' class='sheet-attr-show-input'>
+                </span>
+				<span title="For playing The Pair as a Trio" data-i18n-title="for-trio">
+                    <label class="sheet-trio sheet-damage"><span data-i18n="Trio">Trio</span>:</label>
+                    <input type='checkbox' name='attr_hasTrio' value='1' class='sheet-attr-show-input'>
+                </span>
+				
+				<div class="sheet-pairStats">
+					<div class="sheet-attrBoxMini">
+						<input type="text" name="attr_pair_1_name" data-i18n-placeholder="name" placeholder="Name" />
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-blood sheet-name"><span data-i18n="blood">Blood</span>:</label>
+						<input type="number" name="attr_pair_1_blood" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_bloodNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_bloodNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_bloodDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-courage sheet-name"><span data-i18n="courage">Courage</span>:</label>
+						<input type="number" name="attr_pair_1_courage" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_courageNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_courageNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_courageDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-grace sheet-name"><span data-i18n="grace">Grace</span>:</label>
+						<input type="number" name="attr_pair_1_grace" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_graceNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_graceNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_graceDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-sense sheet-name"><span data-i18n="sense">Sense</span>:</label>
+						<input type="number" name="attr_pair_1_sense" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_senseNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_senseNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_senseDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-wisdom sheet-name"><span data-i18n="wisdom">Wisdom</span>:</label>
+						<input type="number" name="attr_pair_1_wisdom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_wisdomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_WisdomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_wisdomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasIron" class="sheet-hasIron" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-iron">
+						<label class="sheet-name"><span data-i18n="iron">Iron</span>:</label>
+						<input type="number" name="attr_pair_1_iron" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_ironNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_ironNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_ironDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasDoom" class="sheet-hasDoom" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-doom">
+						<label class="sheet-name"><span data-i18n="doom">Doom</span>:</label>
+						<input type="number" name="attr_pair_1_doom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_1_doomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_1_doomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_1_doomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+				</div>
+				
+				<div class="sheet-pairStats">
+					<div class="sheet-attrBoxMini">
+						<input type="text" name="attr_pair_2_name" data-i18n-placeholder="name" placeholder="Name"  />
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-blood sheet-name"><span data-i18n="blood">Blood</span>:</label>
+						<input type="number" name="attr_pair_2_blood" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_bloodNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_bloodNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_bloodDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-courage sheet-name"><span data-i18n="courage">Courage</span>:</label>
+						<input type="number" name="attr_pair_2_courage" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_courageNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_courageNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_courageDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-grace sheet-name"><span data-i18n="grace">Grace</span>:</label>
+						<input type="number" name="attr_pair_2_grace" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_graceNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_graceNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_graceDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-sense sheet-name"><span data-i18n="sense">Sense</span>:</label>
+						<input type="number" name="attr_pair_2_sense" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_senseNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_senseNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_senseDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-wisdom sheet-name"><span data-i18n="wisdom">Wisdom</span>:</label>
+						<input type="number" name="attr_pair_2_wisdom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_wisdomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_WisdomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_wisdomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasIron" class="sheet-hasIron" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-iron">
+						<label class="sheet-name"><span data-i18n="iron">Iron</span>:</label>
+						<input type="number" name="attr_pair_2_iron" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_ironNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_ironNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_ironDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasDoom" class="sheet-hasDoom" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-doom">
+						<label class="sheet-name"><span data-i18n="doom">Doom</span>:</label>
+						<input type="number" name="attr_pair_2_doom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_2_doomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_2_doomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_2_doomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+				</div>
+				
+				<input type="checkbox" name="attr_hasTrio" class="sheet-hasTrio" value="1" style="display: none;" />
+				
+				<div class="sheet-pairStats sheet-trio">
+					<div class="sheet-attrBoxMini">
+						<input type="text" name="attr_pair_3_name" data-i18n-placeholder="name" placeholder="Name"  />
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-blood sheet-name"><span data-i18n="blood">Blood</span>:</label>
+						<input type="number" name="attr_pair_3_blood" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_bloodNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_bloodNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_bloodDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-courage sheet-name"><span data-i18n="courage">Courage</span>:</label>
+						<input type="number" name="attr_pair_3_courage" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_courageNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_courageNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_courageDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-grace sheet-name"><span data-i18n="grace">Grace</span>:</label>
+						<input type="number" name="attr_pair_3_grace" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_graceNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_graceNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_graceDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-sense sheet-name"><span data-i18n="sense">Sense</span>:</label>
+						<input type="number" name="attr_pair_3_sense" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_senseNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_senseNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_senseDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+		
+					<div class="sheet-attrBoxMini">
+						<label class="sheet-wisdom sheet-name"><span data-i18n="wisdom">Wisdom</span>:</label>
+						<input type="number" name="attr_pair_3_wisdom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_wisdomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_WisdomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_wisdomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasIron" class="sheet-hasIron" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-iron">
+						<label class="sheet-name"><span data-i18n="iron">Iron</span>:</label>
+						<input type="number" name="attr_pair_3_iron" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_ironNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_ironNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_ironDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+					
+					<input type="checkbox" name="attr_hasDoom" class="sheet-hasDoom" value="1" style="display: none;" />
+					
+					<div class="sheet-attrBoxMini sheet-doom">
+						<label class="sheet-name"><span data-i18n="doom">Doom</span>:</label>
+						<input type="number" name="attr_pair_3_doom" value="0" />
+						<input type="checkbox" name="attr_hasNecrotic" class="sheet-hasNecrotic" value="1" style="display: none;" />
+						<span class='sheet-necrotic'>[<input type='checkbox' name='attr_pair_3_doomNecrotic' value='1'>]</span>
+						<input type="checkbox" name="attr_pair_3_doomNecrotic" class="sheet-lockDamage" value="1" style="display: none;" />
+						<input type='checkbox' class='sheet-locked-damage' disabled='true' checked='checked'><label class='sheet-locked-damage'><span data-i18n="necrotic">Necrotic</span></label>
+						<input type='checkbox' name='attr_pair_3_doomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
+						
+					</div>
+				</div>
+
+            </div>
+            
+			
             <div class="sheet-npcStats">
                 <label class="sheet-class-moves sheet-section-title"><span data-i18n="stats">Stats</span>:</label>
                 <span title="NPCs in despair cannot help or harm you" data-i18n-title="npc-despair-description">

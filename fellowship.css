@@ -107,7 +107,8 @@ list-style: none;
     font-weight: 400;
 }
 
-.charsheet .sheet-attr-box {
+.charsheet .sheet-attrBox,
+.charsheet .sheet-attrBoxMini {
     padding: 5px;
 }
 
@@ -119,13 +120,15 @@ list-style: none;
     max-width: 45px;
 }
 
-.charsheet .sheet-attr-box input[type=text] {
-    width: 35px;
+.charsheet .sheet-attrBox input[type=text],
+.charsheet .sheet-attrBoxMini input[type=text]  {
+    width: auto;
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
 }
-.charsheet .sheet-attr-box input[type=checkbox] {
+.charsheet .sheet-attrBox input[type=checkbox],
+.charsheet .sheet-attrBoxMini input[type=checkbox] {
     width: auto;
 }
 
@@ -365,7 +368,8 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-hasIron:not(:checked) ~ .sheet-iron,
 .sheet-hasDoom:not(:checked) ~ .sheet-doom,
 .sheet-hasDestiny:not(:checked) ~ .sheet-destiny,
-.sheet-necrotic {
+.sheet-necrotic,
+.sheet-trio {
     display: none;
 }
 
@@ -397,6 +401,7 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isConstructed:checked ~ .sheet-madeof,
 .sheet-isRemnant:checked ~ .sheet-curse,
 .sheet-hasNecrotic:checked ~ .sheet-necrotic, 
+.sheet-hasTrio:checked ~ .sheet-trio, 
 .sheet-isNPC:checked ~ .sheet-npcStats, 
 .sheet-isNPC:checked ~ .sheet-threats,
 .sheet-isOverlord:checked ~ .sheet-npcStats{
@@ -410,12 +415,15 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isNPC:checked ~ .sheet-pcStats,
 .sheet-isNPC:checked ~ .sheet-pcBox,
 .sheet-isNPC:checked ~ .sheet-people,
-.sheet-isOverlord:checked ~ .sheet-pcStats {
+.sheet-isOverlord:checked ~ .sheet-pcStats,
+.sheet-isPair:checked ~ .sheet-pcStats
+ {
     display: none;
 }
 
 .sheet-people, 
-.sheet-pcStats {
+.sheet-pcStats,
+.sheet-pcBox {
     display:inline;
 }
 
