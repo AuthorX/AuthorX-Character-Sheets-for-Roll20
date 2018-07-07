@@ -2,7 +2,7 @@
 
 To do:
 
-* Clean up NPC sheet
+* ~~Clean up NPC sheet~~
 * Clean up Overlord sheet
 * Style text buttons
 * Hide button for each section
