@@ -32,6 +32,14 @@ on("change:bloodNecrotic", function(eventInfo){
     }
 });
 
+on("change:bloodNecrotic", function(eventInfo){
+    if(eventInfo.newValue == 1){
+        setAttrs({
+            bloodDamaged: 1
+        });
+    }
+});
+
 on("change:courageNecrotic", function(eventInfo){
     if(eventInfo.newValue == 1){
         setAttrs({
@@ -78,6 +86,62 @@ on("change:doomNecrotic", function(eventInfo){
             doomDamaged: 1
         });     
     }
+});
+
+on("change:pair_rollSelected", function(eventInfo){
+	getAttrs(["pair_1_blood", "pair_1_courage", "pair_1_grace", "pair_1_sense", "pair_1_wisdom", "pair_1_iron", "pair_1_doom", 
+		"pair_2_blood", "pair_2_courage", "pair_2_grace", "pair_2_sense", "pair_2_wisdom", "pair_2_iron", "pair_2_doom",
+		"pair_3_blood", "pair_3_courage", "pair_3_grace", "pair_3_sense", "pair_3_wisdom", "pair_3_iron", "pair_3_doom"
+	], function(values) {
+		var blood = 0;
+		var courage = 0;
+		var grace = 0;
+		var sense = 0;
+		var wisdom = 0;
+		var iron = 0;
+		var doom = 0;
+		
+		if(eventInfo.newValue.includes("1")) {
+			blood   += parseInt(values["pair_1_blood"]);
+			courage += parseInt(values["pair_1_courage"]);
+			grace   += parseInt(values["pair_1_grace"]);
+			sense   += parseInt(values["pair_1_sense"]);
+			wisdom  += parseInt(values["pair_1_wisdom"]);
+			iron    += parseInt(values["pair_1_iron"]);
+			doom    += parseInt(values["pair_1_doom"]);
+		}
+		
+		if(eventInfo.newValue.includes("2")) {
+			blood    += parseInt(values["pair_2_blood"]);
+			courage  += parseInt(values["pair_2_courage"]);
+			grace    += parseInt(values["pair_2_grace"]);
+			sense    += parseInt(values["pair_2_sense"]);
+			wisdom   += parseInt(values["pair_2_wisdom"]);
+			iron     += parseInt(values["pair_2_iron"]);
+			doom     += parseInt(values["pair_2_doom"]);
+		}
+		
+		if(eventInfo.newValue.includes("3")) {
+			blood    += parseInt(values["pair_3_blood"]);
+			courage  += parseInt(values["pair_3_courage"]);
+			grace    += parseInt(values["pair_3_grace"]);
+			sense    += parseInt(values["pair_3_sense"]);
+			wisdom   += parseInt(values["pair_3_wisdom"]);
+			iron     += parseInt(values["pair_3_iron"]);
+			doom     += parseInt(values["pair_3_doom"]);
+		}
+		setAttrs({
+			pairBlood   : blood   ,
+			pairCourage : courage ,
+			pairGrace   : grace   ,
+			pairSense   : sense   ,
+			pairWisdom  : wisdom  ,
+			pairIron    : iron    ,
+			pairDoom    : doom    ,
+		});
+
+   });
+   
 });
 
 on("sheet:opened", function(eventInfo){
@@ -581,6 +645,36 @@ on("sheet:opened", function(eventInfo){
 						<input type='checkbox' name='attr_pair_3_doomDamaged' value='1' class='sheet-damage'><label class='sheet-damage'><span data-i18n="damaged">Damaged</span></label>
 						
 					</div>
+				</div>
+				
+				<div class="sheet-pairStats">
+					<input type="checkbox" name="attr_hasTrio" class="sheet-hasTrio" value="1" style="display: none;" />
+				
+					<select name="attr_pair_rollSelected" class="sheet-noTrio">
+						<option value="1">First</option>
+						<option value="12">First & Second</option>
+						<option value="2">Second</option>
+					</select>
+					
+					<select name="attr_pair_rollSelected" class="sheet-trio">
+						<option value="1">First</option>
+						<option value="12">First & Second</option>
+						<option value="2">Second</option>
+						<option value="23">Second & Third</option>
+						<option value="3">Third</option>
+						<option value="13">First & Third</option>
+					</select>
+					
+					<input type="checkbox" name="attr_hasIron" class="sheet-hasIron" value="1" style="display: none;" />
+					<input type="checkbox" name="attr_hasDoom" class="sheet-hasDoom" value="1" style="display: none;" />
+					
+					<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{blood}}} {{roll_mod=@{pairBlood}}} {{result=[[@{rollquery} + @{pairBlood}]]}}' name='roll_blood'>Blood</button>
+					<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{courage}}} {{roll_mod=@{pairCourage}}} {{result=[[@{rollquery} + @{pairCourage}]]}}' name='roll_courage'>Courage</button>
+					<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{grace}}} {{roll_mod=@{pairGrace}}} {{result=[[@{rollquery} + @{pairGrace}]]}}' name='roll_grace'>Grace</button>
+					<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{sense}}} {{roll_mod=@{pairSense}}} {{result=[[@{rollquery} + @{pairSense}]]}}' name='roll_sense'>Sense</button>
+					<button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{wisdom}}} {{roll_mod=@{pairWisdom}}} {{result=[[@{rollquery} + @{pairWisdom}]]}}' name='roll_wisdom'>Wisdom</button>
+					<button type='roll' class='sheet-d6-roll-button sheet-iron' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{iron}}} {{roll_mod=@{pairIron}}} {{result=[[@{rollquery} + @{pairIron}]]}}' name='roll_iron'>Iron</button>
+					<button type='roll' class='sheet-d6-roll-button sheet-doom' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{doom}}} {{roll_mod=@{pairDoom}}} {{result=[[@{rollquery} + @{pairDoom}]]}}' name='roll_doom'>Doom</button>
 				</div>
 
             </div>

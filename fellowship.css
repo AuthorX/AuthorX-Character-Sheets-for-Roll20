@@ -389,7 +389,8 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 .sheet-isPair:not(:checked) ~ .sheet-whopair, 
 .sheet-isNPC:not(:checked) ~ .sheet-npcStats, 
 .sheet-isNPC:not(:checked) ~ .sheet-threats,
-.sheet-isOverlord:not(:checked) ~ .sheet-npcStats {
+.sheet-isOverlord:not(:checked) ~ .sheet-npcStats, 
+.sheet-hasTrio:checked ~ .sheet-noTrio {
     display: none;
 }
 
@@ -410,6 +411,7 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
 
 .sheet-isSquire:checked ~ .sheet-people,
 .sheet-isOverlord:checked ~ .sheet-people,
+.sheet-isPair:checked ~ .sheet-people,
 .sheet-isConstructed:checked ~ .sheet-people,
 .sheet-isRemnant:checked ~ .sheet-people,
 .sheet-isNPC:checked ~ .sheet-pcStats,

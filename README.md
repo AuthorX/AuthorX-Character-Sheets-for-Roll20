@@ -9,11 +9,13 @@ To do:
 * Support for Pair stats
 	* ~~HTML for Pair~~
 	* ~~HTML for Trio~~
-	* Rolling for Trio
+	* ~~Rolling for Trio~~
+	* Style buttons
 * Buttons to auto-add spells
 	* Elf
 	* Orc
 	* Dragon
+	* Pair
 * Add Destiny Improvements
 	* ~~Add Drop-down menu~~
 	* Add Core destinies
