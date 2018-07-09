@@ -394,17 +394,17 @@ input.sheet-showhide:checked ~ .sheet-subbox {display: none;}
     display: none;
 }
 
+.sheet-isSquire:checked ~ .sheet-purpose,
+.sheet-isOverlord:checked ~ .sheet-purpose {
+	display: inline-block;
+}
+
 .sheet-isElf:checked ~ .sheet-elf,
 .sheet-isOrc:checked ~ .sheet-orc,
 .sheet-isSpider:checked ~ .sheet-spider,
-.sheet-isSquire:checked ~ .sheet-purpose,
-.sheet-isOverlord:checked ~ .sheet-purpose,
-.sheet-isConstructed:checked ~ .sheet-madeof,
-.sheet-isRemnant:checked ~ .sheet-curse,
 .sheet-hasNecrotic:checked ~ .sheet-necrotic, 
 .sheet-hasTrio:checked ~ .sheet-trio, 
 .sheet-isNPC:checked ~ .sheet-npcStats, 
-.sheet-isNPC:checked ~ .sheet-threats,
 .sheet-isOverlord:checked ~ .sheet-npcStats{
     display: inline;
 }

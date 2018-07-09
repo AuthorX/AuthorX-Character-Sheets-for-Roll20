@@ -149,16 +149,17 @@ on("sheet:opened", function(eventInfo){
     setAttrs({
         rollquery: "?{" + getTranslationByKey("hopeordespair") +"|" + getTranslationByKey("neither") + ",2d6|" + getTranslationByKey("hope") + ",3d6kh2[" + getTranslationByKey("withhope") + "]|" + getTranslationByKey("despair") + ",3d6kl2[" + getTranslationByKey("withdespair") + "]}",
         bondsquery: "?{" + getTranslationByKey("numberofbonds") + "}"
+		CHARACTERSHEET: "Fellowship"
     });
     
     getAttrs(["SHEETVERSION"], function(values) {
-        if(typeof values.SHEETVERSION == 'undefined'){
+        if((typeof values.SHEETVERSION == 'undefined') || (parseFloat(values.SHEETVERSION) < 2.0)){
             setAttrs({
-                SHEETVERSION: 1.1
+                SHEETVERSION: 2.0
+				//get it? Because this version added the Pair???
             });
         }
     });
-    
 });
 
 </script>
@@ -961,13 +962,13 @@ on("sheet:opened", function(eventInfo){
 				<input type="checkbox" name="attr_class" class="sheet-isPair" value='Pair' style="display: none;" />
 				<input type="checkbox" name="attr_class" class="sheet-isNPC" value='NPC' style="display: none;" />
 				
-				<label class="sheet-people"><span data-i18n="what-are-you">What Are Your People?</span></label>
-				<label class="sheet-purpose"><span data-i18n="what-is-purpose">What Is Your Purpose?</span></label>
-				<label class="sheet-madeof"><span data-i18n="what-are-you-made-of">What Are You Made of?</span></label>
-				<label class="sheet-curse"><span data-i18n="what-is-curse">What Is Your Curse?</span></label>
-				<label class="sheet-whopair"><span data-i18n="who-are-pair">Who are the Pair?</span></label>
-				<label class="sheet-threats"><span data-i18n="threats">Threats</span></label>
-				<textarea rows="4" cols="50" name="attr_whatis"></textarea>
+				<label class="sheet-people sheet-section-title"><span data-i18n="what-are-you">What Are Your People?</span></label>
+				<label class="sheet-purpose sheet-section-title"><span data-i18n="what-is-purpose">What Is Your Purpose?</span></label>
+				<label class="sheet-madeof sheet-section-title"><span data-i18n="what-are-you-made-of">What Are You Made of?</span></label>
+				<label class="sheet-curse sheet-section-title"><span data-i18n="what-is-curse">What Is Your Curse?</span></label>
+				<label class="sheet-whopair sheet-section-title"><span data-i18n="who-are-pair">Who are the Pair?</span></label>
+				<label class="sheet-threats sheet-section-title"><span data-i18n="threats">Threats</span></label>
+				<textarea rows="4" cols="50" name="attr_whatis" class="sheet-largetextarea"></textarea>
 			</div>
 			
 			<div class="sheet-box sheet-pcBox">

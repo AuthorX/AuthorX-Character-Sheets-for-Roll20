@@ -3,13 +3,13 @@
 To do:
 
 * ~~Clean up NPC sheet~~
-* Clean up Overlord sheet
 * Style text buttons
 * Hide button for each section
 * Support for Pair stats
 	* ~~HTML for Pair~~
 	* ~~HTML for Trio~~
 	* ~~Rolling for Trio~~
+	* Style dropdown
 	* Style buttons
 * Buttons to auto-add spells
 	* Elf
