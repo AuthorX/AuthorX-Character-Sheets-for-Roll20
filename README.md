@@ -20,4 +20,6 @@ To do:
 	* ~~Add Drop-down menu~~
 	* Add Core destinies
 	* Add Expansion destinies
-* Add Ship playbook
+* ~~Add Ship playbook~~
+   * Fix Gear
+   * Add section for Personality
