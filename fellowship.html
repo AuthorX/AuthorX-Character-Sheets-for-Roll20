@@ -1088,8 +1088,13 @@ on("sheet:opened", function(eventInfo){
 Tell Us Of Your People
 Improve The World Around You</textarea>
             </div>
-            <div class="sheet-box">
+            <div class="sheet-box sheet-pcBox"">
                 <label class="sheet-bonds sheet-section-title"><span data-i18n="bonds">Bonds</span>: <button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{bonds}}} {{roll_mod=[[@{bondsquery}]]}} {{result=[[@{rollquery} + @{bondsquery}]]}}' name='roll_bonds' /></label>
+                <textarea rows="4" cols="50" name="attr_bonds" class="sheet-largetextarea" ></textarea>
+            </div>
+			
+			<div class="sheet-box sheet-ship">
+                <label class="sheet-bonds sheet-section-title"><span data-i18n="personality">Personality</span>: </label>
                 <textarea rows="4" cols="50" name="attr_bonds" class="sheet-largetextarea" ></textarea>
             </div>
             
@@ -1117,26 +1122,32 @@ Improve The World Around You</textarea>
                 </fieldset>
             </div>
 
-            <div class="sheet-box sheet-pcBox sheet-ship">
+            <div class="sheet-box sheet-pcBox sheet-pcShip">
                 <!-- Class Selected -->
                 <input type="checkbox" name="attr_class" class="sheet-isElf" value='Elf' style="display: none;" />
+				<input type="checkbox" name="attr_class" class="sheet-isShip" value='Ship' style="display: none;" />
+				
                 
                 <!-- End Class Selected -->
                 <label class="sheet-other sheet-section-title"><span data-i18n="other">Other</span>:</label>
                 
-                <label class="sheet-gear"><span data-i18n="gear">Gear</span>:</label>
-                <fieldset class="repeating_gear">
-                    <label class="sheet-gear-name"><input type="text" name="attr_gearname" data-i18n-placeholder="gear-name" placeholder="Gear Name"/><span class="sheet-gear-uses"><input type="number" name="attr_gearuses" />/<input type="number" name="attr_gearuses_max" /></span></label>
-                    <textarea rows="2" cols="50" name="attr_geardesc" data-i18n-placeholder="gear-tags-desc" placeholder="Gear Tags & Description"></textarea>
-                </fieldset>
+				<div>
+					<label class="sheet-gear"><span data-i18n="gear">Gear</span>:</label>
+					<fieldset class="repeating_gear">
+						<label class="sheet-gear-name"><input type="text" name="attr_gearname" data-i18n-placeholder="gear-name" placeholder="Gear Name"/><span class="sheet-gear-uses"><input type="number" name="attr_gearuses" />/<input type="number" name="attr_gearuses_max" /></span></label>
+						<textarea rows="2" cols="50" name="attr_geardesc" data-i18n-placeholder="gear-tags-desc" placeholder="Gear Tags & Description"></textarea>
+					</fieldset>
+				</div>
                 
-                <label class="sheet-other-items"><span data-i18n="other-items">Other Items</span>:</label>
-                <fieldset class="repeating_othergear">
-                    <label class="sheet-gear-name"><input type="text" name="attr_gearname" data-i18n-placeholder="gear-name" placeholder="Gear Name"/><span class="sheet-gear-uses"><input type="number" name="attr_gearuses" />/<input type="number" name="attr_gearuses_max" /></span></label>
-                    <textarea rows="2" cols="50" name="attr_geardesc" data-i18n-placeholder="gear-tags-desc" placeholder="Gear Tags & Description"></textarea>
-                </fieldset>
-
-                <input type="checkbox" name="attr_class" class="sheet-isOrc" value='Orc' style="display: none;" />
+				<div class="sheet-pcBox">
+					<label class="sheet-other-items"><span data-i18n="other-items">Other Items</span>:</label>
+					<fieldset class="repeating_othergear">
+						<label class="sheet-gear-name"><input type="text" name="attr_gearname" data-i18n-placeholder="gear-name" placeholder="Gear Name"/><span class="sheet-gear-uses"><input type="number" name="attr_gearuses" />/<input type="number" name="attr_gearuses_max" /></span></label>
+						<textarea rows="2" cols="50" name="attr_geardesc" data-i18n-placeholder="gear-tags-desc" placeholder="Gear Tags & Description"></textarea>
+					</fieldset>
+				</div>
+                
+				<input type="checkbox" name="attr_class" class="sheet-isOrc" value='Orc' style="display: none;" />
                 <div class="sheet-box sheet-orc">
                     <label class="sheet-custom"><span data-i18n="custom-weapons">Orc-Made Weapons</span>:</label>
                     <textarea rows="4" cols="50" name="attr_custom"></textarea>
