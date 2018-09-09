@@ -1028,7 +1028,246 @@ on("sheet:opened", function(eventInfo){
 						<option value='World Weaver' data-i18n="world-weaver">The World Weaver</option>
 						<option value='Ancient Secret' data-i18n="ancient-secret">The Ancient Secret</option>
 					</select>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isAscended" value='Ascended' style="display: none;" />
+					
+					<div class="sheet-ascended">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="take-basic-custom">Take a Custom Move from any basic playbook.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-destiny-custom">Take a Custom Move from any other Destiny.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-ascended-custom">Take an Ascended Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-ascended-custom">Take an Ascended Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-ascended-custom">Take an Ascended Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isChosenOne" value='Chosen One' style="display: none;" />
+					
+					<div class="sheet-chosen-one">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-basic-custom">Take a Custom Move from any basic playbook.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-chosen-one-custom">Take a Chosen One Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-chosen-one-custom">Take a Chosen One Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-chosen-one-custom">Take a Chosen One Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isCyborg" value='Cyborg' style="display: none;" />
+					
+					<div class="sheet-cyborg">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-cyborg-custom">Take a Cyborg Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-cyborg-custom">Take a Cyborg Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-cyborg-custom">Take a Cyborg Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-cyborg-custom">Take a Cyborg Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isElvenElite" value='Elven Elite' style="display: none;" />
+					
+					<div class="sheet-eleven-elite">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-grace-max3-or-elven-elite-custom">Increase your Grace stat to +3. If it is already +3, take an Elven Elite Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-elven-custom">Take an Eleven Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-eleven-elite-custom">Take an Elven Elite Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-eleven-elite-custom">Take an Elven Elite Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-eleven-elite-custom">Take an Elven Elite Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isEndOfDays" value='End of Days' style="display: none;" />
+					
+					<div class="sheet-end-of-days">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-doom-max3-or-end-of-days-custom">Increase your Doom stat to +3. If it is already +3, take an End of Days Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-harbinger-custom">Take a Harbinger Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-end-of-days-custom">Take an End of Days Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-end-of-days-custom">Take an End of Days Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-end-of-days-custom">Take an End of Days Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isFirebrand" value='Firebrand' style="display: none;" />
+					
+					<div class="sheet-firebrand">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="fire-immunity">You become immune to fire, and cannot take damage from fire, heat, or explosions.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-firebrand-custom">Take a Firebrand Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-firebrand-custom">Take a Firebrand Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-firebrand-custom">Take a Firebrand Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isHalfling Sheriff" value='HalflingSheriff' style="display: none;" />
+					
+					<div class="sheet-halfling-sheriff">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-courage-max3-or-halfling-sheriff-custom">Increase your Courage stat to +3. If it is already +3, take a Halfling Sheriff Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-halfling-custom">Take a Halfling Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-halfling-sheriff-custom">Take a Halfling Sheriff Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-halfling-sheriff-custom">Take a Halfling Sheriff Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-halfling-sheriff-custom">Take a Halfling Sheriff Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<div class="sheet-knight">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-sense-max3-or-knight-custom">Increase your Sense stat to +3. If it is already +3, take a Knight Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-squire-custom">Take a Squire Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-knight-custom">Take a Knight Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-knight-custom">Take a Knight Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-knight-custom">Take a Knight Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isLeader" value='Leader' style="display: none;" />
+					
+					<div class="sheet-leader">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-bonds-max4">You may now have up to 4 Bonds with a single person. Immediately Forge a Bond with everyone you have at least one Bond with.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-heir-custom">Take an Heir's Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-leader-custom">Take a Leader Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-leader-custom">Take a Leader Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-leader-custom">Take a Leader Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isLegend" value='Legend' style="display: none;" />
+					
+					<div class="sheet-legend">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-basic-custom">Take a Custom Move from any basic playbook.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-legend-custom">Take a Legend Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-legend-custom">Take a Legend Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-legend-custom">Take a Legend Custom.</span></label></li>
+						</ul>
+					</div>
+					<input type="checkbox" name="attr_destiny" class="sheet-isKnight" value='Knight' style="display: none;" />
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isLordOfBeasts" value='Lord of Beasts' style="display: none;" />
+					
+					<div class="sheet-lord-of-beasts">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-wildspeaker-or-elf-custom">Take either the Harbinger Custom Wildspeaker or any Elf Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-lord-of-beasts-custom">Take a Lord of Beasts Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-lord-of-beasts-custom">Take a Lord of Beasts Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-lord-of-beasts-custom">Take a Lord of Beasts Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isOrcBoss" value='Orc-Boss' style="display: none;" />
+					
+					<div class="sheet-orc-boss">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-blood-max3-or-orc-boss-custom">Increase your Blood stat to +3. If it is already +3, take an Orc-Boss Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-orc-custom">Take an Orc Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-orc-boss-custom">Take an Orc-Boss Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-orc-boss-custom">Take an Orc-Boss Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-orc-boss-custom">Take an Orc-Boss Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isUrDwarf" value='Ur-Dwarf' style="display: none;" />
+					
+					<div class="sheet-ur-dwarf">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-iron-max3-or-ur-dwarf-custom">Increase your Iron stat to +3. If it is already +3, take an Ur-Dwarf Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-dwarf-custom">Take a Dwarven Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-ur-dwarf-custom">Take an Ur-Dwarf Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-ur-dwarf-custom">Take an Ur-Dwarf Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-ur-dwarf-custom">Take an Ur-Dwarf Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isWarlord" value='Warlord' style="display: none;" />
+					
+					<div class="sheet-warlord">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-wisdom-max3-or-warlord-custom">Increase your Wisdom stat to +3. If it is already +3, take a Warlord Custom instead.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-halfling-custom">Take a Halfling Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-warlord-custom">Take a Warlord Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-warlord-custom">Take a Warlord Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-warlord-custom">Take a Warlord Custom.</span></label></li>
+						</ul>
+					</div>
+					
+					<input type="checkbox" name="attr_destiny" class="sheet-isWitch" value='Witch' style="display: none;" />
+					
+					<div class="sheet-witch">
+						<ul>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-witch-custom">Take a Witch Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-witch-custom">Take a Witch Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-witch-custom">Take a Witch Custom.</span></label></li>
+							<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-witch-custom">Take a Witch Custom.</span></label></li>
+						</ul>
+					</div>
                 </div>
+				
+				<input type="checkbox" name="attr_destiny" class="sheet-isLittleGiant" value='Little Giant' style="display: none;" />
+				
+				<div class="sheet-little-giant">
+					<ul>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="take-halfling-custom">Take a Giant Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-halfling-custom">Take a Giant Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-little-giant-custom">Take a Little Giant Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-little-giant-custom">Take a Little Giant Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-little-giant-custom">Take a Little Giant Custom.</span></label></li>
+					</ul>
+				</div>
+				
+				<input type="checkbox" name="attr_destiny" class="sheet-isFinalForm" value='Final Form' style="display: none;" />
+				
+				<div class="sheet-final-form">
+					<ul>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-blood-max3-or-final-form-custom">Increase your Blood stat to +3. If it is already +3, take a Final Form Custom instead.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-dragon-custom">Take a Dragon Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-final-form-custom">Take a Final Form Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-final-form-custom">Take a Final Form Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-final-form-custom">Take a Final Form Custom.</span></label></li>
+					</ul>
+				</div>
+				
+				<input type="checkbox" name="attr_destiny" class="sheet-isWarMachine" value='War Machine' style="display: none;" />
+				
+				<div class="sheet-war-machine">
+					<ul>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-courage-max3-or-war-machine-custom">Increase your Courage stat to +3. If it is already +3, take a War Machine Custom instead.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-constructed-custom">Take a Constructed Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-war-machine-custom">Take a War Machine Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-war-machine-custom">Take a War Machine Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-war-machine-custom">Take a War Machine Custom.</span></label></li>
+					</ul>
+				</div>
+				
+				<input type="checkbox" name="attr_destiny" class="sheet-isWorldWeaver" value='World Weaver' style="display: none;" />
+				
+				<div class="sheet-world-weaver">
+					<ul>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-spider-custom">Take a Spider Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-world-weaver-custom">Take a World Weaver Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-world-weaver-custom">Take a World Weaver Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-world-weaver-custom">Take a World Weaver Custom.</span></label></li>
+					</ul>
+				</div>
+				
+				<input type="checkbox" name="attr_destiny" class="sheet-isAncientSecret" value='Ancient Secret' style="display: none;" />
+				
+				<div class="sheet-ancient-secret">
+					<ul>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-1" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-2" /> <span data-i18n="take-halfling-custom">Take a Remnant Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-3" /> <span data-i18n="take-ancient-secret-custom">Take an Ancient Secret Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-4" /> <span data-i18n="take-ancient-secret-custom">Take an Ancient Secret Custom.</span></label></li>
+						<li><label class="sheet-improvement"><input type="checkbox" name="attr_destiny-improvement-5" /> <span data-i18n="take-ancient-secret-custom">Take an Ancient Secret Custom.</span></label></li>
+					</ul>
+				</div>
             </div>
         </div>
 

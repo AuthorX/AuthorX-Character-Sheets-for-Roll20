@@ -18,6 +18,8 @@ To do:
 	* Pair
 * Add Destiny Improvements
 	* ~~Add Drop-down menu~~
-	* Add Core destinies
-	* Add Expansion destinies
+	* ~~Add Core destinies~~
+	* ~~Add Expansion destinies~~
+	* ~~CSS to hide destiny advancements~~
 * ~~Add Ship playbook~~
+	* Clean up Ship styling
