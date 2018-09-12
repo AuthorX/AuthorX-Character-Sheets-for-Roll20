@@ -1,0 +1,304 @@
+<div class="sheet-header">
+    <span>Fix fields:</span><input type="checkbox" class="sheet-isFixed" name="attr_fixed">
+</div>
+<input type="checkbox" class="sheet-isFixed" name="attr_fixed" style="display:none">
+
+<!-- this column in editable form -->
+<div class="sheet-editableSheet sheet-3col">
+    <fieldset class="repeating_column1">
+        
+        <div class="sheet-item">
+    		
+            <!-- Select the type of field for this item -->
+            <select class="sheet-typeSelector" name="attr_itemType">
+                <option>Header</option>
+                <option>Text</option>
+                <option>Text Area</option>
+                <option>Number</option>
+                <option>Number/Max</option>
+                <option>Checkbox</option>
+                <option>Break</option>
+            </select>
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <!-- One div for when the name is unlocked, the other for when it is fixed -->
+            <div class="sheet-itemNameInput">
+                <input type="text" name="attr_itemName">
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>
+
+<!-- this column in fixed form -->
+<div class="sheet-fixedSheet sheet-3col">
+    <fieldset class="repeating_column1">
+        
+        <div class="sheet-item">
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <div class="sheet-itemNameFixed">
+                <span name="attr_itemName"/>
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>
+
+<!-- this column in editable form -->
+<div class="sheet-editableSheet sheet-3col">
+    <fieldset class="repeating_column2">
+        
+        <div class="sheet-item">
+    		
+            <!-- Select the type of field for this item -->
+            <select class="sheet-typeSelector" name="attr_itemType">
+                <option>Header</option>
+                <option>Text</option>
+                <option>Text Area</option>
+                <option>Number</option>
+                <option>Number/Max</option>
+                <option>Checkbox</option>
+                <option>Break</option>
+            </select>
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <!-- One div for when the name is unlocked, the other for when it is fixed -->
+            <div class="sheet-itemNameInput">
+                <input type="text" name="attr_itemName">
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>
+
+<!-- this column in fixed form -->
+<div class="sheet-fixedSheet sheet-3col">
+    <fieldset class="repeating_column2">
+        
+        <div class="sheet-item">
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <div class="sheet-itemNameFixed">
+                <span name="attr_itemName"/>
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>
+
+<!-- this column in editable form -->
+<div class="sheet-editableSheet sheet-3col">
+    <fieldset class="repeating_column3">
+        
+        <div class="sheet-item">
+    		
+            <!-- Select the type of field for this item -->
+            <select class="sheet-typeSelector" name="attr_itemType">
+                <option>Header</option>
+                <option>Text</option>
+                <option>Text Area</option>
+                <option>Number</option>
+                <option>Number/Max</option>
+                <option>Checkbox</option>
+                <option>Break</option>
+            </select>
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <!-- One div for when the name is unlocked, the other for when it is fixed -->
+            <div class="sheet-itemNameInput">
+                <input type="text" name="attr_itemName">
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>
+
+<!-- this column in fixed form -->
+<div class="sheet-fixedSheet sheet-3col">
+    <fieldset class="repeating_column3">
+        
+        <div class="sheet-item">
+            
+            <!-- Hidden checks that will allow the divs to be hidden or styled based on the selector.
+            Only the checkbox whose value is selected will be "checked", which affects the CSS selectors -->
+            <input type="checkbox" name="attr_itemType" value="Header" class="sheet-isHeader" style="display:none" checked='true'>
+            <input type="checkbox" name="attr_itemType" value="Text" class="sheet-isText" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Text Area" class="sheet-isTextarea" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number" class="sheet-isNumber" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Number/Max" class="sheet-isNumberMax" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Checkbox" class="sheet-isCheckbox" style="display:none">
+            <input type="checkbox" name="attr_itemType" value="Break" class="sheet-isBreak" style="display:none">
+            
+            <div class="sheet-itemNameFixed">
+                <span name="attr_itemName"/>
+            </div>
+            
+            <!-- Actual attribute inputs -->
+            <div class="sheet-textItem">
+                <input type="text" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-textareaItem">
+                <textarea name="attr_itemValue"></textarea>
+            </div>
+            <div class="sheet-numberItem">
+                <input type="number" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-numberMaxItem">
+                <input type="number" name="attr_itemValue"/> / <input type="number" name="attr_itemMax"/>
+            </div>
+            <div class="sheet-checkboxItem">
+                <input type="checkbox" name="attr_itemValue"/>
+            </div>
+            <div class="sheet-breakItem">
+                <hr/>
+            </div>
+        </div>
+    
+    </fieldset>
+</div>

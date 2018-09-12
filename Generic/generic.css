@@ -1,0 +1,60 @@
+.sheet-3col {
+    float: left;
+    width: 33%;
+}
+
+/* display or hide the name divs and type selector based on the isFixed checkbox status */
+
+.sheet-isFixed:checked ~ .sheet-typeSelector,
+.sheet-isFixed:checked ~ .sheet-editableSheet,
+.sheet-isFixed:not(:checked) ~ .sheet-fixedSheet
+{
+    display: none;
+}
+
+.sheet-isFixed:not(:checked) ~ .sheet-typeSelector,
+.sheet-isFixed:not(:checked) ~ .sheet-editableSheet,
+.sheet-isFixed:checked ~ .sheet-fixedSheet
+{
+    display: block;
+}
+
+/* hide name divs if the type is break */
+
+.sheet-isBreak:checked ~ .sheet-itemNameInput,
+.sheet-isBreak:checked ~ .sheet-itemNameFixed
+{
+    display: none;
+}
+
+/* Style name if the type is header */
+
+.sheet-isHeader:checked ~ .sheet-itemNameFixed
+{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* display the div for the current type */
+
+.sheet-isBreak:checked ~ .sheet-breakItem,
+.sheet-isNumber:checked ~ .sheet-numberItem,
+.sheet-isNumberMax:checked ~ .sheet-numberMaxItem,
+.sheet-isText:checked ~ .sheet-textItem,
+.sheet-isTextarea:checked ~ .sheet-textareaItem,
+.sheet-isCheckbox:checked ~ .sheet-checkboxItem
+{
+    display: block;
+}
+
+/* hide all divs for other types */
+
+.sheet-breakItem,
+.sheet-numberItem,
+.sheet-numberMaxItem,
+.sheet-textItem,
+.sheet-textareaItem,
+.sheet-checkboxItem
+{
+    display: none;
+}
