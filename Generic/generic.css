@@ -1,6 +1,43 @@
+.sheet-container
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-gap:.5em;
+}
+
+.sheet-header
+{
+    grid-column: span 3;
+}
+
+.sheet-3col + .sheet-3col
+{
+    padding: 1em;
+    border-left: solid;
+}
+
+/* make the large divs into columns */
+/*
 .sheet-3col {
-    float: left;
-    width: 33%;
+    width: 30%;
+    padding: .5%;
+    position: relative;
+}
+
+.sheet-3col + .sheet-3col:before {
+    content: " ";
+        display: inline-block;
+        background: silver;
+        height: 100px;
+        width: .5%;
+        position:absolute;
+        left: -1%;
+}
+*/
+/* fix textarea width because the default input width is overruled elsewhere */
+.sheet-item textarea 
+{
+    width: 210px;
 }
 
 /* display or hide the name divs and type selector based on the isFixed checkbox status */
@@ -16,7 +53,7 @@
 .sheet-isFixed:not(:checked) ~ .sheet-editableSheet,
 .sheet-isFixed:checked ~ .sheet-fixedSheet
 {
-    display: block;
+    display: inline-block;
 }
 
 /* hide name divs if the type is break */
