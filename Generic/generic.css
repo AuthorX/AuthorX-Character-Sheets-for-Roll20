@@ -44,7 +44,8 @@
 
 .sheet-isFixed:checked ~ .sheet-typeSelector,
 .sheet-isFixed:checked ~ .sheet-editableSheet,
-.sheet-isFixed:not(:checked) ~ .sheet-fixedSheet
+.sheet-isFixed:not(:checked) ~ .sheet-fixedSheet,
+.sheet-fixedSheet .repcontrol
 {
     display: none;
 }
