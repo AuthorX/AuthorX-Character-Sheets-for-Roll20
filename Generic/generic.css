@@ -10,16 +10,62 @@
     grid-column: span 3;
 }
 
-.sheet-3col + .sheet-3col
+.sheet-leftBorder
+{
+    border-left: solid;
+}
+
+.sheet-3col
 {
     padding: 1em;
-    border-left: solid;
 }
 
 /* fix textarea width because the default input width is overruled elsewhere */
 .sheet-item textarea 
 {
     width: 210px;
+}
+
+.sheet-toggle {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  padding-left: 2em;
+}
+
+.sheet-toggle input {display:none;}
+
+.sheet-toggle input + span {
+  position: absolute;
+  cursor: pointer;
+  height: 1em;
+  width: 1.8em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+}
+
+.sheet-toggle input:checked + span {
+  background-color: #111;
+}
+
+.sheet-toggle input + span:before {
+  position: absolute;
+  content: "";
+  height: .7em;
+  width: .7em;
+  bottom: .15em;
+  background-color: white;
+}
+
+.sheet-toggle input:not(:checked) + span:before {
+  left: .15em;
+}
+
+.sheet-toggle input:checked + span:before {
+  right: .15em;
 }
 
 /* display or hide the name divs and type selector based on the isFixed checkbox status */
