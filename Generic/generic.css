@@ -16,24 +16,6 @@
     border-left: solid;
 }
 
-/* make the large divs into columns */
-/*
-.sheet-3col {
-    width: 30%;
-    padding: .5%;
-    position: relative;
-}
-
-.sheet-3col + .sheet-3col:before {
-    content: " ";
-        display: inline-block;
-        background: silver;
-        height: 100px;
-        width: .5%;
-        position:absolute;
-        left: -1%;
-}
-*/
 /* fix textarea width because the default input width is overruled elsewhere */
 .sheet-item textarea 
 {
@@ -44,7 +26,8 @@
 
 .sheet-isFixed:checked ~ .sheet-typeSelector,
 .sheet-isFixed:checked ~ .sheet-editableSheet,
-.sheet-isFixed:not(:checked) ~ .sheet-fixedSheet
+.sheet-isFixed:not(:checked) ~ .sheet-fixedSheet,
+.sheet-fixedSheet .repcontrol
 {
     display: none;
 }
@@ -66,20 +49,26 @@
 
 /* Style name if the type is header */
 
-.sheet-isHeader:checked ~ .sheet-itemNameFixed
+.sheet-isHeader:checked ~ .sheet-itemNameFixed,
+.sheet-typeSelector[value="Header"] ~ .sheet-itemNameFixed
 {
     font-size: 1.5em;
     font-weight: bold;
 }
 
-/* display the div for the current type */
+/* Style items */
 
-.sheet-isBreak:checked ~ .sheet-breakItem,
-.sheet-isNumber:checked ~ .sheet-numberItem,
-.sheet-isNumberMax:checked ~ .sheet-numberMaxItem,
-.sheet-isText:checked ~ .sheet-textItem,
-.sheet-isTextarea:checked ~ .sheet-textareaItem,
-.sheet-isCheckbox:checked ~ .sheet-checkboxItem
+.sheet-item {
+    margin-bottom: 1em;
+}
+
+/* display the div for the current type */
+.sheet-typeSelector[value="Break"] ~ .sheet-breakItem,
+.sheet-typeSelector[value="Number"] ~ .sheet-numberItem,
+.sheet-typeSelector[value="Number/Max"] ~ .sheet-numberMaxItem,
+.sheet-typeSelector[value="Text"] ~ .sheet-textItem,
+.sheet-typeSelector[value="Textarea"] ~ .sheet-textareaItem,
+.sheet-typeSelector[value="Checkbox"] ~ .sheet-checkboxItem
 {
     display: block;
 }
