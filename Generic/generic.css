@@ -67,7 +67,7 @@
 .sheet-typeSelector[value="Number"] ~ .sheet-numberItem,
 .sheet-typeSelector[value="Number/Max"] ~ .sheet-numberMaxItem,
 .sheet-typeSelector[value="Text"] ~ .sheet-textItem,
-.sheet-typeSelector[value="Textarea"] ~ .sheet-textareaItem,
+.sheet-typeSelector[value="Text Area"] ~ .sheet-textareaItem,
 .sheet-typeSelector[value="Checkbox"] ~ .sheet-checkboxItem
 {
     display: block;
