@@ -825,8 +825,8 @@ on("sheet:opened", function(eventInfo){
                             <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-1" /> <span data-i18n="increase-blood-or-sense-max3">Increase your Blood or Sense by 1 (to a maximum of +3).</span></label></li>
                             <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-2" /> <span data-i18n="increase-stat-max3">Increase one of your stats by 1 (to a maximum of +3).</span></label></li>
                             <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-3" /> <span data-i18n="take-unknown-move">Take a Core or Custom move from any basic playbook. You cannot take a move someone else already knows.</span></label></li>
-                            <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-4" /> <span data-i18n="take-elven-custom">Take a Elven Custom.</span></label></li>
-                            <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-5" /> <span data-i18n="take-elven-custom">Take a Elven Custom.</span></label></li>
+                            <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-4" /> <span data-i18n="take-elven-custom">Take an Elven Custom.</span></label></li>
+                            <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-5" /> <span data-i18n="take-elven-custom">Take an Elven Custom.</span></label></li>
                             <li><label class="sheet-improvement"><input type="checkbox" name="attr_improvement-6" /> <span data-i18n="share-move-3bonds">Choose a player you have 3 Bonds with, Share a Move with them.</span></label></li>
                             <li><label class="sheet-improvement"><input type="checkbox" name="attr_hasDestiny" value='1'/> <span data-i18n="take-destiny">You have Changed. You must be level 5 or higher to take this Advancement. When you Change, choose a Destiny you meet the requirements for and take its first Move.</span></label></li>
                         </ul>
@@ -1318,7 +1318,7 @@ on("sheet:opened", function(eventInfo){
 Tell Us Of Your People
 Improve The World Around You</textarea>
             </div>
-            <div class="sheet-box sheet-pcBox"">
+            <div class="sheet-box sheet-pcBox">
                 <label class="sheet-bonds sheet-section-title"><span data-i18n="bonds">Bonds</span>: <button type='roll' class='sheet-d6-roll-button' value='&{template:aw} {{name=@{character_name}}} {{roll_name=^{bonds}}} {{roll_mod=[[@{bondsquery}]]}} {{result=[[@{rollquery} + @{bondsquery}]]}}' name='roll_bonds' /></label>
                 <textarea rows="4" cols="50" name="attr_bonds" class="sheet-largetextarea" ></textarea>
             </div>
