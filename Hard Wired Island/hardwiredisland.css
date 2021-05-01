@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Baumans&display=swap');
+
+.charactersheet {
+	font-family: 'Baumans';
+}
+
+.row {
+	display: flex;
+}
+
+.row label {
+	margin: .2em 1em .2em .2em;
+	width: auto;
+	flex-grow: 0;
+}
+
+.row input[type=text] {
+	flex-grow: 1;
+}
