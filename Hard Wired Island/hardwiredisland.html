@@ -1,21 +1,72 @@
-<section class="title">
+<header>
 	<h1><span data-i18n="hard-wired-island">Hard Wired Island</span></h1>
-</section>
-<section class="profile-section">
-	<div class="row"><label for="name" class="input-label" data-i18n="character">Character:</label> <input id="name" type="text" name="attr_name"/></div>
-	<div class="row"><label for="handle" class="input-label" data-i18n="handle">Handle:</label> <input id="handle" type="text" name="attr_handle"/> <label for="pronouns" class="input-label" data-i18n="pronouns">Pronouns:</label> <input id="pronouns" type="text" name="attr_pronouns"/></div>
-	<div class="row"><label for="player" class="input-label" data-i18n="player">Player:</label> <input id="player" type="text" name="attr_player"/></div>
-</section>
-<section class="background-section">
-	<div class="row"><label for="origin" class="input-label" data-i18n="origin">Origin:</label> <input id="origin" type="text" name="attr_origin"/></div>
-	<div class="row"><label for="occupation" class="input-label" data-i18n="occupation">Occupation:</label> <input id="occupation" type="text" name="attr_occupation"/></div>
-	<div class="row"><label for="burden" class="input-label" data-i18n="burden">Burden:</label> <input id="burden" type="text" name="attr_burden"/></div>
-	<div class="row"><label for="app" class="input-label" data-i18n="app">App:</label> <input id="app" type="text" name="attr_app"/></div>
-</section>
-<section class="prep-section">
-	<div class="table-header"><span for="prep" class="input-label" data-i18n="personal prep">Personal Prep:</span></div>
-	<div class="table-row"><input id="prep" type="number" name="attr_prep"/></div>
-</section>
-<section class="attributes-section">
-	
-</section>
+</header>
+<main>
+<div class="2col">
+	<section class="profile-section">
+		<div class="row"><label for="name"><span class="input-label" data-i18n="character">Character:</span> <input id="name" type="text" name="attr_name"/></label></div>
+		<div class="row"><label for="handle"><span class="input-label" data-i18n="handle">Handle:</span> <input id="handle" type="text" name="attr_handle"/></label> <label for="pronouns"><span class="input-label" data-i18n="pronouns">Pronouns:</span> <input id="pronouns" type="text" name="attr_pronouns"/></label></div>
+		<div class="row"><label for="player"><span class="input-label" data-i18n="player">Player:</span> <input id="player" type="text" name="attr_player"/></label></div>
+	</section>
+	<section class="background-section">
+		<div class="row"><label for="origin"><span class="input-label" data-i18n="origin">Origin:</span> <input id="origin" type="text" name="attr_origin"/></label></div>
+		<div class="row"><label for="occupation"><span class="input-label" data-i18n="occupation">Occupation:</span> <input id="occupation" type="text" name="attr_occupation"/></label></div>
+		<div class="row"><label for="burden"><span class="input-label" data-i18n="burden">Burden:</span> <input id="burden" type="text" name="attr_burden"/></label></div>
+		<div class="row"><label for="app"><span class="input-label" data-i18n="app">App:</span> <input id="app" type="text" name="attr_app"/></label></div>
+	</section>
+	<section class="prep-section column-section">
+		<label for="prep" class="column-label" data-i18n="personal prep">Personal Prep</label>
+		<div><input id="prep" type="number" name="attr_prep"/></div>
+	</section>
+	<section class="attributes-section">
+		<table id="attributes-table">
+			<tr><td /><th data-i18n="skill">Skill</th><th data-i18n="defense">Defense</th></tr>
+			<tr><th data-i18n="cool">Cool</th><td><input type="text" name="attr_cool_skill"/></td><td><input id="cool_defense" type="text" name="attr_cool_defense"/></td></tr>
+			<tr><th data-i18n="clever">Clever</th><td><input type="text" name="attr_clever_skill"/></td><td><input id="clever_defense" type="text" name="attr_clever_defense"/></td></tr>
+			<tr><th data-i18n="tough">Tough</th><td><input id="tough" type="text" name="attr_tough_skill"/></td><td><input id="tough_defense" type="text" name="attr_tough_defense"/></td></tr>
+			<tr><th data-i18n="quick">Quick</th><td><input id="quick" type="text" name="attr_quick_skill"/></td><td><input id="quick" type="text" name="attr_quick_defense"/></td></tr>
+		</table>
+	</section>
+	<section class="harm-section column-section">
+		<label class="column-label" data-i18n="harm">Harm</label>
+		<label class="harm-box"><input id="harm-1" type="checkbox" name="attr_harm-1"/><span class="number-label" data-i18n="1">1</span><span class="harm-label" data-i18n="minor-injury">Minor Injury</span><span class="harm-desc" data-i18n="no-effect">No effect</span></label>
+		<label class="harm-box"><input id="harm-2" type="checkbox" name="attr_harm-2"/><span class="number-label" data-i18n="2">2</span><span class="harm-label" data-i18n="minor-injury">Minor Injury</span><span class="harm-desc" data-i18n="no-effect">No effect</span></label>
+		<label class="harm-box"><input id="harm-3" type="checkbox" name="attr_harm-3"/><span class="number-label" data-i18n="3">3</span><span class="harm-label" data-i18n="harm">Harm</span><span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span></label>
+		<label class="harm-box"><input id="harm-4" type="checkbox" name="attr_harm-4"/><span class="number-label" data-i18n="4">4</span><span class="harm-label" data-i18n="harm">Harm</span><span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span></label>
+		<label class="harm-box"><input id="harm-5" type="checkbox" name="attr_harm-5"/><span class="number-label" data-i18n="5">5</span><span class="harm-label" data-i18n="serious-harm">Serious harm</span><span class="harm-desc" data-i18n="mins-one-die">-1 die to all rolls</span></label>
+		<label class="harm-box"><input id="harm-6" type="checkbox" name="attr_harm-6"/><span class="number-label" data-i18n="6">6</span><span class="harm-label" data-i18n="incapacitated">Incapacitated</span><span class="harm-desc" data-i18n="taken-out">Taken out</span></label>
+	</section>
+	<section class="specialties-section column-section">
+		<label for="specialties" class="column-label" data-i18n="specialties">Specialties</label>
+		<fieldset class="repeating_specialties">
+			<input type="number" name="attr_specialty_num"/><input type="text" name="attr_specialt_name"/>
+		</fieldset>
+	</section>
+</div>
+<div class="2col>
+	<section class="assets-section column-section">
+		<label class="column-label" data-i18n="assets">Assets</label>
+		<fieldset class="repeating_assets">
+			<input type="text" name="attr_asset"/>
+		</fieldset>
+	</section>
+	<section class="traits-section column-section">
+		<label class="column-label" data-i18n="traits">Traits</label>
+		<fieldset class="repeating_traits">
+			<input type="text" name="attr_trait"/>
+		</fieldset>
+	</section>
+	<section class="talents-section column-section">
+		<label class="column-label" data-i18n="talents">Talents</label>
+		<fieldset class="repeating_talents">
+			<input type="text" name="attr_talent"/>
+		</fieldset>
+	</section>
+	<section class="augments-section column-section">
+		<label class="column-label" data-i18n="augments">Augments</label>
+		<fieldset class="repeating_augments">
+			<input type="text" name="attr_augment"/>
+		</fieldset>
+	</section>
+</div 2col>
+</main>
