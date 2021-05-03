@@ -1,18 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Baumans&display=swap');
-/*
-.sheetform .charactersheet main {
-	display: flex;
-	flex-flow: row fixed;
+
+.sheetform .charactersheet button[type=roll].sheet-d6-dice::before {
+    font-family: 'dicefontd6';
+    content: 'F ';
 }
 
-.2col {
-	width:50%
-	flex-grow: 1;
+.sheetform .charactersheet main {
+	display: flex;
+	flex-wrap: wrap;
 }
-*/
+
+.col2 {
+	flex: 1 1 300px;
+	padding: .5em;
+}
+
 .sheetform .charactersheet section *, header *{
 	font-family: 'Baumans';
 	color: #006a83;
+}
+
+.sheetform .charactersheet input {
+	width: 100%
 }
 
 .row {
@@ -62,7 +71,6 @@ section.harm-section .harm-box {
 }
 section.column-section .column-label {
 	width: 100%
-	
 }
 
 .sheetform .charactersheet section .column-label {
@@ -76,9 +84,6 @@ section.column-section .column-label {
 	width: auto;
 	flex-grow: 0;
 }
-
-section.column-section 
-
 .row input[type=text] {
 	flex-grow: 1;
 }
@@ -116,4 +121,8 @@ table td input {
 
 #attributes-table tr:last-child>td:last-child {
 	border-bottom-right-radius: 10px;
-}	
+}
+
+.repcontainer .repitem{
+	display: flex;
+}

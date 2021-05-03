@@ -1,8 +1,51 @@
+<script type="text/worker">
+on("change:roller_advantage change:roller_disadvantage", function() {  
+  getAttrs(["roller_advantage","roller_disadvantage"], function(values) {
+    let ad = parseInt(values.roller_advantage)||0;
+    let dis = parseInt(values.roller_disadvantage)||0;
+	let mod = ad - dis;
+	let suffix = "";
+	
+    if (mod < 0 ) {
+		suffix = "dh" + -mod + "[Disadvantage]";
+		mod = -mod;
+	}
+	else if (mod > 0) {
+		suffix = "dl" + mod + "[Advantage]";
+	}
+	else {
+		suffix = "";
+	}
+    setAttrs({
+	  "advantage_modifier": mod,
+      "advantage_suffix": suffix
+    });
+  });
+});
+</script>
+
 <header>
 	<h1><span data-i18n="hard-wired-island">Hard Wired Island</span></h1>
+	<h2><span data-i18n="diceroller">Dice Roller</span> <button class="sheet-d6-dice" type="roll" value="/roll (@{roller_dice}+@{advantage_modifier})d6@{advantage_suffix} + @{roller_ability}[Ability] + @{roller_bonus}[Bonus]" name="roll_BluffCheck" /></h2>
+	<div class="row">
+		<label for="roller_dice" class="input-label" data-i18n="dice">Dice:</label> <input id="roller_dice" type="number" name="attr_roller_dice"/>
+		<label for="roller_advantage" class="input-label" data-i18n="advantage">Advantage:</label> <input id="roller_advantage" type="number" name="attr_roller_advantage"/>
+		<label for="roller_disadvantage" class="input-label" data-i18n="disadvantage">Disadvantage:</label> <input id="roller_disadvantage" type="number" name="attr_roller_disadvantage"/>
+		<input type="hidden" name="attr_advantage_modifier" />
+		<input type="hidden" name="attr_advantage_suffix" />
+		<label for="roller_ability" class="input-label" data-i18n="ability">Ability:</label>
+		<select id="roller_ability" name="attr_roller_ability">
+			<option value="@{cool_skill}" data-i18n="cool">Cool</option>
+			<option value="@{clever_skill}" data-i18n="clever">Clever</option>
+			<option value="@{tough_skill}" data-i18n="tough">Tough</option>
+			<option value="@{quick_skill}" data-i18n="quick">Quick</option>
+			<option value="0" data-i18n="none">None</option>
+		</select>
+		<label for="roller_bonus" class="input-label" data-i18n="bonus">Bonus:</label> <input id="roller_bonus" type="number" name="attr_roller_bonus"/>
+	</div>
 </header>
 <main>
-<div class="2col">
+<div class="col2">
 	<section class="profile-section">
 		<div class="row"><label for="name"><span class="input-label" data-i18n="character">Character:</span> <input id="name" type="text" name="attr_name"/></label></div>
 		<div class="row"><label for="handle"><span class="input-label" data-i18n="handle">Handle:</span> <input id="handle" type="text" name="attr_handle"/></label> <label for="pronouns"><span class="input-label" data-i18n="pronouns">Pronouns:</span> <input id="pronouns" type="text" name="attr_pronouns"/></label></div>
@@ -16,7 +59,7 @@
 	</section>
 	<section class="prep-section column-section">
 		<label for="prep" class="column-label" data-i18n="personal prep">Personal Prep</label>
-		<div><input id="prep" type="number" name="attr_prep"/></div>
+		<div><input min="0" id="prep" type="number" name="attr_prep"/></div>
 	</section>
 	<section class="attributes-section">
 		<table id="attributes-table">
@@ -24,7 +67,7 @@
 			<tr><th data-i18n="cool">Cool</th><td><input type="text" name="attr_cool_skill"/></td><td><input id="cool_defense" type="text" name="attr_cool_defense"/></td></tr>
 			<tr><th data-i18n="clever">Clever</th><td><input type="text" name="attr_clever_skill"/></td><td><input id="clever_defense" type="text" name="attr_clever_defense"/></td></tr>
 			<tr><th data-i18n="tough">Tough</th><td><input id="tough" type="text" name="attr_tough_skill"/></td><td><input id="tough_defense" type="text" name="attr_tough_defense"/></td></tr>
-			<tr><th data-i18n="quick">Quick</th><td><input id="quick" type="text" name="attr_quick_skill"/></td><td><input id="quick" type="text" name="attr_quick_defense"/></td></tr>
+			<tr><th data-i18n="quick">Quick</th><td><input id="quick" type="text" name="attr_quick_skill"/></td><td><input id="quick_defense" type="text" name="attr_quick_defense"/></td></tr>
 		</table>
 	</section>
 	<section class="harm-section column-section">
@@ -39,11 +82,11 @@
 	<section class="specialties-section column-section">
 		<label for="specialties" class="column-label" data-i18n="specialties">Specialties</label>
 		<fieldset class="repeating_specialties">
-			<input type="number" name="attr_specialty_num"/><input type="text" name="attr_specialt_name"/>
+			<input type="number" min="0" name="attr_specialty_num"/><input type="text" name="attr_specialt_name"/>
 		</fieldset>
 	</section>
 </div>
-<div class="2col>
+<div class="col2">
 	<section class="assets-section column-section">
 		<label class="column-label" data-i18n="assets">Assets</label>
 		<fieldset class="repeating_assets">
