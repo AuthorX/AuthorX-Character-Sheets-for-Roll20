@@ -28,9 +28,9 @@ on("change:roller_advantage change:roller_disadvantage", function() {
 	<h1><span data-i18n="hard-wired-island">Hard Wired Island</span></h1>
 	<h2><span data-i18n="diceroller">Dice Roller</span> <button class="sheet-d6-dice" type="roll" value="/roll (@{roller_dice}+@{advantage_modifier})d6@{advantage_suffix} + @{roller_ability}[Ability] + @{roller_bonus}[Bonus]" name="roll_BluffCheck" /></h2>
 	<div class="row">
-		<label for="roller_dice" class="input-label" data-i18n="dice">Dice:</label> <input id="roller_dice" type="number" name="attr_roller_dice"/>
-		<label for="roller_advantage" class="input-label" data-i18n="advantage">Advantage:</label> <input id="roller_advantage" type="number" name="attr_roller_advantage"/>
-		<label for="roller_disadvantage" class="input-label" data-i18n="disadvantage">Disadvantage:</label> <input id="roller_disadvantage" type="number" name="attr_roller_disadvantage"/>
+		<label for="roller_dice" class="input-label" data-i18n="dice">Dice:</label> <input id="roller_dice" type="number" min="0" name="attr_roller_dice"/>
+		<label for="roller_advantage" class="input-label" data-i18n="advantage">Advantage:</label> <input id="roller_advantage" type="number" min="0" name="attr_roller_advantage"/>
+		<label for="roller_disadvantage" class="input-label" data-i18n="disadvantage">Disadvantage:</label> <input id="roller_disadvantage" type="number" min="0" name="attr_roller_disadvantage"/>
 		<input type="hidden" name="attr_advantage_modifier" />
 		<input type="hidden" name="attr_advantage_suffix" />
 		<label for="roller_ability" class="input-label" data-i18n="ability">Ability:</label>
@@ -59,7 +59,7 @@ on("change:roller_advantage change:roller_disadvantage", function() {
 	</section>
 	<section class="prep-section column-section">
 		<label for="prep" class="column-label" data-i18n="personal prep">Personal Prep</label>
-		<div><input min="0" id="prep" type="number" name="attr_prep"/></div>
+		<div><input id="prep" type="number" min="0" name="attr_prep"/></div>
 	</section>
 	<section class="attributes-section">
 		<table id="attributes-table">

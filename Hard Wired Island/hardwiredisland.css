@@ -20,11 +20,12 @@
 	color: #006a83;
 }
 
-.sheetform .charactersheet input {
+.sheetform .charactersheet input[type=text] {
 	width: 100%
 }
 
 .row {
+	margin: 0;
 	display: flex;
 }
 
