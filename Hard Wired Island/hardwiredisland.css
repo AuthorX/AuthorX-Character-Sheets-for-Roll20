@@ -17,7 +17,7 @@
 
 .sheetform .charactersheet section *, header *{
 	font-family: 'Baumans';
-	color: #006a83;
+	/* color: #006a83; */
 }
 
 .sheetform .charactersheet input[type=text] {
@@ -74,6 +74,8 @@ section.column-section .column-label {
 	width: 100%
 }
 
+
+
 .sheetform .charactersheet section .column-label {
 	background-color: #214E9B;
 	color: white;
@@ -127,3 +129,515 @@ table td input {
 .repcontainer .repitem{
 	display: flex;
 }
+
+/* nu_roller by cadera ---------------------------------------------------- */
+#nu_roller {
+  display: revert;
+  padding: 0;
+  position: relative;
+  margin-top: 6pt;
+}
+
+#nu_roller[open] {
+  border-radius: 5px;
+  border: 1px solid #214E9B;
+  background: transparent;
+}
+
+#nu_roller > summary {
+  text-align: right; 
+  margin-right: 5pt;
+}
+
+
+#nu_roller       > summary > span.open   { display: none;         }
+#nu_roller[open] > summary > span.open   { display: inline-block; }
+#nu_roller       > summary > span.closed { display: inline-block; }
+#nu_roller[open] > summary > span.closed { display: none;         }
+
+#nu_roller select.number_of_dice, 
+#nu_roller select.number_of_dice option {
+    font-family: "dicefontd6";
+    font-size: 24pt;
+}
+
+#nu_roller select {
+  height: 28pt;
+  border: none;
+  margin: 0;
+  background: transparent;
+}
+
+#nu_roller div[id] { 
+  display: inline-block;
+}
+
+#nu_roller #nu_roller_ability select,
+#nu_roller #nu_roller_ability option { 
+  font-size: 14pt;
+}
+
+#nu_roller #nu_roller_ability,
+#nu_roller #nu_roller_ability select,
+#nu_roller #nu_roller_ability label {
+  width: 70pt;
+}
+
+#nu_roller label[for] {
+  text-align: left;
+  display: inline-block;
+  font-weight: normal;
+  font-size: 9pt;
+  padding: 1pt;
+  padding-left: 6pt;
+  margin: 1pt;
+}
+
+#nu_roller button::before {
+  content: '';
+}
+
+#nu_roller input#nu_roller_preview {
+  border: none; 
+}
+
+#nu_roller #nu_roller_number,
+#nu_roller #nu_roller_number select,
+#nu_roller #nu_roller_number label {
+  width: 100pt;
+}
+
+#nu_roller #nu_roller_advantage,
+#nu_roller #nu_roller_advantage select,
+#nu_roller #nu_roller_advantage label {
+  width: 100pt;
+}
+
+#nu_roller #nu_roller_disadvantage,
+#nu_roller #nu_roller_disadvantage select,
+#nu_roller #nu_roller_disadvantage label {
+  width: 100pt;
+}
+
+#nu_roller #nu_roller_bonus,
+#nu_roller #nu_roller_bonus select,
+#nu_roller #nu_roller_bonus label {
+  width: 100pt;
+}
+
+#nu_roller #nu_roller_harm,
+#nu_roller #nu_roller_harm select,
+#nu_roller #nu_roller_harm label {
+  width: 90pt;
+}
+
+
+#nu_roller #nu_roller_buttons,
+#nu_roller #nu_roller_buttons button {
+  width: 45pt;
+}
+
+#nu_roller #nu_roller_buttons button {
+  vertical-align: top;
+}
+
+/* theming ------------------------------------------------------------ */
+
+#theme_selector {
+  border: none;
+  width: 55pt;
+  float: right;
+  background: none;
+}
+
+#theme_selector button {
+  border: none;
+  background: none;
+  color: white;
+  font-family: "Pictos";
+  font-size: 9pt;
+  width: 12pt;
+  padding: 0;
+  margin: 0;
+}
+
+#everything {
+  /* background-color: yellow; */
+    background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+    background-size: 100%, contain;
+    margin: -20pt;
+    padding: 15pt;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: top center;
+    border-radius: 5pt;
+}
+
+header h1 {
+  color: white;
+  font-size: 24pt;
+  padding: 10pt;
+  border-radius: 5pt;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+main table#attributes-table tr:first-child td:first-child { 
+  background: transparent;
+}
+
+#everything header section input[type~="text"],
+#everything main section input[type~="text"],
+main table td,
+main section.harm-section > label,
+main section.prep-section div {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+
+:is(
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+) ~ #everything 
+{
+  background: transparent;
+}
+
+:is(
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~ #everything ~ .harm-box span,
+
+:is(
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~ #everything th:first-child,
+
+:is( 
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~  #everything summary,
+
+:is( 
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~  #everything #nu_roller :is( select, option, label, h2),
+
+:is( 
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~  #everything :is( .profile-section, .background-section) .row label span,
+
+:is(    
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~  #everything #theme_selector button,
+
+:is( 
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~ #everything button[type~="roll"],
+
+:is( 
+    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
+    .theme[value="10"]
+   ) ~ #everything h1 
+{
+  color: #214E9B;
+}
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]
+  ) ~ #everything summary,
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]
+  ) ~ #everything #nu_roller :is(select, label),
+    
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]    
+  ) ~ #everything :is( .profile-section, .background-section ) div label,
+                      
+:is(  
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]
+  ) ~ #everything section.attributes-section table th,
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]
+  ) ~ #everything :is( h1, h2)  
+{
+  color: white;
+  text-shadow: 0 0 2pt #214E9B;
+}
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+ ) ~ #everything #nu_roller[open],
+ 
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything section.attributes-section tr:first-child th,
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything section .column-label
+{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything #nu_roller option
+{ color: black; }
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything section.attributes-section table,
+    
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything section.column-section > :is(div, label),
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything #attributes-table tr>:nth-child(n+2),
+ 
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything section .column-label 
+{
+  border-color: black;
+}
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"]
+  ) ~ #everything #nu_roller
+{ border-color: white; }
+
+:is(
+  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
+  .theme[value="9"], .theme[value="11"]
+  ) ~ #everything h1 
+{
+  padding-bottom: 0;
+}
+
+:is(
+  .theme[value="2"], .theme[value="4"], .theme[value="6"], 
+  .theme[value="10"]
+  ) ~ #everything #theme_selector button,
+
+:is(
+  .theme[value="2"], .theme[value="4"], .theme[value="6"],
+  .theme[value="10"]
+  ) ~ #everything h1
+{
+  color: white;
+}
+
+.theme[value="0"] #everything h1 {
+  padding: 0;
+}
+
+:is( .theme[value="1"], .theme[value="7"])
+~ #everything {
+  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
+  background-color: #214E9B;
+  background-position: center -125pt;
+}
+
+.theme[value="2"] ~ #everything h1
+{
+  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
+  background-position: center -260pt;
+  text-shadow: 0 0 2pt #214E9B;
+}
+
+.theme[value="3"] ~ #everything {
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
+  background-color: #cb410b;
+}
+
+.theme[value="3"] ~ #everything #theme_selector button 
+{
+  color: black;
+}
+
+.theme[value="4"] ~ #everything h1 
+{
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
+  background-position: center -180pt;
+  text-shadow: 0 0 2pt #ff4500;
+  border-color: #d2691e;
+}
+
+.theme[value="4"] ~ #everything #nu_roller[open]
+{ background: #faf0be;
+  border-color: #d2691e;
+}
+
+.theme[value="4"] ~ #everything section.column-section > :is(div, label),
+.theme[value="4"] ~ #everything #attributes-table tr>:nth-child(n+2)
+{ border-color: #faf0be;
+}
+
+.theme[value="4"] ~ #everything #nu_roller :is(select, option, label, button)
+{ color: #cb410b; }
+
+.theme[value="4"] ~ #everything #nu_roller summary,
+.theme[value="4"] ~ #everything #attributes-table tr th,
+.theme[value="4"] ~ #everything :is( .profile-section, .background-section) .row label span
+{ color: black; }
+
+.theme[value="4"] ~ #everything section .column-label,
+.theme[value="4"] ~ #everything #attributes-table tr>th:nth-child(n+2) {
+  border-color: #faf0be;
+  background: linear-gradient(to right, #e9692c, #f94d00, #ffd800, #f7e98e, #ffa700, #ed872d, #d2691e);
+}
+
+.theme[value="5"] ~ #everything {
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
+}
+
+.theme[value="6"] ~ #everything h1 {
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
+  background-position: center -30pt;
+}
+
+.theme[value="6"] ~ #everything section .column-label,
+.theme[value="6"] ~ #everything #attributes-table tr>th:nth-child(n+2)
+{ background: radial-gradient(circle, 
+                            #0abab5,
+                            #daa520,
+                            #cb410b,
+                            #8b0000,
+                            #00008b
+                             );    
+}
+
+:is( .theme[value="7"], .theme[value="8"], .theme[value="11"] ) ~ #everything h1 
+{
+  background-size: contain 100%;
+  height: 160pt;
+  width: 300pt;
+  color: transparent;
+  padding-top: 0;
+  text-shadow: 0 0 0 transparent;
+  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MTUucG5n/original/yfCpBA.png");
+  background-position: left -35pt;
+}
+
+.theme[value="8"] ~ #everything {
+  background-color: #214E9B;
+  color: white;
+  font-size: 16pt;
+  background-image: none;
+}
+
+.theme[value="8"] ~ #everything .harm-section .harm-box { width: 100%;
+}
+.theme[value="8"] ~ #everything #nu_roller
+{ background: transparent; 
+  border-color: transparent;
+}
+
+.theme[value="8"] ~ #everything #nu_roller[open]
+{ background: white;
+}
+
+.theme[value="8"] ~ #everything #nu_roller summary
+{ background: transparent;
+  color: white;
+  font-size: 16pt;
+}
+
+.theme[value="8"] ~ #everything #nu_roller[open] summary
+{ background: transparent;
+  color: #214E9B;
+  font-size: 16pt;
+}
+
+.theme[value="8"] ~ #everything :is( .profile-section, .background-section) .row label span,
+.theme[value="8"] ~ #verything #attributes-table th:first-child, 
+.theme[value="8"] ~ #verything #attributes-table th:first-child
+{ color: white;
+  font-size: 16pt;
+  background: transparent;
+}
+
+.theme[value="8"] ~ #everything input[name],
+.theme[value="8"] ~ #everything button[name],
+.theme[value="8"] ~ #everything #nu_roller :is(button, label, select, option) {
+  background-color: white;
+  color: #214E9B;
+  font-size: 16pt;
+}
+
+.theme[value="8"] ~ #everything section.column-section > :is(div, label),
+.theme[value="8"] ~ #everything #attributes-table tr>:nth-child(n+2)
+{ border-color: white;
+}
+
+
+:is( .theme[value="9"], .theme[value="11"] ) ~ #everything {
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+  background-color: rgba(128, 0, 128, 0.5);
+  background-blend-mode: overlay;
+}
+
+.theme[value="10"] ~ #everything h1 {
+  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+  background-position: center -90pt;
+  text-shadow: 0 0 3pt #800080;
+  border-color: #00ccFF;
+}
+
+.theme[value="10"] ~ #everything #nu_roller[open]
+{ background: radial-gradient(circle, #f4bbff, #e7feff, white, #0fc0fc, #b0e0e6, #e0ffff, #e6e8fa, #dcd0ff);
+  border-color: #800080;
+}
+
+.theme[value="10"] ~ #everything section.column-section > :is(div, label),
+.theme[value="10"] ~ #everything #attributes-table tr>:nth-child(n+2)
+{ border-color: #800080;
+}
+
+.theme[value="10"] ~ #everything #nu_roller summary,
+.theme[value="10"] ~ #everything :is( .profile-section, .background-section) .row label span,
+.theme[value="10"] ~ #verything #attributes-table th:first-child, 
+.theme[value="10"] ~ #everything #nu_roller :is(select, option, label, button)
+{ color: #800080; }
+
+.theme[value="10"] ~ #everything #attributes-table tr:first-child th
+{ color: white; }
+
+.theme[value="10"] ~ #everything section .column-label,
+.theme[value="10"] ~ #everything #attributes-table tr>th:nth-child(n+2) {
+  border-color: #800080;
+  background: linear-gradient(to right,
+            #4b0082,
+            #6a5acd,
+            #6a5acd,
+            #a4f4f9,
+            #9400d3,
+            #9400d3,
+            #00008b,
+            #bb00bb,
+            #00008b,
+            #4b0082);
+}
+

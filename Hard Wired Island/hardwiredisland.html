@@ -1,115 +1,342 @@
 <script type="text/worker">
-on("change:roller_advantage change:roller_disadvantage", function() {  
-  getAttrs(["roller_advantage","roller_disadvantage"], function(values) {
-    let ad = parseInt(values.roller_advantage)||0;
-    let dis = parseInt(values.roller_disadvantage)||0;
-	let mod = ad - dis;
-	let suffix = "";
-	
-    if (mod < 0 ) {
-		suffix = "dh" + -mod + "[Disadvantage]";
-		mod = -mod;
-	}
-	else if (mod > 0) {
-		suffix = "dl" + mod + "[Advantage]";
-	}
-	else {
-		suffix = "";
-	}
-    setAttrs({
-	  "advantage_modifier": mod,
-      "advantage_suffix": suffix
-    });
-  });
+
+const debug = {};
+const num_themes = 12;
+
+function calcDieRoll(roll_stat, roll_stat_value, roll_dice, roll_adv, roll_disad, roll_bonus, roll_harm_dots) {
+  let roll_formula = "";
+  if(debug.calcDieRoll) {
+    console.log("roll_stat",       roll_stat);
+    console.log("roll_stat_value", roll_stat_value);
+    console.log("roll_dice",       roll_dice);
+    console.log("roll_adv",        roll_adv);
+    console.log("roll_disad",      roll_disad);
+    console.log("roll_bonus",      roll_bonus);
+    console.log("roll_harm_dots",  roll_harm_dots);
+  }
+
+  if (roll_harm_dots == 5) {
+    roll_dice += -1;
+  }
+  else if (roll_harm_dots == 6) {
+    return "";
+  }
+  
+  let net_modifier = roll_adv + roll_disad;
+  
+  if (net_modifier < 0) {
+    roll_formula += roll_dice + - net_modifier;
+    roll_formula += "d6";
+    roll_formula += "dh" + - net_modifier;
+    roll_formula += "[Disadvantage " + - net_modifier + "]";
+  }
+  else if (net_modifier > 0) {
+    roll_formula += roll_dice + net_modifier;
+    roll_formula += "d6";
+    roll_formula += "dl" + net_modifier;
+    roll_formula += "[Advantage " + net_modifier + "]";
+  }
+  else {
+    roll_formula += roll_dice;
+    roll_formula += "d6";
+  }
+
+  if (roll_stat == "none") {
+  } else { 
+    roll_formula += "+" + roll_stat_value;
+    roll_formula += "[" + roll_stat + "]";
+  }
+  
+  if (roll_bonus) {
+    roll_formula += "+" + roll_bonus;
+    roll_formula += "[Bonus " + roll_bonus + "]";
+  }
+  
+  if (roll_harm_dots == 3) {
+    roll_formula += "-1";
+    roll_formula += "[Harm 3]";
+  } else if (roll_harm_dots > 3) {
+    roll_formula += "=2";
+    roll_formula += "[Harm " + roll_harm_dots + "]";
+  }
+
+  return roll_formula;
+}
+
+function toInt(value) { return parseInt(value, 10) || 0; }
+
+on("clicked:themeright", function(event) {
+     let attributesToGet = [ "theme" ];
+     getAttrs(attributesToGet, function(v) {
+       let oldTheme = v.theme;
+       let newTheme = oldTheme + 1;
+       if(newTheme >= num_themes) { newTheme = 0 }
+       let setObj   = {};
+       setObj.theme = newTheme;
+       setAttrs(setObj);
+     })
 });
+
+on("clicked:themeleft", function(event) {
+     let attributesToGet = [ "theme" ];
+     getAttrs(attributesToGet, function(v) {
+       let oldTheme = v.theme;
+       let newTheme = oldTheme - 1;
+       if(newTheme < 0) { newTheme = num_themes - 1 }
+       let setObj   = {};
+       setObj.theme = newTheme;
+       setAttrs(setObj);
+     })
+});
+
+on("clicked:themerandom", function(event) {
+      let newTheme = Math.floor(Math.random() * num_themes);
+      let setObj = {};
+      setObj.theme = newTheme;
+      setAttrs(setObj);
+});
+
+on("sheet:opened " +
+   "change:cool_skill change:clever_skill change:tough_skill change:quick_skill " +
+   "change:roller_ability change:roller_dice change:roller_advantage change:roller_disadvantage " +
+   "change:harm change:roller_bonus",
+   
+   function(event) {
+     let attributesToGet = [ "cool_skill", "clever_skill", "tough_skill", "quick_skill",
+                             "roller_ability", "roller_dice", "roller_advantage", "roller_disadvantage",
+                             "harm", "roller_bonus" ];
+                             
+     getAttrs(attributesToGet, function(v) {
+       let stat       = v.roller_ability;
+       let stat_value = 0;
+       switch(stat) {
+         case "Cool":   stat_value = toInt(v.cool_skill);   break;
+         case "Clever": stat_value = toInt(v.clever_skill); break;
+         case "Tough":  stat_value = toInt(v.tough_skill);  break;
+         case "Quick":  stat_value = toInt(v.quick_skill);  break;
+         case "none":   stat_value = 0;                     break;
+       } // switch
+       
+       let dice      = toInt(v.roller_dice);
+       let adv       = toInt(v.roller_advantage);
+       let disad     = toInt(v.roller_disadvantage);
+       let bonus     = toInt(v.roller_bonus);
+       let harm_dots = toInt(v.harm);
+       
+       let roll_formula = calcDieRoll(stat, stat_value, dice, adv, disad, bonus, harm_dots);
+       
+       let setObj = {};
+       setObj.roll_formula = roll_formula;
+       setAttrs(setObj);
+       
+     }); // getAttrs
+}); // on
+
+console.log("worker script successfully loaded");
 </script>
 
+<input type="hidden" class="theme" name="attr_theme" />
+    
+<div id="everything">
 <header>
-	<h1><span data-i18n="hard-wired-island">Hard Wired Island</span></h1>
-	<h2><span data-i18n="diceroller">Dice Roller</span> <button class="sheet-d6-dice" type="roll" value="/roll (@{roller_dice}+@{advantage_modifier})d6@{advantage_suffix} + @{roller_ability}[Ability] + @{roller_bonus}[Bonus]" name="roll_BluffCheck"></button></h2>
-	<div class="row">
-		<label for="roller_dice" class="input-label" data-i18n="dice">Dice:</label> <input id="roller_dice" type="number" min="0" name="attr_roller_dice"/>
-		<label for="roller_advantage" class="input-label" data-i18n="advantage">Advantage:</label> <input id="roller_advantage" type="number" min="0" name="attr_roller_advantage"/>
-		<label for="roller_disadvantage" class="input-label" data-i18n="disadvantage">Disadvantage:</label> <input id="roller_disadvantage" type="number" min="0" name="attr_roller_disadvantage"/>
-		<input type="hidden" name="attr_advantage_modifier" />
-		<input type="hidden" name="attr_advantage_suffix" />
-		<label for="roller_ability" class="input-label" data-i18n="ability">Ability:</label>
-		<select id="roller_ability" name="attr_roller_ability">
-			<option value="@{cool_skill}" data-i18n="cool">Cool</option>
-			<option value="@{clever_skill}" data-i18n="clever">Clever</option>
-			<option value="@{tough_skill}" data-i18n="tough">Tough</option>
-			<option value="@{quick_skill}" data-i18n="quick">Quick</option>
-			<option value="0" data-i18n="none">None</option>
-		</select>
-		<label for="roller_bonus" class="input-label" data-i18n="bonus">Bonus:</label> <input id="roller_bonus" type="number" name="attr_roller_bonus"/>
-	</div>
-</header>
-<main>
-<div class="col2">
-	<section class="profile-section">
-		<div class="row"><label for="name"><span class="input-label" data-i18n="character">Character:</span> <input id="name" type="text" name="attr_name"/></label></div>
-		<div class="row"><label for="handle"><span class="input-label" data-i18n="handle">Handle:</span> <input id="handle" type="text" name="attr_handle"/></label> <label for="pronouns"><span class="input-label" data-i18n="pronouns">Pronouns:</span> <input id="pronouns" type="text" name="attr_pronouns"/></label></div>
-		<div class="row"><label for="player"><span class="input-label" data-i18n="player">Player:</span> <input id="player" type="text" name="attr_player"/></label></div>
-	</section>
-	<section class="background-section">
-		<div class="row"><label for="origin"><span class="input-label" data-i18n="origin">Origin:</span> <input id="origin" type="text" name="attr_origin"/></label></div>
-		<div class="row"><label for="occupation"><span class="input-label" data-i18n="occupation">Occupation:</span> <input id="occupation" type="text" name="attr_occupation"/></label></div>
-		<div class="row"><label for="burden"><span class="input-label" data-i18n="burden">Burden:</span> <input id="burden" type="text" name="attr_burden"/></label></div>
-		<div class="row"><label for="app"><span class="input-label" data-i18n="app">App:</span> <input id="app" type="text" name="attr_app"/></label></div>
-	</section>
-	<section class="prep-section column-section">
-		<label for="prep" class="column-label" data-i18n="personal prep">Personal Prep</label>
-		<div><input id="prep" type="number" min="0" name="attr_prep"/></div>
-	</section>
-	<section class="attributes-section">
-		<table id="attributes-table">
-			<tr><td></td><th data-i18n="skill">Skill</th><th data-i18n="defense">Defense</th></tr>
-			<tr><th data-i18n="cool">Cool</th><td><input type="text" name="attr_cool_skill"/></td><td><input id="cool_defense" type="text" name="attr_cool_defense"/></td></tr>
-			<tr><th data-i18n="clever">Clever</th><td><input type="text" name="attr_clever_skill"/></td><td><input id="clever_defense" type="text" name="attr_clever_defense"/></td></tr>
-			<tr><th data-i18n="tough">Tough</th><td><input id="tough" type="text" name="attr_tough_skill"/></td><td><input id="tough_defense" type="text" name="attr_tough_defense"/></td></tr>
-			<tr><th data-i18n="quick">Quick</th><td><input id="quick" type="text" name="attr_quick_skill"/></td><td><input id="quick_defense" type="text" name="attr_quick_defense"/></td></tr>
-		</table>
-	</section>
-	<section class="harm-section column-section">
-		<label class="column-label" data-i18n="harm">Harm</label>
-		<label class="harm-box"><input id="harm-1" type="checkbox" name="attr_harm-1"/><span class="number-label" data-i18n="1">1</span><span class="harm-label" data-i18n="minor-injury">Minor Injury</span><span class="harm-desc" data-i18n="no-effect">No effect</span></label>
-		<label class="harm-box"><input id="harm-2" type="checkbox" name="attr_harm-2"/><span class="number-label" data-i18n="2">2</span><span class="harm-label" data-i18n="minor-injury">Minor Injury</span><span class="harm-desc" data-i18n="no-effect">No effect</span></label>
-		<label class="harm-box"><input id="harm-3" type="checkbox" name="attr_harm-3"/><span class="number-label" data-i18n="3">3</span><span class="harm-label" data-i18n="harm">Harm</span><span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span></label>
-		<label class="harm-box"><input id="harm-4" type="checkbox" name="attr_harm-4"/><span class="number-label" data-i18n="4">4</span><span class="harm-label" data-i18n="harm">Harm</span><span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span></label>
-		<label class="harm-box"><input id="harm-5" type="checkbox" name="attr_harm-5"/><span class="number-label" data-i18n="5">5</span><span class="harm-label" data-i18n="serious-harm">Serious harm</span><span class="harm-desc" data-i18n="mins-one-die">-1 die to all rolls</span></label>
-		<label class="harm-box"><input id="harm-6" type="checkbox" name="attr_harm-6"/><span class="number-label" data-i18n="6">6</span><span class="harm-label" data-i18n="incapacitated">Incapacitated</span><span class="harm-desc" data-i18n="taken-out">Taken out</span></label>
-	</section>
-	<section class="specialties-section column-section">
-		<label class="column-label" data-i18n="specialties">Specialties</label>
-		<fieldset class="repeating_specialties">
-			<input type="number" min="0" name="attr_specialty_num"/><input type="text" name="attr_specialt_name"/>
-		</fieldset>
-	</section>
+    
+    <div id="theme_selector">
+      <button type="action" name="act_themeleft" title="Change the theme">[</button>
+      <button type="action" name="act_themerandom" title="Change the theme">;</button>
+      <button type="action" name="act_themeright" title="Change the theme">]</button>
+    </div>
+
+    
+    <h1 id="pageheadline">
+    <span data-i18n="hard-wired-island">Hard Wired Island</span>
+    </h1>
+
+
+      <details id="nu_roller">
+    
+        <summary>
+          <span class="open" data-i18n="diceroller-hide">Hide Dice Roller</span>
+          <span class="closed" data-i18n="diceroller-show">Show Dice Roller</span>
+
+        </summary>
+        
+            <div id="nu_roller_ability">
+                <select id="roller_ability" name="attr_roller_ability">
+                    <option value="Cool" data-i18n="cool">Cool</option>
+                    <option value="Clever" data-i18n="clever">Clever</option>
+                    <option value="Tough" data-i18n="tough">Tough</option>
+                    <option value="Quick" data-i18n="quick">Quick</option>
+                    <option value="none" data-i18n="none">None</option>
+                </select>
+                <label for="attr_roller_ability" data-i18n="ability-nc">Ability</label>
+            </div>
+            <div id="nu_roller_number">
+                <select class="number_of_dice" name="attr_roller_dice">
+                    <option value="0">0000</option>
+                    <option value="1">A000</option>
+                    <option value="2" selected=true>AB00</option>
+                    <option value="3">ABC0</option>
+                    <option value="4">ABCD</option>
+                </select>
+                <label for="attr_roller_dice" data-i18n="dice-to-roll">Dice to Roll</label>
+            </div>
+            <div id="nu_roller_advantage">
+                <select class="number_of_dice" name="attr_roller_advantage">
+                    <option value="3">ABCD</option>
+                    <option value="3">ABC0</option>
+                    <option value="2">AB00</option>
+                    <option value="1">A000</option>
+                    <option value="0" selected=true>0000</option>
+                </select>
+                <label for="attr_roller_advantage" data-i18n="advantage-nc">Advantage</label>
+            </div>
+            <div id="nu_roller_disadvantage">
+                <select class="number_of_dice" name="attr_roller_disadvantage">
+                    <option value="0" selected=true>0000</option>
+                    <option value="-1">000a</option>
+                    <option value="-2">00ab</option>
+                    <option value="-3">0abc</option>
+                    <option value="-4">abcd</option>
+                </select>
+                <label for="attr_roller_advantage" data-i18n="disadvantage-nc">Disadvantage</label>
+            </div>
+            <div id="nu_roller_bonus"> 
+                <select id="roller_bonus" name="attr_roller_bonus" class="number_of_dice">
+                    <option value="4">ABCD</option>
+                    <option value="3">ABC0</option>
+                    <option value="2">AB00</option>
+                    <option value="1">A000</option>
+                    <option value="0" selected=true>0000</option>
+                </select>
+                <label for="attr_roller_bonus" data-i18n="bonus-nc">Bonus</label>
+            </div>
+            <div id="nu_roller_harm"> 
+                <select id="roller_harm" name="attr_harm" class="dots_of_harm">
+                    <option value="0" selected=true>0: <span data-i18n="unharmed">Unharmed</span></option>
+                    <option value="1">1: <span data-i18n="minor-injury">Minor Injury</span></option>
+                    <option value="2">2: <span data-i18n="minor-injury">Minor Injury</span></option>
+                    <option value="3">3: <span data-i18n="harm">Harm</span></option>
+                    <option value="4">4: <span data-i18n="harm">Harm</span></option>
+                    <option value="5">5: <span data-i18n="serious-harm">Serious Harm</span></option>
+                    <option value="6">6: <span data-i18n="incapacitated">Incapacitated</span></option>
+                </select>
+                <label for="attr_roller_harm" data-i18n="harm">Harm</label>
+            </div>
+            <div id="nu_roller_buttons">
+                <button type="roll" value="/roll @{roll_formula}" name="roll_from_formula">
+                Roll!
+                </button>
+                &nbsp;
+            </div>
+
+      </details>
+    </header>
+    <main>
+    <div class="col2">
+        <section class="profile-section">
+            <div class="row"><label for="name"><span class="input-label" data-i18n="character">Character:</span> <input id="name" type="text" name="attr_name"/></label></div>
+            <div class="row"><label for="handle"><span class="input-label" data-i18n="handle">Handle:</span> <input id="handle" type="text" name="attr_handle"/></label> <label for="pronouns"><span class="input-label" data-i18n="pronouns">Pronouns:</span> <input id="pronouns" type="text" name="attr_pronouns"/></label></div>
+            <div class="row"><label for="player"><span class="input-label" data-i18n="player">Player:</span> <input id="player" type="text" name="attr_player"/></label></div>
+        </section>
+        <section class="background-section">
+            <div class="row"><label for="origin"><span class="input-label" data-i18n="origin">Origin:</span> <input id="origin" type="text" name="attr_origin"/></label></div>
+            <div class="row"><label for="occupation"><span class="input-label" data-i18n="occupation">Occupation:</span> <input id="occupation" type="text" name="attr_occupation"/></label></div>
+            <div class="row"><label for="burden"><span class="input-label" data-i18n="burden">Burden:</span> <input id="burden" type="text" name="attr_burden"/></label></div>
+            <div class="row"><label for="app"><span class="input-label" data-i18n="app">App:</span> <input id="app" type="text" name="attr_app"/></label></div>
+        </section>
+        <section class="prep-section column-section">
+            <label for="prep" class="column-label" data-i18n="personal prep">Personal Prep</label>
+            <div><input id="prep" type="number" min="0" name="attr_prep"/></div>
+        </section>
+        <section class="attributes-section">
+            <table id="attributes-table">
+                <tr><td></td><th data-i18n="skill">Skill</th><th data-i18n="defense">Defense</th></tr>
+                <tr><th data-i18n="cool">Cool</th><td><input type="text" name="attr_cool_skill"/></td><td><input id="cool_defense" type="text" name="attr_cool_defense"/></td></tr>
+                <tr><th data-i18n="clever">Clever</th><td><input type="text" name="attr_clever_skill"/></td><td><input id="clever_defense" type="text" name="attr_clever_defense"/></td></tr>
+                <tr><th data-i18n="tough">Tough</th><td><input id="tough" type="text" name="attr_tough_skill"/></td><td><input id="tough_defense" type="text" name="attr_tough_defense"/></td></tr>
+                <tr><th data-i18n="quick">Quick</th><td><input id="quick" type="text" name="attr_quick_skill"/></td><td><input id="quick_defense" type="text" name="attr_quick_defense"/></td></tr>
+            </table>
+        </section>
+        <section class="harm-section column-section">
+            <label class="column-label" data-i18n="harm">Harm
+            </label>
+            
+            <label class="harm-box">
+              <input id="harm-0" type="radio" name="attr_harm" value="9"/>
+              <span class="number-label" data-i18n="0">0</span>
+              <span class="harm-label" data-i18n="unharmed">Unharmed</span>
+              <span class="harm-desc" data-i18n="no-effect">No effect</span>
+            </label>
+            <label class="harm-box">
+              <input id="harm-1" type="radio" name="attr_harm" value="1"/>
+              <span class="number-label" data-i18n="1">1</span>
+              <span class="harm-label" data-i18n="minor-injury">Minor Injury</span>
+              <span class="harm-desc" data-i18n="no-effect">No effect</span></label>
+            <label class="harm-box">
+              <input id="harm-2" type="radio" name="attr_harm" value="2"/>
+              <span class="number-label" data-i18n="2">2</span>
+              <span class="harm-label" data-i18n="minor-injury">Minor Injury</span>
+              <span class="harm-desc" data-i18n="no-effect">No effect</span>
+            </label>
+            <label class="harm-box">
+              <input id="harm-3" type="radio" name="attr_harm" value="3"/>
+              <span class="number-label" data-i18n="3">3</span>
+              <span class="harm-label" data-i18n="harm">Harm</span>
+              <span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span>
+            </label>
+            <label class="harm-box">
+              <input id="harm-4" type="radio" name="attr_harm" value="4"/>
+              <span class="number-label" data-i18n="4">4</span>
+              <span class="harm-label" data-i18n="harm">Harm</span>
+              <span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span>
+            </label>
+            <label class="harm-box">
+              <input id="harm-5" type="radio" name="attr_harm" value="5"/>
+              <span class="number-label" data-i18n="5">5</span>
+              <span class="harm-label" data-i18n="serious-harm">Serious harm</span>
+              <span class="harm-desc" data-i18n="mins-one-die">-1 di
+              e to all rolls</span>
+            </label>
+            <label class="harm-box">
+              <input id="harm-6" type="radio" name="attr_harm" value="6"/>
+              <span class="number-label" data-i18n="6">6</span>
+              <span class="harm-label" data-i18n="incapacitated">Incapacitated</span>
+              <span class="harm-desc" data-i18n="taken-out">Taken out</span>
+            </label>
+        </section>
+        <section class="specialties-section column-section">
+            <label class="column-label" data-i18n="specialties">Specialties</label>
+            <fieldset class="repeating_specialties">
+                <input type="number" min="0" name="attr_specialty_num"/><input type="text" name="attr_specialty_name"/>
+            </fieldset>
+        </section>
+    </div>
+    <div class="col2">
+        <section class="assets-section column-section">
+            <label class="column-label" data-i18n="assets">Assets</label>
+            <fieldset class="repeating_assets">
+                <input type="text" name="attr_asset"/>
+            </fieldset>
+        </section>
+        <section class="traits-section column-section">
+            <label class="column-label" data-i18n="traits">Traits</label>
+            <fieldset class="repeating_traits">
+                <input type="text" name="attr_trait"/>
+            </fieldset>
+        </section>
+        <section class="talents-section column-section">
+            <label class="column-label" data-i18n="talents">Talents</label>
+            <fieldset class="repeating_talents">
+                <input type="text" name="attr_talent"/>
+            </fieldset>
+        </section>
+        <section class="augments-section column-section">
+            <label class="column-label" data-i18n="augments">Augments</label>
+            <fieldset class="repeating_augments">
+                <input type="text" name="attr_augment"/>
+            </fieldset>
+        </section>
+    </div>
+    </main>
 </div>
-<div class="col2">
-	<section class="assets-section column-section">
-		<label class="column-label" data-i18n="assets">Assets</label>
-		<fieldset class="repeating_assets">
-			<input type="text" name="attr_asset"/>
-		</fieldset>
-	</section>
-	<section class="traits-section column-section">
-		<label class="column-label" data-i18n="traits">Traits</label>
-		<fieldset class="repeating_traits">
-			<input type="text" name="attr_trait"/>
-		</fieldset>
-	</section>
-	<section class="talents-section column-section">
-		<label class="column-label" data-i18n="talents">Talents</label>
-		<fieldset class="repeating_talents">
-			<input type="text" name="attr_talent"/>
-		</fieldset>
-	</section>
-	<section class="augments-section column-section">
-		<label class="column-label" data-i18n="augments">Augments</label>
-		<fieldset class="repeating_augments">
-			<input type="text" name="attr_augment"/>
-		</fieldset>
-	</section>
-</div>
-</main>
+
