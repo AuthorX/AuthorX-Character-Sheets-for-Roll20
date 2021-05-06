@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Baumans&display=swap');
 
+
+
 .sheetform .charactersheet button[type=roll].sheet-d6-dice::before {
     font-family: 'dicefontd6';
     content: 'F ';
@@ -74,8 +76,6 @@ section.column-section .column-label {
 	width: 100%
 }
 
-
-
 .sheetform .charactersheet section .column-label {
 	background-color: #214E9B;
 	color: white;
@@ -149,11 +149,10 @@ table td input {
   margin-right: 5pt;
 }
 
-
-#nu_roller       > summary > span.open   { display: none;         }
-#nu_roller[open] > summary > span.open   { display: inline-block; }
-#nu_roller       > summary > span.closed { display: inline-block; }
-#nu_roller[open] > summary > span.closed { display: none;         }
+#nu_roller       > summary > .open   { display: none;         }
+#nu_roller[open] > summary > .open   { display: inline-block; }
+#nu_roller       > summary > .closed { display: inline-block; }
+#nu_roller[open] > summary > .closed { display: none;         }
 
 #nu_roller select.number_of_dice, 
 #nu_roller select.number_of_dice option {
@@ -197,41 +196,48 @@ table td input {
   content: '';
 }
 
-#nu_roller input#nu_roller_preview {
-  border: none; 
-}
-
 #nu_roller #nu_roller_number,
 #nu_roller #nu_roller_number select,
+#nu_roller #nu_roller_number input,
 #nu_roller #nu_roller_number label {
   width: 100pt;
 }
 
 #nu_roller #nu_roller_advantage,
 #nu_roller #nu_roller_advantage select,
+#nu_roller #nu_roller_advantage input,
 #nu_roller #nu_roller_advantage label {
-  width: 100pt;
+  width: 80pt;
 }
 
 #nu_roller #nu_roller_disadvantage,
 #nu_roller #nu_roller_disadvantage select,
+#nu_roller #nu_roller_disadvantage input,
 #nu_roller #nu_roller_disadvantage label {
-  width: 100pt;
+  width: 80pt;
 }
 
 #nu_roller #nu_roller_bonus,
 #nu_roller #nu_roller_bonus select,
+#nu_roller #nu_roller_bonus input,
 #nu_roller #nu_roller_bonus label {
-  width: 100pt;
+  width: 80pt;
+}
+
+#nu_roller #nu_roller_adjust,
+#nu_roller #nu_roller_adjust input,
+#nu_roller #nu_roller_adjust label {
+  width: 50pt;
 }
 
 #nu_roller #nu_roller_harm,
 #nu_roller #nu_roller_harm select,
+#nu_roller #nu_roller_harm #harm_dots_container,
 #nu_roller #nu_roller_harm label {
-  width: 90pt;
+  width: 120pt;
 }
 
-
+#nu_roller #nu_roller_harm #
 #nu_roller #nu_roller_buttons,
 #nu_roller #nu_roller_buttons button {
   width: 45pt;
@@ -241,7 +247,143 @@ table td input {
   vertical-align: top;
 }
 
+.roller_style_true {
+  display: none; 
+}
+
+.roller_style_false {
+  display: inline-block;
+}
+
+#nu_roller #nu_roller_preview {
+  display: none;
+}
+
+#config_roller_preview[value="1"] ~ #everything #nu_roller_preview {
+  display: block;
+}
+
+#nu_roller_preview,
+#nu_roller_preview input {
+  width: 100%;
+  text-align: center;
+}
+
+#nu_roller_preview input.readonly {
+  display: inline-block;
+}
+
+#nu_roller_preview input.editable {
+  display: none;
+}
+
+#config_preview_editable[value="1"] ~ #everything #nu_roller_preview .readonly {
+  display: none;
+}
+
+#config_preview_editable[value="1"] ~ #everything #nu_roller_preview .editable {
+  display: inline-block;
+}
+
+/* configuration -------------------------------------------- */
+
+#config { 
+  display: none;
+  border: 1pt solid black;
+  padding: 1em 0.5em;
+  border-radius: 5pt;
+}
+
+#config label {
+  font-size: 11pt;
+  font-weight: normal;
+}
+
+#show_config[value="1"] ~ #everything #config {
+  display: block;
+  color: black;
+  background: white;
+}
+
+#config_dropdowns[value="1"] ~ #everything .roller_style_true {
+  display: inline-block;
+}
+
+#config_dropdowns[value="1"] ~ #everything .roller_style_false {
+  display: none;
+}
+
+div#config div {
+  display: inline-block;
+  width: 200pt;
+}
+
+#config div#preview_editable_toggle {
+  display: none;
+}
+
+#config_roller_preview[value="1"] ~ #everything #config div#preview_editable_toggle { 
+  display: inline-block; 
+}
+
 /* theming ------------------------------------------------------------ */
+
+:root { 
+  --theme-name:                "Default";
+  --theme-background:          none;
+  --theme-background-color:    white;
+  --theme-header-background:   none;
+  --theme-header-text-color:   black;
+  --theme-title-background:    none;
+  --theme-title-text-color:    black;
+  --theme-title-height:        50pt;
+  --theme-title-width:         100%;
+  --theme-body-background:     none;
+  --theme-body-text-color:     black;
+  --theme-border-color:        black;
+  --theme-second-border-color: black;
+  --theme-subhead-background:  none;
+  --theme-subhead-text-color:  none;
+  --theme-base-font-size:      12pt;
+  --theme-accent-color:        black;
+  --theme-second-accent-color: black;
+  --theme-button-text-color:   black;
+}
+
+.theme[value="1"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="2"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="3"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="4"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="5"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="6"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="7"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="8"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="9"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+.theme[value="10"] ~ #everything {
+  --theme-name: "Second Theme";
+}
+
+.var-theme-name:before {
+    content: var(--theme-name);
+}
 
 #theme_selector {
   border: none;
@@ -640,4 +782,3 @@ main section.prep-section div {
             #00008b,
             #4b0082);
 }
-

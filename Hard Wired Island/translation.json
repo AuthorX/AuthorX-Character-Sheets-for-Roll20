@@ -25,6 +25,7 @@
 	"none": "None",
 	"bonus": "Bonus:",
 	"bonus-nc": "Bonus",
+	"adjust": "Adjustments:",
 	"roll-ep": "Roll!",
 	"character": "Character:",
 	"handle": "Handle:",
@@ -51,5 +52,6 @@
 	"traits": "Traits",
 	"talents": "Talents",
 	"augments": "Augments",
-	"theme": "Theme"
+	"theme": "Theme",
+	"dropdowns": "Dropdowns"
 }

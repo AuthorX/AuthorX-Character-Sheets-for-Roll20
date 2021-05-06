@@ -1,26 +1,41 @@
 <script type="text/worker">
 
-const debug = {};
+const debug      = {
+  scriptLoad:    "color: #660066; background-color: white; font-weight: bold;", // assumes a dark console theme
+//  calcDieRoll:   "color: white;   background-color: #660066"
+};
+
+if (debug.scriptLoad) { console.log("%c Starting custom WEB WORKER scripts", debug.scriptLoad); }
+
 const num_themes = 12;
 
-function calcDieRoll(roll_stat, roll_stat_value, roll_dice, roll_adv, roll_disad, roll_bonus, roll_harm_dots) {
+function calcDieRoll(
+           roll_stat, roll_stat_value, 
+           roll_dice, roll_adv, roll_disad, roll_bonus, 
+           roll_adjust, 
+           roll_harm_1, roll_harm_2, 
+           roll_harm_3, roll_harm_4, 
+           roll_harm_5, roll_harm_6
+        ) {
   let roll_formula = "";
+
   if(debug.calcDieRoll) {
-    console.log("roll_stat",       roll_stat);
-    console.log("roll_stat_value", roll_stat_value);
-    console.log("roll_dice",       roll_dice);
-    console.log("roll_adv",        roll_adv);
-    console.log("roll_disad",      roll_disad);
-    console.log("roll_bonus",      roll_bonus);
-    console.log("roll_harm_dots",  roll_harm_dots);
+    console.log("%c roll_stat"       + roll_stat,       debug.calcDieRoll);
+    console.log("%c roll_stat_value" + roll_stat_value, debug.calcDieRoll);
+    console.log("%c roll_dice"       + roll_dice,       debug.calcDieRoll);
+    console.log("%c roll_adv"        + roll_adv,        debug.calcDieRoll);
+    console.log("%c roll_disad"      + roll_disad,      debug.calcDieRoll);
+    console.log("%c roll_bonus"      + roll_bonus,      debug.calcDieRoll);
+    console.log("%c roll_adjust"     + roll_adjust,     debug.calcDieRoll);
+    console.log("%c roll_harm_1"     + roll_harm_1,     debug.calcDieRoll);
+    console.log("%c roll_harm_2"     + roll_harm_2,     debug.calcDieRoll);
+    console.log("%c roll_harm_3"     + roll_harm_3,     debug.calcDieRoll);
+    console.log("%c roll_harm_4"     + roll_harm_4,     debug.calcDieRoll);
+    console.log("%c roll_harm_5"     + roll_harm_5,     debug.calcDieRoll);
+    console.log("%c roll_harm_6"     + roll_harm_6,     debug.calcDieRoll);
   }
 
-  if (roll_harm_dots == 5) {
-    roll_dice += -1;
-  }
-  else if (roll_harm_dots == 6) {
-    return "";
-  }
+  if (roll_harm_5) { roll_dice += -1; }
   
   let net_modifier = roll_adv + roll_disad;
   
@@ -29,42 +44,61 @@ function calcDieRoll(roll_stat, roll_stat_value, roll_dice, roll_adv, roll_disad
     roll_formula += "d6";
     roll_formula += "dh" + - net_modifier;
     roll_formula += "[Disadvantage " + - net_modifier + "]";
-  }
-  else if (net_modifier > 0) {
+  } else if (net_modifier > 0) {
     roll_formula += roll_dice + net_modifier;
     roll_formula += "d6";
     roll_formula += "dl" + net_modifier;
     roll_formula += "[Advantage " + net_modifier + "]";
-  }
-  else {
+  } else {
     roll_formula += roll_dice;
     roll_formula += "d6";
   }
 
-  if (roll_stat == "none") {
-  } else { 
+  if (roll_stat !== "none") {
     roll_formula += "+" + roll_stat_value;
     roll_formula += "[" + roll_stat + "]";
   }
   
-  if (roll_bonus) {
+  if (roll_bonus > 0) { 
     roll_formula += "+" + roll_bonus;
-    roll_formula += "[Bonus " + roll_bonus + "]";
+    roll_formula += "[Bonus]";
+  } else if (roll_bonus < 0) {
+    roll_formula += roll_bonus;
+    roll_formula += "[Bonus]";
   }
   
-  if (roll_harm_dots == 3) {
+  if (roll_harm_3 && roll_harm_4) {
+    roll_formula += "-2";
+    roll_formula += "[Harm]";
+  } else if (roll_harm_3) { // and not harm_4, implied
     roll_formula += "-1";
     roll_formula += "[Harm 3]";
-  } else if (roll_harm_dots > 3) {
-    roll_formula += "=2";
-    roll_formula += "[Harm " + roll_harm_dots + "]";
+  } else if (roll_harm_4) { // and not harm_5, implied
+    roll_formula += "-1";
+    roll_formula += "[Harm 4]";
+  }
+
+  if (roll_adjust > 0) {
+    roll_formula += "+";
+    roll_formula += roll_adjust;
+    roll_formula += "[Adjust]";
+  } else if (roll_adjust < 0) {
+    roll_formula += roll_adjust;
+    roll_formula += "[Adjust]";
   }
 
   return roll_formula;
 }
 
 function toInt(value) { return parseInt(value, 10) || 0; }
-
+function toBoolean(value) { 
+  if ( value ==  1     || 
+       value == "1"    || 
+       value == "true" || 
+       value == true    ) 
+  { return true } else { return false }
+}
+        
 on("clicked:themeright", function(event) {
      let attributesToGet = [ "theme" ];
      getAttrs(attributesToGet, function(v) {
@@ -77,156 +111,263 @@ on("clicked:themeright", function(event) {
      })
 });
 
-on("clicked:themeleft", function(event) {
+on("clicked:themeleft", 
+   function(event) {
      let attributesToGet = [ "theme" ];
-     getAttrs(attributesToGet, function(v) {
-       let oldTheme = v.theme;
-       let newTheme = oldTheme - 1;
-       if(newTheme < 0) { newTheme = num_themes - 1 }
-       let setObj   = {};
-       setObj.theme = newTheme;
-       setAttrs(setObj);
-     })
-});
+     getAttrs(attributesToGet, 
+       function(v) {
+         let oldTheme = v.theme;
+         let newTheme = oldTheme - 1;
+         if (newTheme < 0) { newTheme = num_themes - 1 }
+         let setObj   = {};
+         setObj.theme = newTheme;
+         setAttrs(setObj);
+       }
+    )
+  }
+);
 
-on("clicked:themerandom", function(event) {
+on("clicked:themerandom", 
+   function(event) {
       let newTheme = Math.floor(Math.random() * num_themes);
       let setObj = {};
       setObj.theme = newTheme;
       setAttrs(setObj);
-});
+   }
+   );
 
-on("sheet:opened " +
-   "change:cool_skill change:clever_skill change:tough_skill change:quick_skill " +
-   "change:roller_ability change:roller_dice change:roller_advantage change:roller_disadvantage " +
-   "change:harm change:roller_bonus",
+on("clicked:openconfig",
+   function(event) {
+     let setObj = {};
+     setObj.show_config = "1";
+     setAttrs(setObj);
+  }
+  );
+
+on("clicked:closeconfig",
+   function(event) {
+     let setObj = {};
+     setObj.show_config = "0";
+     setAttrs(setObj);
+  }
+  );
+
+on("sheet:opened" 
+   + " change:cool_skill change:clever_skill change:tough_skill change:quick_skill"
+   + " change:roller_ability change:roller_dice"
+   + " change:roller_advantage change:roller_disadvantage"
+   + " change:roller_bonus change:roller_adjust"
+   + " change:harm1 change:harm2"
+   + " change:harm3 change:harm4"
+   + " change:harm5 change:harm6",
    
    function(event) {
-     let attributesToGet = [ "cool_skill", "clever_skill", "tough_skill", "quick_skill",
-                             "roller_ability", "roller_dice", "roller_advantage", "roller_disadvantage",
-                             "harm", "roller_bonus" ];
-                             
+     let attributesToGet = [ 
+           "cool_skill", "clever_skill", "tough_skill", "quick_skill",
+           "roller_ability", "roller_dice", 
+           "roller_advantage", "roller_disadvantage",
+           "roller_bonus", "roller_adjust",
+           "harm1", "harm2", "harm3", "harm4", "harm5", "harm6"
+        ];
+                        
      getAttrs(attributesToGet, function(v) {
        let stat       = v.roller_ability;
        let stat_value = 0;
        switch(stat) {
-         case "Cool":   stat_value = toInt(v.cool_skill);   break;
+         case "Cool":   stat_value = toInt(v.cool_skill  ); break;
          case "Clever": stat_value = toInt(v.clever_skill); break;
-         case "Tough":  stat_value = toInt(v.tough_skill);  break;
-         case "Quick":  stat_value = toInt(v.quick_skill);  break;
+         case "Tough":  stat_value = toInt(v.tough_skill ); break;
+         case "Quick":  stat_value = toInt(v.quick_skill ); break;
          case "none":   stat_value = 0;                     break;
        } // switch
        
-       let dice      = toInt(v.roller_dice);
-       let adv       = toInt(v.roller_advantage);
-       let disad     = toInt(v.roller_disadvantage);
-       let bonus     = toInt(v.roller_bonus);
-       let harm_dots = toInt(v.harm);
+       let dice   = toInt(v.roller_dice);
+       let adv    = toInt(v.roller_advantage);
+       let disad  = toInt(v.roller_disadvantage);
+       let bonus  = toInt(v.roller_bonus);
+       let adjust = toInt(v.roller_adjust);
+       let harm1  = toBoolean(v.harm1);
+       let harm2  = toBoolean(v.harm2);
+       let harm3  = toBoolean(v.harm3);
+       let harm4  = toBoolean(v.harm4);
+       let harm5  = toBoolean(v.harm5);
+       let harm6  = toBoolean(v.harm6);
        
-       let roll_formula = calcDieRoll(stat, stat_value, dice, adv, disad, bonus, harm_dots);
+       let roll_formula = calcDieRoll(
+                            stat, stat_value, dice, 
+                            adv, disad, 
+                            bonus, adjust,
+                            harm1, harm2, 
+                            harm3, harm4, 
+                            harm5, harm6
+                          );
        
        let setObj = {};
        setObj.roll_formula = roll_formula;
        setAttrs(setObj);
-       
+    
      }); // getAttrs
+            
 }); // on
 
-console.log("worker script successfully loaded");
+if (debug.scriptLoad) { console.log("%c Custom WEB WORKER script successfully loaded", debug.scriptLoad); }
 </script>
 
-<input type="hidden" class="theme" name="attr_theme" />
+<input type="hidden" class="theme"                       name="attr_theme" />
+<input type="hidden" id="config_dropdowns"               name="attr_roller_style"     />
+<input type="hidden" id="show_config"                    name="attr_show_config"      />
+<input type="hidden" id="config_roller_preview"          name="attr_roller_preview"   />
+<input type="hidden" id="config_roller_preview_editable" name="attr_preview_editable" />
     
 <div id="everything">
 <header>
     
     <div id="theme_selector">
-      <button type="action" name="act_themeleft" title="Change the theme">[</button>
+      <button type="action" name="act_themeleft"   title="Change the theme">[</button>
       <button type="action" name="act_themerandom" title="Change the theme">;</button>
-      <button type="action" name="act_themeright" title="Change the theme">]</button>
+      <button type="action" name="act_themeright"  title="Change the theme">]</button>
+      <button type="action" name="act_openconfig"  title="Open Roller Config">y</button>
     </div>
-
     
     <h1 id="pageheadline">
-    <span data-i18n="hard-wired-island">Hard Wired Island</span>
+      <span data-i18n="hard-wired-island">Hard Wired Island</span>
     </h1>
+    
+    <div id="config">
+    
+      <div id="theme_input">
+        <label for="theme_input_box">
+          <button type="action" name="act_themeleft"   title="Change the theme">[</button>
+          <button type="action" name="act_themerandom" title="Change the theme">;</button>
+          <button type="action" name="act_themeright"  title="Change the theme">]</button>
+          <input id="theme_input_box" type="input" name="attr_theme" readonly="true" />
+          <span>Theme</span>
+        </label>
+      </div>
+      
+      <div id="nu_roller_style_toggle">
+        <label for="attr_roller_style">
+          <input type="checkbox" value="1" name="attr_roller_style" />
+          <span data-i18n="dropdowns">dropdowns</span>
+        </label>
+      </div>
 
+      <div id="show_preview_toggle>
+        <label for="attr_roller_preview">
+          <input type="checkbox" value="1" name="attr_roller_preview" />
+          <span>Roller preview</span>
+        </label>
+      </div>
 
-      <details id="nu_roller">
+      <div id="preview_editable_toggle">
+        <label for="attr_preview_editable">
+          <input type="checkbox" value="1" name="attr_preview_editable" />
+          <span>Make preview editable</span>
+        </label>
+      </div>
+      
+      <div>
+        <button type="action" name="act_closeconfig">Done</button>
+      </div>
+      
+    </div>
+    
+    <details id="nu_roller">
     
         <summary>
-          <span class="open" data-i18n="diceroller-hide">Hide Dice Roller</span>
-          <span class="closed" data-i18n="diceroller-show">Show Dice Roller</span>
-
+          <div class="open" data-i18n="diceroller-hide">
+            Hide Dice Roller
+          </div>
+          <div class="closed" data-i18n="diceroller-show">
+            Show Dice Roller
+          </div>
         </summary>
-        
+    
+            
             <div id="nu_roller_ability">
                 <select id="roller_ability" name="attr_roller_ability">
-                    <option value="Cool" data-i18n="cool">Cool</option>
+                    <option value="Cool"   data-i18n="cool">Cool</option>
                     <option value="Clever" data-i18n="clever">Clever</option>
-                    <option value="Tough" data-i18n="tough">Tough</option>
-                    <option value="Quick" data-i18n="quick">Quick</option>
-                    <option value="none" data-i18n="none">None</option>
+                    <option value="Tough"  data-i18n="tough">Tough</option>
+                    <option value="Quick"  data-i18n="quick">Quick</option>
+                    <option value="none"   data-i18n="none">None</option>
                 </select>
                 <label for="attr_roller_ability" data-i18n="ability-nc">Ability</label>
             </div>
             <div id="nu_roller_number">
-                <select class="number_of_dice" name="attr_roller_dice">
+                <select class="number_of_dice roller_style_true" name="attr_roller_dice">
                     <option value="0">0000</option>
                     <option value="1">A000</option>
                     <option value="2" selected=true>AB00</option>
                     <option value="3">ABC0</option>
                     <option value="4">ABCD</option>
                 </select>
+                <input type="text" class="number_of_dice roller_style_false"
+                name="attr_roller_dice" value="2" />
                 <label for="attr_roller_dice" data-i18n="dice-to-roll">Dice to Roll</label>
             </div>
             <div id="nu_roller_advantage">
-                <select class="number_of_dice" name="attr_roller_advantage">
-                    <option value="3">ABCD</option>
-                    <option value="3">ABC0</option>
-                    <option value="2">AB00</option>
-                    <option value="1">A000</option>
-                    <option value="0" selected=true>0000</option>
+                <select class="number_of_dice roller_style_true" name="attr_roller_advantage">
+                    <option value="3">ABC</option>
+                    <option value="2">AB0</option>
+                    <option value="1">A00</option>
+                    <option value="0" selected=true>000</option>
                 </select>
+                <input type="text" class="number_of_dice roller_style_false"
+                name="attr_roller_advantage" />
                 <label for="attr_roller_advantage" data-i18n="advantage-nc">Advantage</label>
             </div>
             <div id="nu_roller_disadvantage">
-                <select class="number_of_dice" name="attr_roller_disadvantage">
-                    <option value="0" selected=true>0000</option>
-                    <option value="-1">000a</option>
-                    <option value="-2">00ab</option>
-                    <option value="-3">0abc</option>
-                    <option value="-4">abcd</option>
+                <select class="number_of_dice roller_style_true" name="attr_roller_disadvantage">
+                    <option value="0" selected=true>000</option>
+                    <option value="-1">00a</option>
+                    <option value="-2">0ab</option>
+                    <option value="-3">abc</option>
                 </select>
+                <input type="text" class="number_of_dice roller_style_false"
+                name="attr_roller_disadvantage" />
                 <label for="attr_roller_advantage" data-i18n="disadvantage-nc">Disadvantage</label>
             </div>
             <div id="nu_roller_bonus"> 
-                <select id="roller_bonus" name="attr_roller_bonus" class="number_of_dice">
-                    <option value="4">ABCD</option>
-                    <option value="3">ABC0</option>
-                    <option value="2">AB00</option>
-                    <option value="1">A000</option>
-                    <option value="0" selected=true>0000</option>
+                <select id="roller_bonus" name="attr_roller_bonus" class="number_of_dice roller_style_true">
+                    <option value="3">ABC</option>
+                    <option value="2">AB0</option>
+                    <option value="1">A00</option>
+                    <option value="0" selected=true>000</option>
+                    <option value="-1">00a<option>
+                    <option value="-2">0ab<option>
+                    <option value="-3">abc<option>
                 </select>
+                <input type="text" class="number_of_dice roller_style_false" name="attr_roller_bonus" />
                 <label for="attr_roller_bonus" data-i18n="bonus-nc">Bonus</label>
             </div>
-            <div id="nu_roller_harm"> 
-                <select id="roller_harm" name="attr_harm" class="dots_of_harm">
-                    <option value="0" selected=true>0: <span data-i18n="unharmed">Unharmed</span></option>
-                    <option value="1">1: <span data-i18n="minor-injury">Minor Injury</span></option>
-                    <option value="2">2: <span data-i18n="minor-injury">Minor Injury</span></option>
-                    <option value="3">3: <span data-i18n="harm">Harm</span></option>
-                    <option value="4">4: <span data-i18n="harm">Harm</span></option>
-                    <option value="5">5: <span data-i18n="serious-harm">Serious Harm</span></option>
-                    <option value="6">6: <span data-i18n="incapacitated">Incapacitated</span></option>
-                </select>
-                <label for="attr_roller_harm" data-i18n="harm">Harm</label>
+            <div id="nu_roller_harm">
+                <div id="harm_dots_container">
+                  <input type="checkbox" name="attr_harm1" value="1" class="harm_dots" />
+                  <input type="checkbox" name="attr_harm2" value="1" class="harm_dots" />
+                  <input type="checkbox" name="attr_harm3" value="1" class="harm_dots" />
+                  <input type="checkbox" name="attr_harm4" value="1" class="harm_dots" />
+                  <input type="checkbox" name="attr_harm5" value="1" class="harm_dots" />
+                  <input type="checkbox" name="attr_harm6" value="1" class="harm_dots" />
+                </div>
+                <label for="harm_dots_container" data-i18n="harm">Harm</label>
             </div>
+            <div id="nu_roller_adjust">
+                <input type="text" name="attr_roller_adjust" class="static_bonus" />
+                <label for="attr_roller_adjust" data-i18n="adjust">Adjust</label>
+            </div>
+            
             <div id="nu_roller_buttons">
                 <button type="roll" value="/roll @{roll_formula}" name="roll_from_formula">
                 Roll!
                 </button>
                 &nbsp;
+            </div>
+                    
+            <div id="nu_roller_preview">
+              <input type="text" class="readonly" name="attr_roll_formula"
+              readonly="true" />
+              <input type="text" class="editable" name="attr_roll_formula" />
             </div>
 
       </details>
@@ -258,50 +399,42 @@ console.log("worker script successfully loaded");
             </table>
         </section>
         <section class="harm-section column-section">
-            <label class="column-label" data-i18n="harm">Harm
-            </label>
-            
+            <label class="column-label" data-i18n="harm">Harm</label>
             <label class="harm-box">
-              <input id="harm-0" type="radio" name="attr_harm" value="9"/>
-              <span class="number-label" data-i18n="0">0</span>
-              <span class="harm-label" data-i18n="unharmed">Unharmed</span>
-              <span class="harm-desc" data-i18n="no-effect">No effect</span>
+              <input id="harm-1" type="checkbox" name="attr_harm1" value="1"/>
+              <span  class="number-label" data-i18n="1">1</span>
+              <span  class="harm-label"   data-i18n="minor-injury">Minor Injury</span>
+              <span  class="harm-desc"    data-i18n="no-effect">No effect</span>
             </label>
             <label class="harm-box">
-              <input id="harm-1" type="radio" name="attr_harm" value="1"/>
-              <span class="number-label" data-i18n="1">1</span>
-              <span class="harm-label" data-i18n="minor-injury">Minor Injury</span>
-              <span class="harm-desc" data-i18n="no-effect">No effect</span></label>
-            <label class="harm-box">
-              <input id="harm-2" type="radio" name="attr_harm" value="2"/>
+              <input id="harm-2" type="checkbox" name="attr_harm2" value="1"/>
               <span class="number-label" data-i18n="2">2</span>
-              <span class="harm-label" data-i18n="minor-injury">Minor Injury</span>
-              <span class="harm-desc" data-i18n="no-effect">No effect</span>
+              <span class="harm-label"   data-i18n="minor-injury">Minor Injury</span>
+              <span class="harm-desc"    data-i18n="no-effect">No effect</span>
             </label>
             <label class="harm-box">
-              <input id="harm-3" type="radio" name="attr_harm" value="3"/>
+              <input id="harm-3" type="checkbox" name="attr_harm3" value="1"/>
               <span class="number-label" data-i18n="3">3</span>
-              <span class="harm-label" data-i18n="harm">Harm</span>
-              <span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span>
+              <span class="harm-label"   data-i18n="harm">Harm</span>
+              <span class="harm-desc"    data-i18n="minus-one">-1 to all rolls</span>
             </label>
             <label class="harm-box">
-              <input id="harm-4" type="radio" name="attr_harm" value="4"/>
+              <input id="harm-4" type="checkbox" name="attr_harm4" value="1"/>
               <span class="number-label" data-i18n="4">4</span>
-              <span class="harm-label" data-i18n="harm">Harm</span>
-              <span class="harm-desc" data-i18n="minus-one">-1 to all rolls</span>
+              <span class="harm-label"   data-i18n="harm">Harm</span>
+              <span class="harm-desc"    data-i18n="minus-one">-1 to all rolls</span>
             </label>
             <label class="harm-box">
-              <input id="harm-5" type="radio" name="attr_harm" value="5"/>
+              <input id="harm-5" type="checkbox" name="attr_harm5" value="1"/>
               <span class="number-label" data-i18n="5">5</span>
-              <span class="harm-label" data-i18n="serious-harm">Serious harm</span>
-              <span class="harm-desc" data-i18n="mins-one-die">-1 di
-              e to all rolls</span>
+              <span class="harm-label"   data-i18n="serious-harm">Serious harm</span>
+              <span class="harm-desc"    data-i18n="mins-one-die">-1 die to all rolls</span>
             </label>
             <label class="harm-box">
-              <input id="harm-6" type="radio" name="attr_harm" value="6"/>
+              <input id="harm-6" type="checkbox" name="attr_harm6" value="1"/>
               <span class="number-label" data-i18n="6">6</span>
-              <span class="harm-label" data-i18n="incapacitated">Incapacitated</span>
-              <span class="harm-desc" data-i18n="taken-out">Taken out</span>
+              <span class="harm-label"   data-i18n="incapacitated">Incapacitated</span>
+              <span class="harm-desc"    data-i18n="taken-out">Taken out</span>
             </label>
         </section>
         <section class="specialties-section column-section">
