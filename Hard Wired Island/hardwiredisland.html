@@ -1,8 +1,10 @@
 <script type="text/worker">
 
 const debug      = {
-  scriptLoad:    "color: #660066; background-color: white; font-weight: bold;", // assumes a dark console theme
-  toggleHarm: "color: whilte; bsckground-color: #660066",
+  scriptLoad:    "color: #660066; background-color: white; font-weight: bold;", 
+  toggleHarm: "color: white; background-color: #660066",
+  themeSwitcher: "color: white; background-color: green", 
+  resetRoller: "color: white; background-color: #000066", 
 //  calcDieRoll:   "color: white;   background-color: #660066"
 };
 
@@ -127,6 +129,9 @@ on("clicked:themeright", function(event) {
        let setObj   = {};
        setObj.theme = newTheme;
        setAttrs(setObj);
+       if (debug.themeSwitcher) { console.log("%c Switched from theme #" +
+                                              oldTheme + " to #" + newTheme,
+                                              debug.themeSwitcher); }
      })
 });
 
@@ -141,6 +146,9 @@ on("clicked:themeleft",
          let setObj   = {};
          setObj.theme = newTheme;
          setAttrs(setObj);
+       if (debug.themeSwitcher) { console.log("%c Switched from theme #" +
+                                              oldTheme + " to #" + newTheme,
+                                              debug.themeSwitcher); }
        }
     )
   }
@@ -152,9 +160,25 @@ on("clicked:themerandom",
       let setObj = {};
       setObj.theme = newTheme;
       setAttrs(setObj);
+       if (debug.themeSwitcher) { console.log("%c Switched to random theme #" 
+                                              + newTheme, debug.themeSwitcher); }
    }
 );
 
+on("clicked:reset_roller",
+  function(event) {
+    let setObj = {};
+    setObj.roller_ability = "none";
+    setObj.roller_dice = "2";
+    setObj.roller_advantage = "0";
+    setObj.roller_disadvantage = "0";
+    setObj.roller_bonus = "0";
+    setObj.roller_adjust = "0";
+    setAttrs(setObj);
+    if (debug.resetRoller) { console.log("%c Roller reset.", debug.resetRoller) }
+  });
+    
+    
 on("sheet:opened" 
    + " change:cool_skill change:clever_skill change:tough_skill change:quick_skill"
    + " change:roller_ability change:roller_dice"
@@ -243,17 +267,11 @@ if (debug.scriptLoad) { console.log("%c Custom WEB WORKER script successfully lo
             
             <div id="config_theme">
                 <button type="action" name="act_themeleft"   title="Change the theme">[</button>
-                <button type="action" name="act_themerandom" title="Change the theme">;</button>
-                <button type="action" name="act_themeright"  title="Change the theme">]</button>
                 <span class="var-theme-name" />
+                <button type="action" name="act_themeright"  title="Change the theme">]</button>
+                <button type="action" name="act_themerandom" title="Change the theme">;</button>
             </div>
             
-            <div id="nu_roller_style_toggle" class="config_toggle">
-                <label for="attr_roller_style">
-                <input type="checkbox" value="1" name="attr_roller_style" />
-                <span>Replace dice dropdowns with number fields</span>
-                </label>
-            </div>
     
             <div id="show_preview_toggle" class="config_toggle">
                 <label for="attr_roller_preview">
@@ -262,6 +280,13 @@ if (debug.scriptLoad) { console.log("%c Custom WEB WORKER script successfully lo
                 </label>
             </div>
     
+            <div id="nu_roller_style_toggle" class="config_toggle">
+                <label for="attr_roller_style">
+                <input type="checkbox" value="1" name="attr_roller_style" />
+                <span>Replace dice dropdowns with number fields</span>
+                </label>
+            </div>
+            
             <div id="preview_editable_toggle" class="config_toggle">
                 <label for="attr_preview_editable">
                 <input type="checkbox" value="1" name="attr_preview_editable" />
@@ -352,11 +377,6 @@ if (debug.scriptLoad) { console.log("%c Custom WEB WORKER script successfully lo
                 <label for="attr_roller_bonus" data-i18n="bonus-nc">Bonus</label>
             </div>
             
-            <div id="nu_roller_adjust">
-                <input type="number" name="attr_roller_adjust" class="static_bonus" />
-                <label for="attr_roller_adjust" data-i18n="adjust">Adjust</label>
-            </div>
-                
             <div id="nu_roller_harm">
                 <div id="harm_dots_container">
                     <button type="action" name="act_harm1">0</button>
@@ -370,10 +390,16 @@ if (debug.scriptLoad) { console.log("%c Custom WEB WORKER script successfully lo
                 <label for="harm" data-i18n="harm">Harm</label>
             </div>
             
+            <div id="nu_roller_adjust">
+                <input type="number" name="attr_roller_adjust" class="static_bonus" />
+                <label for="attr_roller_adjust" data-i18n="adjust">Adjust</label>
+            </div>
+                
             <div id="nu_roller_buttons">
                 <button type="roll" value="/roll @{roll_formula}" name="roll_from_formula">
                 Roll!
                 </button>
+                <button id="reset_roller" type="action" name="act_reset_roller">Reset</button>
                 &nbsp;
             </div>
                         

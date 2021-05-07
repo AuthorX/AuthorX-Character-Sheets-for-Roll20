@@ -30,9 +30,9 @@
 
     /* font sizes */
     
-    --theme-fontsize-base: 11pt;
-    --theme-fontsize-xs: 7pt;
-    --theme-fontsize-small: 9pt;
+    --theme-fontsize-base: 12pt;
+    --theme-fontsize-xs: 8pt;
+    --theme-fontsize-small: 10pt;
     --theme-fontsize-medium: var(--theme-fontsize-base);
     --theme-fontsize-large: 14pt;
     --theme-fontsize-xl: 18pt;
@@ -52,6 +52,15 @@
     --theme-font-icon: bold var(--theme-fontsize-small) "Pictos";
     --theme-font-dice: bold var(--theme-roller-size) "dicefontd6";
     --theme-font-roller: normal var(--theme-roller-size) var(--theme-font-text);
+    --theme-font-roller-select: normal var(--theme-fontsize-large) var(--theme-font-text);
+    
+    --theme-font-button: bold var(--theme-fontsize-large) var(--theme-font-text);
+    
+    --theme-font-subhead: bold var(--theme-fontsize-large) var(--theme-font-display);
+    
+    --theme-font-cell: var(--theme-font-small);
+    
+    --theme-font-bold: bold var(--theme-fontsize-base) var(--theme-font-text);
 
     --theme-font-title: bold var(--theme-fontsize-title) var(--theme-font-display);
     
@@ -62,18 +71,19 @@
     
     /* backgrounds */
     --theme-bg: none;
-    --theme-bg-cell: none;
+    --theme-bg-cell: rgba( 255, 255, 255, 0.5);
     --theme-bg-input: white;
-    --theme-bg-roller: var(--theme-bg-section);
-    --theme-bg-section: none;
+    --theme-bg-roller: none;
+    --theme-bg-section: rgba( 0, 0, 0, 0.25); 
     --theme-bg-sheet: none;
-    --theme-bg-subhead: none;
+    --theme-bg-subhead: var(--theme-color);
     --theme-bg-title: none;
     
     /* borders */
     --theme-border: var(--theme-border-width) var(--theme-border-style) var(--theme-color);
     --theme-border-cell: var(--theme-border);
     --theme-border-input: 0.5pt solid silver;
+    --theme-border-button: var(--theme-border-input);
     --theme-border-roller: var(--theme-border-section);
     --theme-border-section: var(--theme-border);
     --theme-border-subhead: var(--theme-border);
@@ -83,7 +93,7 @@
     /* colors */
     --theme-color: #214E9B;
     --theme-color-button: var(--theme-color-text);
-    --theme-color-cell: var(--theme-color-contrast);
+    --theme-color-cell: var(--theme-color-text);
     --theme-color-contrast: white;
     --theme-color-icon: var(--theme-color-text);
     --theme-color-input: black;
@@ -96,8 +106,10 @@
     /* shadows */
     --theme-shadow: 0 0 var(--theme-shadow-width) var(--theme-contrast);
     --theme-shadow-cell: var(--theme-shadow);
+    --theme-shadow-input: var(--theme-shadow);
+    --theme-shadow-button: var(--theme-shadow);
     --theme-shadow-icon: var(--theme-shadow);
-    --theme-shadow-roller: var(--theme-shadow-section);
+    --theme-shadow-roller: var(--theme-shadow);
     --theme-shadow-section: var(--theme-shadow);
     --theme-shadow-subhead: none;
     --theme-shadow-title: var(--theme-shadow);
@@ -114,16 +126,10 @@
   }
 
   .col2 {
+      
     flex: 1 1 300px;
     padding: .5em;
   }
-/*
-  .charactersheet section *,
-  header * {
-    font: var(--theme-font-medium);
-    color: var(--theme-color-text);
-  }
-  */
 
   .sheetform .charactersheet input[type=text] {
     width: 100%
@@ -169,7 +175,18 @@
 
   /* sections ---------------------------------------------------------- */
   
+  main button {
+      font: var(--theme-font-button);
+      color: var(--theme-color-button);
+  }
   /* generic(?) section rules */
+  
+  section {
+      font: var(--theme-font-section);
+      background: none;
+      color: var(--theme-color-section);
+      border: none;
+  }
   
   section input[type~="text"] {
     background: var(--theme-bg-input);
@@ -198,6 +215,7 @@
     background: var(--theme-bg-subhead);
     color: var(--theme-color-subhead);
     border: var(--theme-border-subhead);
+    font: var(--theme-font-subhead);
   }
   
   section.column-section>div,
@@ -214,12 +232,10 @@
   
   
   /* profile-section */
-  section.profile-section {
-  }
+  section.profile-section { }
   
   /* background-section */
-  section.background-section {
-  }
+  section.background-section { }
   
   section.background-section .row label span,
   .profile-section .row label span {
@@ -229,8 +245,7 @@
   }
   
   /* prep-section */
-  section.prep-section {
-  }
+  section.prep-section { }
   
   section.prep-section div {
     background: var(--theme-bg-cell);
@@ -239,73 +254,104 @@
   }
 
   /* attributes-section */
-  section.attributes-section {
+  section.attributes-section { 
+      border: none; 
   }
   
-  section.attributes-section table { border: var(--theme-border-cell); }
-  section.attributes-section tr:first-child th { background: var(--theme-bg-subhead); }
-  section.attributes-section table#attributes-table tr:first-child td:first-child { background: transparent; } 
+  /* attributes-table */
+  
+  section.attributes-section table#attributes-table { 
+      border: none;
+      border-collapse: separate; 
+      padding: .2em; 
+  }
+  
+  table#attributes-table :is( td, th ) {
+      padding: .2em; 
+      border-collapse: separate; 
+      background: var(--theme-bg-cell); 
+      font: var(--theme-font-cell);
+      border: var(--theme-border-cell);
+  }
+  
+  table#attributes-table tr td:first-child {
+      border: none;
+      background: none;
+  }
+  
+  table#attributes-table input[type=text] { 
+      border: none; 
+      text-align: center; 
+      background: none;
+  }
+  
+  table#attributes-table tr:first-child th { 
+      background: var(--theme-bg-subhead); 
+      color: var(--theme-color-subhead);
+      font: var(--theme-font-subhead);
+      text-align: center;
+  }
+        
+  table#attributes-table tr th:first-child {
+      color: var(--theme-color-text); 
+      font: var(--theme-font-large);
+      background: none;
+      border: none;
+      text-align: right;
+  }
+
+  table#attributes-table tr:last-child > td:last-child { 
+      border-bottom-right-radius: 10px; } 
+  table#attributes-table tr:last-child > td:nth-child(2) { 
+      border-bottom-left-radius: 10px; } 
+  
+  /* 
+  table#attributes-table tr > :nth-child(n+2) { 
+      background: var(--theme-bg-subhead); 
+      border: var(--theme-border-section); 
+      text-align: center; }
+      
+  table#attributes-table tr > :nth-child(n+2) { 
+      background: var(--theme-bg-cell); 
+      color: var(--theme-color-cell); 
+      border: var(--theme-border-cell); }
+      */
   
   /* harm section */
   
-  section.harm-section { flex-direction: row; }
-  section.harm-section .harm-box { width: 50%; color: var(--theme-color-cell); }
-  section.harm-section>label { background: var(--theme-bg-section); }
+  section.harm-section { 
+      flex-direction: row; 
+  }
+  section.harm-section .harm-box { 
+      font: var(--theme-font-cell);
+      border: var(--theme-border-cell);
+      color: var(--theme-color-cell);
+      background: var(--theme-bg-cell);
+      width: var(--theme-harm-box-width, 50%); 
+  }
+  section.harm-section>label { 
+      background: var(--theme-bg-section); 
+      }
 
-  .harm-desc { margin: .2em .2em .2em .2em; width: auto; flex-grow: 0; }
-  .row input[type=text] { flex-grow: 1; }
+  section.harm-section .harm-desc { 
+      margin: .2em .2em .2em .2em; 
+      width: auto; 
+      flex-grow: 0; 
+      }
+      
+  .row input[type=text] { 
+      flex-grow: 1; 
+    }
 
-  /* assets-section */
-  section.assets-section {
-  }
-  
-  /* traits-section */
-  section.traits-section {
-  }
-  
-  /* talents-section */
-  section.talents-section {
-  }
-  
-  /* augments-section */
-  section.augments-section {
-  }
+  section.assets-section   { } /* assets-section */
+  section.traits-section   { } /* traits-section */
+  section.talents-section  { } /* talents-section */
+  section.augments-section { } /* augments-section */
   
   /* tables --------------------------------------------------------------------- */
   
   /* generic(?) table rules */
   
-  table, table td, table th { border-collapse: separate; padding: .2em; }
-  table td input { border: none; text-align: center; }
-  main table td { background: var(--theme-bg-cell); }
-  th:first-child { color: var(--theme-color-text); }
-
-  /* attributes-table */
-  
-  #attributes-table tr>:nth-child(n+2) {
-    background: var(--theme-bg-subhead);
-    border: var(--theme-border-section);
-    text-align: center;
-  }
-
-  #attributes-table tr>:first-child {
-    border: none;
-    text-align: right;
-    background: var(--theme-bg-section);
-    font: var(--theme-font-medium);
-    color: var(--theme-color-text);
-  }
-
-  #attributes-table tr>th:nth-child(n+2) {
-    background: var(--theme-bg-cell);
-    color: var(--theme-color-cell);
-    border: var(--theme-border-cell);
-  }
-
-  #attributes-table tr:last-child>td:nth-child(2) { border-bottom-left-radius: 10px; }
-
-  #attributes-table tr:last-child>td:last-child { border-bottom-right-radius: 10px; }
-
   /* rep? */
   .repcontainer .repitem { display: flex; }
 
@@ -315,6 +361,7 @@
     padding: 0;
     position: relative;
     margin-top: 6pt;
+    vertical-align: top;
   }
 
   #nu_roller[open] {
@@ -323,17 +370,21 @@
     background: var(--theme-bg-roller);
   }
 
+  #nu_roller > div { vertical-align: top; }
+    
   #nu_roller>summary {
     text-align: right;
     margin-right: 5pt;
-    background: transparent;
+    background: none;
+    border: none;
     color: var(--theme-color-text);
-    font: var(--theme-font-medium);
+    font: var(--theme-font-small);
   }
 
   #nu_roller[open]>summary {
-    background: transparent;
     color: var(--theme-color-roller);
+    margin-bottom: 2pt;
+    margin-top: 1pt;
   }
 
   #nu_roller>summary>.open { display: none; }
@@ -364,9 +415,10 @@
   }
 
   #nu_roller select {
-    height: 28pt;
+    /* height: 28pt; */
     border: none;
     margin: 0;
+    padding: 0;
     background: var(--theme-bg-roller);
     color: var(--theme-color-roller);
   }
@@ -378,19 +430,21 @@
   #nu_roller #nu_roller_ability select,
   #nu_roller #nu_roller_ability option {
     font: var(--theme-font-roller-select);
+    color: var(--theme-color-roller);
+    border: none;
   }
 
   #nu_roller #nu_roller_ability,
   #nu_roller #nu_roller_ability select,
   #nu_roller #nu_roller_ability label {
-    width: 70pt;
+    width: 62pt;
   }
 
   #nu_roller #nu_roller_number,
   #nu_roller #nu_roller_number select,
   #nu_roller #nu_roller_number input,
   #nu_roller #nu_roller_number label {
-    width: var(--config-roller-numbers-width, 100pt);
+    width: var(--config-roller-numbers-width, 98pt);
     margin-right: var(--config-roller-numbers-margin, 0);
   }
 
@@ -398,7 +452,7 @@
   #nu_roller #nu_roller_advantage select,
   #nu_roller #nu_roller_advantage input,
   #nu_roller #nu_roller_advantage label {
-    width: var(--config-roller-numbers-width, 80pt);
+    width: var(--config-roller-numbers-width, 78pt);
     margin-right: var(--config-roller-numbers-margin, 0);
   }
 
@@ -406,7 +460,7 @@
   #nu_roller #nu_roller_disadvantage select,
   #nu_roller #nu_roller_disadvantage input,
   #nu_roller #nu_roller_disadvantage label {
-    width: var(--config-roller-numbers-width, 80pt);
+    width: var(--config-roller-numbers-width, 78pt);
     margin-right: var(--config-roller-numbers-margin, 0);
   }
 
@@ -414,14 +468,22 @@
   #nu_roller #nu_roller_bonus select,
   #nu_roller #nu_roller_bonus input,
   #nu_roller #nu_roller_bonus label {
-    width: var(--config-roller-numbers-width, 80pt);
+    width: var(--config-roller-numbers-width, 78pt);
     margin-right: var(--config-roller-numbers-margin, 0);
   }
 
   #nu_roller #nu_roller_adjust,
   #nu_roller #nu_roller_adjust input,
   #nu_roller #nu_roller_adjust label {
-    width: 60pt;
+    width: 57pt;
+  }
+  #nu_roller #nu_roller_adjust label { margin-left: 0; }
+  #nu_roller #nu_roller_adjust {
+    margin-right: 4pt;
+  }
+  #nu_roller #nu_roller_adjust input {
+    height: var(--config-roller-size);
+    margin: 0;
   }
 
   #nu_roller #nu_roller_harm,
@@ -434,10 +496,22 @@
 
   #nu_roller #nu_roller_buttons,
   #nu_roller #nu_roller_buttons button {
-    width: 45pt;
+    width: 42pt;
   }
-
-  #nu_roller #nu_roller_buttons button { vertical-align: top; }
+  #nu_roller #nu_roller_buttons button {
+    font: var(--theme-font-button);
+    color: var(--theme-color-roller);
+    border: var(--theme-border);
+  }
+  
+  #nu_roller #nu_roller_buttons button#reset_roller {
+    font: var(--theme-font-small);
+    color: var(--theme-color-roller);
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+  }
 
   #nu_roller .roller_style_true { 
     display: var(--config-roller-dropdowns-display); 
@@ -446,29 +520,30 @@
     display: var(--config-roller-numbers-display); 
   }
 
-  #nu_roller #nu_roller_preview 
-  { display: var(--config-roller-preview-display); 
-  }
+  #nu_roller #nu_roller_preview { display: var(--config-roller-preview-display); }
 
   #nu_roller_preview,
   #nu_roller_preview input {
-    margin: 2pt;
     text-align: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    width: 100%;
+    font: var(--theme-font-large);
+    color: var(--theme-color-roller);
   }
   
-  #nu_roller_preview input          { margin: 2pt; }
   #nu_roller_preview input.readonly { 
     display: var(--config-roller-preview-readonly-display); 
+    color: #909090;
   }
-  #nu_roller_preview input.editable { 
-    display: var(--config-roller-preview-editable-display); 
-  }
+  #nu_roller_preview input.editable { display: var(--config-roller-preview-editable-display); }
   
   /* configuration -------------------------------------------- */
 
   /* switches */
   
-  #show_config[value="1"]           ~#everything { --config-config-display: block;             } 
   #config_show_harm[value="1"]      ~#everything { --config-roller-harm-display: inline-block; }
   #config_roller_preview[value="1"] ~#everything { --config-roller-preview-display: block;     }
   
@@ -505,7 +580,7 @@
     background: none;
     position: absolute;
     top: 0;
-    right: 50pt;
+    right: 12pt;
     text-align: right;
     width: 55pt;
   }
@@ -670,34 +745,59 @@
   
   /* harm toggles */
 
-  #toggle_harm1[value="1"] ~ #everything { --harm-one-bg: var(--theme-color) }
-  #toggle_harm2[value="1"] ~ #everything { --harm-two-bg: var(--theme-color) }
+  #toggle_harm1[value="1"] ~ #everything { --harm-one-bg:   var(--theme-color) }
+  #toggle_harm2[value="1"] ~ #everything { --harm-two-bg:   var(--theme-color) }
   #toggle_harm3[value="1"] ~ #everything { --harm-three-bg: var(--theme-color) }
-  #toggle_harm4[value="1"] ~ #everything { --harm-four-bg: var(--theme-color) }
-  #toggle_harm5[value="1"] ~ #everything { --harm-five-bg: var(--theme-color) }
-  #toggle_harm6[value="1"] ~ #everything { --harm-six-bg: var(--theme-color) }
+  #toggle_harm4[value="1"] ~ #everything { --harm-four-bg:  var(--theme-color) }
+  #toggle_harm5[value="1"] ~ #everything { --harm-five-bg:  var(--theme-color) }
+  #toggle_harm6[value="1"] ~ #everything { --harm-six-bg:   var(--theme-color) }
   
-  #nu_roller #harm_dots_container { position: relative; top: -6pt; }
+  #toggle_harm1[value="1"] ~ #everything { --harm-one-content:   '3'; }
+  #toggle_harm2[value="1"] ~ #everything { --harm-two-content:   '3'; }
+  #toggle_harm3[value="1"] ~ #everything { --harm-three-content: '3'; }
+  #toggle_harm4[value="1"] ~ #everything { --harm-four-content:  '3'; }
+  #toggle_harm5[value="1"] ~ #everything { --harm-five-content:  '3'; }
+  #toggle_harm6[value="1"] ~ #everything { --harm-six-content:   '3'; }
+  
   #nu_roller #harm_dots_container button {
     overflow: clip;
     height: var(--theme-harm-dot-size);
     width: var(--theme-harm-dot-size);
-    vertical-align: top;
     display: inline-block;
     font: var(--theme-font-dice);
     color: var(--theme-color-roller);
+    position: relative;
+    background: none;
     border: none;
     padding: 0;
     margin-right: -3pt;
   }
   
+  /*
   #harm_dots_container button[name="act_harm1"] { background: var(--harm-one-bg, none); }
   #harm_dots_container button[name="act_harm2"] { background: var(--harm-two-bg, none); }
   #harm_dots_container button[name="act_harm3"] { background: var(--harm-three-bg, none); }
   #harm_dots_container button[name="act_harm4"] { background: var(--harm-four-bg, none); }
   #harm_dots_container button[name="act_harm5"] { background: var(--harm-five-bg, none); }
   #harm_dots_container button[name="act_harm6"] { background: var(--harm-six-bg, none); }
+  */
   
+  #harm_dots_container button:before {
+    position: absolute;
+    height: var(--theme-harm-dot-size);
+    width: var(--theme-harm-dot-size);
+    font: var(--theme-fontsize-large) "Pictos";
+    color: var(--theme-color-roller);
+    background: none;
+    display: inline-block;
+  }
+  
+  #harm_dots_container button[name="act_harm1"]:before { content: var(--harm-one-content, ''); }
+  #harm_dots_container button[name="act_harm2"]:before { content: var(--harm-two-content, ''); }
+  #harm_dots_container button[name="act_harm3"]:before { content: var(--harm-three-content, ''); }
+  #harm_dots_container button[name="act_harm4"]:before { content: var(--harm-four-content, ''); }
+  #harm_dots_container button[name="act_harm5"]:before { content: var(--harm-five-content, ''); }
+  #harm_dots_container button[name="act_harm6"]:before { content: var(--harm-six-content, ''); }
   
   details#config {
     background: transparent;
@@ -706,11 +806,12 @@
     padding: 0;
     display: revert; 
   }
+  
   details#config[open] {
     background: var(--theme-bg-section);
     border: var(--theme-border-section);
     color: var(--theme-color-section);
-    padding: 1em 0.5em;
+    padding: 3pt;
     border-radius: var(--theme-border-radius);
   }
 
@@ -720,7 +821,7 @@
     color: var(--theme-color-icon);
     font: var(--theme-font-icon);
     position: absolute;
-    top: 0;
+    top: 2pt;
     right: 0;
   }
   
@@ -732,9 +833,7 @@
   details#config .config_toggle { display: inline-block; width: 50%; }
   
   details#config div#preview_editable_toggle 
-  { display: var(--config-roller-preview-display); 
-    margin-left: 1em;
-  }
+  { display: var(--config-roller-preview-display); margin-left: 1em; }
   
   details#config div#config_theme button {
     background: none;
@@ -744,8 +843,24 @@
     font-size: 24pt;
   }
   
+  details#config div#config_theme {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 6pt;
+      border-radius: 8pt;
+      
+      border: var(--theme-border-section);
+      background: white;
+      text-shadow: var(--theme-shadow-section);
+  }
+  
+  details#config div#config_theme > * {
+      width: 23%;
+      text-align: center;
+  }
+  
   details#config div#config_theme span {
     font: var(--theme-font-large);
     display: inline-block;
-    width: 25%;
   }
