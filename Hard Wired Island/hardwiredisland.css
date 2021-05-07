@@ -513,6 +513,11 @@
     margin: 0;
   }
 
+  #nu_roller input[type=number] {
+    font: bold var(--theme-fontsize-large) var(--theme-font-display);
+    color: var(--theme-color-roller);
+    
+  }
   #nu_roller .roller_style_true { 
     display: var(--config-roller-dropdowns-display); 
   }
@@ -550,7 +555,7 @@
   #config_replace_dropdowns[value="1"]~#everything {
     --config-roller-dropdowns-display: none;
     --config-roller-numbers-display: inline-block;
-    --config-roller-numbers-width: 75pt;
+    --config-roller-numbers-width: 60pt;
     --config-roller-numbers-margin: 2pt;
     --config-roller-label-padding: 0;
   }
