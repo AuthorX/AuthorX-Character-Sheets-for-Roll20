@@ -63,6 +63,7 @@
     --theme-font-bold: bold var(--theme-fontsize-base) var(--theme-font-text);
 
     --theme-font-title: bold var(--theme-fontsize-title) var(--theme-font-display);
+    --theme-font-input: bold var(--theme-fontsize-medium) var(--theme-font-display);
     
     --theme-blend-mode: normal;
     --theme-title-height: auto;
@@ -148,6 +149,7 @@
     border: var(--theme-border-title);
     border-radius: var(--theme-border-radius);
     background: var(--theme-bg-title);
+    mix-blend-mode: var(--theme-blendmode-title, normal);
   }
 
   .row {
@@ -175,6 +177,14 @@
 
   /* sections ---------------------------------------------------------- */
   
+  main input[type="number"], 
+  main input[type="text"] {
+      background: var(--theme-bg-input);
+      border: var(--theme-border-input);
+      color: var(--theme-color-input);
+      font: var(--theme-font-input);
+  }
+  
   main button {
       font: var(--theme-font-button);
       color: var(--theme-color-button);
@@ -188,18 +198,6 @@
       border: none;
   }
   
-  section input[type~="text"] {
-    background: var(--theme-bg-input);
-    border: var(--theme-border-input);
-    color: var(--theme-color-input);
-  }
-
-  section input[type~="text"] {
-    background: var(--theme-bg-input);
-    border: var(--theme-border-input);
-    color: var(--theme-color-input);
-  }
-
   /* .column-section generic */
   
   section.column-section {
@@ -242,6 +240,7 @@
     font: var(--theme-font-medium);
     background: var(--theme-bg);
     color: var(--theme-color-text);
+    text-shadow: var(--theme-shadow-text);
   }
   
   /* prep-section */
@@ -295,6 +294,7 @@
   table#attributes-table tr th:first-child {
       color: var(--theme-color-text); 
       font: var(--theme-font-large);
+      text-shadow: var(--theme-shadow-text);
       background: none;
       border: none;
       text-align: right;
@@ -379,12 +379,14 @@
     border: none;
     color: var(--theme-color-text);
     font: var(--theme-font-small);
+    text-shadow: var(--theme-shadow-text);
   }
 
   #nu_roller[open]>summary {
     color: var(--theme-color-roller);
     margin-bottom: 2pt;
     margin-top: 1pt;
+    text-shadow: none;
   }
 
   #nu_roller>summary>.open { display: none; }
@@ -588,6 +590,7 @@
     right: 12pt;
     text-align: right;
     width: 55pt;
+    z-index: 99;
   }
   
   header div#theme_selector button {
@@ -595,21 +598,45 @@
     border: none;
     color: var(--theme-color-icon);
     font: var(--theme-font-icon);
+    text-shadow: var(--theme-shadow-icon);
     margin: 0;
     padding: 0;
     width: 12pt;
   }
 
   #theme[value="1"]~#everything {
-    --theme-name: "Fullscreen Blue Artwork";
-    --theme-bg-sheet: center -125pt url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png") #214E9B;
-    --theme-border: 2pt solid white;
-    --theme-bg-section: rgba(255, 255, 255, 0.75);
-    --theme-bg-cell: rgba(0, 0, 0, 0.5);
-    --theme-text-color: white;
-    --theme-fontsize-title: 32pt;
-    --theme-color-title: white;
-    --theme-shadow: 0 0 2pt var(--theme-color);
+    --theme-name: "Hard-Wired Island Iced Tea";
+    --theme-bg-sheet: center -125pt / 100% url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png") #214E9B fixed no-repeat;
+    --theme-color: white;
+    --theme-color-contrast: black;
+    --theme-shadow: 0 0 var(--theme-shadow-width) var(--theme-color-contrast);
+    --theme-color-title: black;
+   /* --theme-color-title: rgba(255, 255, 255, 0.75);*/
+    --theme-shadow-title: 2.5pt 2pt 0 rgba(255, 255, 255, 0.60), -0.5pt -0.5pt 0 rgba(232, 232, 255, 0.80);
+    --theme-blendmode-title: screen;
+    --theme-shadow-text: var(--theme-shadow);
+    --theme-shadow-icon: var(--theme-shadow);
+    --theme-font-title: bold 64pt var(--theme-font-display);
+    --theme-bg-subhead: rgba(255, 255, 255, 0.5);
+    /* --theme-bg-roller: var(--theme-bg-subhead); */
+    --theme-color-text: var(--theme-color);
+    --theme-border: var(--theme-border-width) var(--theme-border-style) rgba(255, 255, 255, 0.75);
+    --theme-color-roller: rgba(0, 23, 51, 0.75);
+    --theme-color-subhead: var(--theme-color-contrast);
+    --theme-shadow-subhead: 0 0 var(--theme-shadow-width) var(--theme-color);
+    --theme-border-subhead: var(--theme-border);
+    --theme-border-cell: var(--theme-border);
+    --theme-color-cell: var(--theme-color-contrast);
+    --theme-color-icon: var(--theme-color);
+    
+    --theme-bg-roller: repeating-linear-gradient(75deg, rgba(255, 255, 255, 0.4), rgba(232, 255, 255, 0.3), rgba(232, 232, 232, 0.5) 48pt);
+    --theme-color-input: rgba(0, 0, 64, 0.9);
+    --theme-border-input: 1pt solid rgba(0, 0, 127, 0.25);
+    --theme-font-input: bold 12pt var(--theme-font);
+    --theme-bg-input: repeating-linear-gradient( to bottom right, rgba(255, 255, 255, 0.6), rgba(127, 255, 255, 0.4), rgba(232, 232, 232, 0.7) 72pt);
+    --theme-color-section: var(--theme-color);
+    --theme-bg-section: rgba(0, 0, 0, 0.5);
+    
   }
 
   #theme[value="2"]~#everything {
@@ -816,8 +843,8 @@
     background: var(--theme-bg-section);
     border: var(--theme-border-section);
     color: var(--theme-color-section);
-    padding: 3pt;
     border-radius: var(--theme-border-radius);
+    padding: 3pt;
   }
 
   details#config summary 
@@ -825,12 +852,16 @@
     background: none;
     color: var(--theme-color-icon);
     font: var(--theme-font-icon);
+    text-shadow: var(--theme-shadow-icon);
     position: absolute;
     top: 2pt;
     right: 0;
   }
   
-  details#config[open] summary { color: var(--theme-color-section); }
+  details#config[open] summary { 
+      color: var(--theme-color-section); 
+      text-shadow: none;
+  }
   details#config label { font: var(--theme-font-medium); }
 
   /* options toggles */
