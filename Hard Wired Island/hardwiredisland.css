@@ -1,7 +1,105 @@
 @import url('https://fonts.googleapis.com/css?family=Baumans&display=swap');
 
+:root { 
+  --theme-name:                "Default";
+  --theme-font:                "Baumans";
+  --theme-display-font:        var(--theme-font);
+  --theme-text-font:           var(--theme-font);
 
+  /* dimensions for "everything" */
+  --theme-margin:              -20pt;
+  --theme-padding:             15pt;
+  
+  /* colors */
+  --theme-color:               #214E9B;
+  --theme-color-contrast:      white;
+  --theme-primary-bgcolor:     transparent;
+  --theme-text-shadow:         none;
+  
+  /* derived colors, can be overridden */
+  
+  --theme-accent-color:        var(--theme-color);
+  --theme-border-color:        var(--theme-color);
+  --theme-primary-text-color:  var(--theme-color);
+  --theme-bgcolor:             var(--theme-primary-bgcolor);
+  --theme-second-accent-color: var(--theme-color);
+  --theme-second-border-color: var(--theme-color);
+  --theme-text-color:          var(--theme-primary-text-color);
+  --theme-third-accent-color:  var(--theme-color);
+  
+  /* backgrounds */
+  --theme-blend-mode:          overlay;
+  
+  --theme-background:          none;
+  --theme-background-image:    none;
+  --theme-background-size:     100% contain; 
+  
+  --theme-base-font-size:      11pt;
+  --theme-font-size-xs:        7pt;
+  --theme-font-size-small:     9pt;
+  --theme-font-size-medium:    var(--theme-base-font-size);
+  --theme-font-size-large:     14pt;
+  --theme-font-size-xl:        18pt;
+  
+  --theme-border-radius:       5pt;
+  
+  --theme-button-text-color:   var(--theme-primary-text-color);
+  --theme-icon-text-color:     var(--theme-primary-text-color);
+  --theme-icon-text-shadow:    var(--theme-text-shadow);
+  
+  --theme-section-background-image: none;
+  --theme-section-background:   none;
+  --theme-section-bgcolor:      var(--theme-primary-bgcolor);
+  --theme-section-text-color:   var(--theme-primary-text-color);
+  --theme-section-text-shadow:  var(--theme-text-shadow);
+  --theme-section-border:         2px solid var(--theme-border-color);
+  
+  --theme-cell-background: var(--theme-primary-bgcolor);
+  --theme-cell-text-color: var(--theme-color-contrast);
+  --theme-cell-border: 2px solid var(--theme-color);
+  
+  --theme-roller-background:     var(--theme-section-background);
+  --theme-roller-bgcolor:        var(--theme-section-bgcolor);
+  --theme-roller-border:         var(--theme-section-border);
+  --theme-roller-text-color:     var(--theme-section-text-color);
+  --theme-roller-text-shadow:    var(--theme-section-text-shadow);
+  --theme-roller-font-size:      24pt;
+  
+  /* roller dropdowns */
+  --theme-roller-option-bgcolor: var(--theme-primary-bgcolor);
+  --theme-roller-option-color:   var(--theme-primary-text-color);
+  --theme-roller-select-bgcolor: var(--theme-primary-bgcolor);
+  --theme-roller-select-color:   var(--theme-primary-text-color);
+  
+  --theme-subhead-background:  var(--theme-subhead-bgcolor);
+  --theme-subhead-bgcolor:     var(--theme-color);
+  --theme-subhead-text-color:  var(--theme-color-contrast);
+  --theme-subhead-text-shadow: none;
+  --theme-subhead-border:  2px solid var(--theme-color);
+  
+  --theme-title-background-position: center top;
+  --theme-title-background:     none;
+  --theme-title-background-image: none;
+  --theme-title-background-size: 100% contain;
+  --theme-title-bgcolor:        var(--theme-primary-bgcolor);
+  
+  --theme-title-border: 1pt solid var(--theme-title-border-color);
+  --theme-title-border-color: var(--theme-border-color);
+  --theme-title-height:         50pt;
+  --theme-title-width:          100%;
+  --theme-title-padding-bottom: 0;
+  --theme-title-padding-left:   0;
+  --theme-title-padding-right:  0;
+  --theme-title-padding-top:    0;
+  
+  --theme-title-font-size:      var(--theme-font-size-xl);
+  --theme-title-text-color:     var(--theme-primary-text-color);
+  --theme-title-text-shadow:    var(--theme-text-shadow);
+}
 
+button[type~="roll"] { 
+  color: var(--theme-button-text-color); 
+}
 .sheetform .charactersheet button[type=roll].sheet-d6-dice::before {
     font-family: 'dicefontd6';
     content: 'F ';
@@ -18,13 +116,37 @@
 }
 
 .sheetform .charactersheet section *, header *{
-	font-family: 'Baumans';
+	font-family: var(--theme-font);
 	/* color: #006a83; */
 }
 
 .sheetform .charactersheet input[type=text] {
 	width: 100%
 }
+
+h1 { 
+  border: var(--theme-title-border);
+  border-radius: var(--theme-border-radius);
+  
+  background: var(--theme-title-background);
+  background-color: var(--theme-title-bgcolor);
+  background-repeat: no-repeat; 
+  background-size:     var(--theme-title-background-size);
+  background-image:    var(--theme-title-background-image); 
+  background-position: var(--theme-title-background-position); 
+  
+  color: var(--theme-title-text-color); 
+  font-family: var(--theme-display-font);
+  font-size: var(--theme-title-font-size);
+  text-shadow: var(--theme-title-text-shadow); 
+  
+  padding: var(--theme-title-padding);
+  padding-bottom: var(--theme-title-padding-bottom); 
+  padding-left: var(--var-theme-title-padding-left); 
+  padding-right: var(--var-theme-title-padding-right); 
+  padding-top: var(--var-theme-title-padding-top); 
+}
+
 
 .row {
 	margin: 0;
@@ -56,30 +178,40 @@ section.column-section {
 	width: 100%;
 	flex-direction: column;
 }
-section.harm-section {
-flex-direction: row;
-}
+section.harm-section { flex-direction: row; }
 
+.background-section .row label span,
+.profile-section .row label span 
+{ font-size: var(--theme-font-size-medium);
+  background: var(--theme-background); 
+  color: var(--theme-text-color); 
+}
+  
 section.column-section>div,
 section.column-section>label {
 	margin:0;
 	padding:.2em;
 	flex-grow: 1;
-	border: 2px solid #214E9B;
+	border: 2px solid var(--theme-border-color);
 	box-sizing: border-box;
 	overflow: hidden;
 }
 section.harm-section .harm-box {
-	width: 50%
-}
-section.column-section .column-label {
-	width: 100%
+    width: var(--theme-harm-box-width); 
+    color: var(--theme-cell-text-color); }
 }
 
-.sheetform .charactersheet section .column-label {
-	background-color: #214E9B;
-	color: white;
-	border: 2px solid #214E9B;
+section.harm-section > label { 
+    background-color: var(--theme-section-bgcolor); 
+}
+
+section.column-section .column-label {
+	width: 100%;
+    background: var(--theme-subhead-background);
+    background-color: var(--theme-subhead-bgcolor); 
+	color: var(--theme-subhead-text-color);
+	border: var(--theme-subhead-border);
+    border-color: var(--theme-section-border-color);
 }
 
 .harm-desc {
@@ -101,21 +233,44 @@ table td input {
 	text-align: center;
 }
 
+main table td 
+{ background: var(--theme-cell-background); 
+}
+section.attributes-section table 
+{ border-color: var(--theme-border-color); 
+}
+
+section.attributes-section tr:first-child th { 
+  background-color: var(--theme-subhead-bgcolor); 
+}
+section.attributes-section table#attributes-table tr:first-child td:first-child { 
+  background: transparent; 
+}
+
+/* #attributes-table tr>th:nth-child(n+2) #everything #attributes-table tr>:nth-child(n+2)  */
+
+th:first-child { color: var(--theme-text-color); }
+
 #attributes-table tr>:nth-child(n+2) {
-	border: 2px solid #214E9B;
+    background: var(--theme-subhead-background);  
+	border: var(--theme-section-border);
 	border-top: 1px;
+    border-color: var(--theme-border-color); 
 	text-align: center;
 }
 
 #attributes-table tr>:first-child {
 	border: none;
 	text-align: right;
+    background: var(--theme-section-background);
+    font-size: var(--theme-font-size-medium); 
+    color: var(--theme-text-color);
 }
 
 #attributes-table tr>th:nth-child(n+2) {
-	background-color: #214E9B;
-	color: white;
-	border: 2px solid #214E9B;
+	background: var(--theme-cell-background);
+	color: var(--theme-cell-text-color);
+	border: var(--theme-cell-border);
 }
 
 #attributes-table tr:last-child>td:nth-child(2) {
@@ -124,6 +279,12 @@ table td input {
 
 #attributes-table tr:last-child>td:last-child {
 	border-bottom-right-radius: 10px;
+}
+
+section.prep-section div 
+{ background-color: var(--theme-cell-bgcolor); 
+  color: var(--theme-cell-text-color);
+  border: var(--theme-cell-border);
 }
 
 .repcontainer .repitem{
@@ -139,16 +300,24 @@ table td input {
 }
 
 #nu_roller[open] {
-  border-radius: 5px;
-  border: 1px solid #214E9B;
-  background: transparent;
+  border-radius: var(--theme-border-radius);
+  border: var(--theme-roller-border);
+  background: var(--theme-roller-background);
 }
 
 #nu_roller > summary {
   text-align: right; 
   margin-right: 5pt;
+  background: transparent;
+  color: var(--theme-text-color);
+  font-size: var(--theme-font-size-medium);
 }
 
+#nu_roller[open] > summary {
+ background: transparent;
+ color: var(--theme-roller-text-color); 
+}
+ 
 #nu_roller       > summary > .open   { display: none;         }
 #nu_roller[open] > summary > .open   { display: inline-block; }
 #nu_roller       > summary > .closed { display: inline-block; }
@@ -157,43 +326,44 @@ table td input {
 #nu_roller select.number_of_dice, 
 #nu_roller select.number_of_dice option {
     font-family: "dicefontd6";
-    font-size: 24pt;
-}
-
-#nu_roller select {
-  height: 28pt;
-  border: none;
-  margin: 0;
-  background: transparent;
-}
-
-#nu_roller div[id] { 
-  display: inline-block;
-}
-
-#nu_roller #nu_roller_ability select,
-#nu_roller #nu_roller_ability option { 
-  font-size: 14pt;
-}
-
-#nu_roller #nu_roller_ability,
-#nu_roller #nu_roller_ability select,
-#nu_roller #nu_roller_ability label {
-  width: 70pt;
+    font-size: var(--theme-roller-font-size);
 }
 
 #nu_roller label[for] {
   text-align: left;
   display: inline-block;
   font-weight: normal;
-  font-size: 9pt;
+  font-size: var(--theme-font-size-small);
   padding: 1pt;
   padding-left: 6pt;
   margin: 1pt;
+  color: var(--theme-roller-text-color); 
 }
 
-#nu_roller button::before {
-  content: '';
+#nu_roller button::before { content: ''; }
+
+#everything #nu_roller option { color: var(--theme-roller-text-color); }
+#everything #nu_roller label  { color: var(--theme-roller-text-color); }
+
+#nu_roller select {
+  height: 28pt;
+  border: none;
+  margin: 0;
+  background: var(--theme-roller-bgcolor);
+  color: var(--theme-roller-text-color);
+}
+
+#nu_roller div[id] { display: inline-block; }
+
+#nu_roller #nu_roller_ability select,
+#nu_roller #nu_roller_ability option { 
+  font-size: var(--theme-font-size-large);
+}
+
+#nu_roller #nu_roller_ability,
+#nu_roller #nu_roller_ability select,
+#nu_roller #nu_roller_ability label {
+  width: 70pt;
 }
 
 #nu_roller #nu_roller_number,
@@ -243,21 +413,11 @@ table td input {
   width: 45pt;
 }
 
-#nu_roller #nu_roller_buttons button {
-  vertical-align: top;
-}
+#nu_roller #nu_roller_buttons button { vertical-align: top; }
 
-.roller_style_true {
-  display: none; 
-}
-
-.roller_style_false {
-  display: inline-block;
-}
-
-#nu_roller #nu_roller_preview {
-  display: none;
-}
+.roller_style_true  { display: none; }
+.roller_style_false { display: inline-block; }
+#nu_roller #nu_roller_preview { display: none; }
 
 #config_roller_preview[value="1"] ~ #everything #nu_roller_preview {
   display: block;
@@ -269,13 +429,8 @@ table td input {
   text-align: center;
 }
 
-#nu_roller_preview input.readonly {
-  display: inline-block;
-}
-
-#nu_roller_preview input.editable {
-  display: none;
-}
+#nu_roller_preview input.readonly { display: inline-block; }
+#nu_roller_preview input.editable { display: none; } 
 
 #config_preview_editable[value="1"] ~ #everything #nu_roller_preview .readonly {
   display: none;
@@ -289,20 +444,21 @@ table td input {
 
 #config { 
   display: none;
-  border: 1pt solid black;
+  border: 1pt solid var(--theme-border-color);
   padding: 1em 0.5em;
-  border-radius: 5pt;
+  border-radius: var(--theme-border-radius);
 }
 
 #config label {
   font-size: 11pt;
+  font-size: var(--theme-font-size-medium);
   font-weight: normal;
 }
 
 #show_config[value="1"] ~ #everything #config {
   display: block;
-  color: black;
-  background: white;
+  color: var(--theme-section-text-color);
+  background: var(--theme-section-background);
 }
 
 #config_dropdowns[value="1"] ~ #everything .roller_style_true {
@@ -326,459 +482,217 @@ div#config div {
   display: inline-block; 
 }
 
+/* default */
+  
 /* theming ------------------------------------------------------------ */
 
-:root { 
-  --theme-name:                "Default";
-  --theme-background:          none;
-  --theme-background-color:    white;
-  --theme-header-background:   none;
-  --theme-header-text-color:   black;
-  --theme-title-background:    none;
-  --theme-title-text-color:    black;
-  --theme-title-height:        50pt;
-  --theme-title-width:         100%;
-  --theme-body-background:     none;
-  --theme-body-text-color:     black;
-  --theme-border-color:        black;
-  --theme-second-border-color: black;
-  --theme-subhead-background:  none;
-  --theme-subhead-text-color:  none;
-  --theme-base-font-size:      12pt;
-  --theme-accent-color:        black;
-  --theme-second-accent-color: black;
-  --theme-button-text-color:   black;
+#everything { 
+  background-attachment: fixed; 
+  background-repeat:     no-repeat; 
+  background-color:      var(--theme-bgcolor);
+  background-color:      var(--theme-bgcolor); 
+  background-image:      var(--theme-background-image); 
+  background-position:   var(--theme-background-position); 
+  background-size:       var(--theme-background-size);
+  background:            var(--theme-background); 
+  border-radius:         var(--theme-border-radius);
+  color:                 var(--theme-text-color);
+  margin:                var(--theme-margin);
+  padding:               var(--theme-padding);
+  padding-left:          var(--theme-padding-left);
+  padding-right:         var(--theme-padding-right);
+  padding-top:           var(--theme-padding-top);
+  padding-bottom:        var(--theme-padding-bottom);
 }
-
-.theme[value="1"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="2"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="3"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="4"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="5"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="6"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="7"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="8"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="9"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-.theme[value="10"] ~ #everything {
-  --theme-name: "Second Theme";
-}
-
-.var-theme-name:before {
-    content: var(--theme-name);
-}
-
+  
 #theme_selector {
-  border: none;
-  width: 55pt;
-  float: right;
+  border:     none;
   background: none;
+  width:      55pt;
+  float:      right;
 }
 
 #theme_selector button {
-  border: none;
   background: none;
-  color: white;
+  border: none;
+  color: var(--theme-icon-text-color); 
   font-family: "Pictos";
-  font-size: 9pt;
-  width: 12pt;
-  padding: 0;
+  font-size: var(--theme-font-size-small);
   margin: 0;
-}
-
-#everything {
-  /* background-color: yellow; */
-    background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
-    background-size: 100%, contain;
-    margin: -20pt;
-    padding: 15pt;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: top center;
-    border-radius: 5pt;
-}
-
-header h1 {
-  color: white;
-  font-size: 24pt;
-  padding: 10pt;
-  border-radius: 5pt;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-main table#attributes-table tr:first-child td:first-child { 
-  background: transparent;
-}
-
-#everything header section input[type~="text"],
-#everything main section input[type~="text"],
-main table td,
-main section.harm-section > label,
-main section.prep-section div {
-  background-color: rgba(255, 255, 255, 0.75);
-}
-
-
-:is(
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-) ~ #everything 
-{
-  background: transparent;
-}
-
-:is(
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~ #everything ~ .harm-box span,
-
-:is(
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~ #everything th:first-child,
-
-:is( 
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~  #everything summary,
-
-:is( 
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~  #everything #nu_roller :is( select, option, label, h2),
-
-:is( 
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~  #everything :is( .profile-section, .background-section) .row label span,
-
-:is(    
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~  #everything #theme_selector button,
-
-:is( 
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~ #everything button[type~="roll"],
-
-:is( 
-    .theme[value="0"], .theme[value="2"],  .theme[value="4"], .theme[value="6"],
-    .theme[value="10"]
-   ) ~ #everything h1 
-{
-  color: #214E9B;
-}
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]
-  ) ~ #everything summary,
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]
-  ) ~ #everything #nu_roller :is(select, label),
-    
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]    
-  ) ~ #everything :is( .profile-section, .background-section ) div label,
-                      
-:is(  
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]
-  ) ~ #everything section.attributes-section table th,
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]
-  ) ~ #everything :is( h1, h2)  
-{
-  color: white;
-  text-shadow: 0 0 2pt #214E9B;
-}
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
- ) ~ #everything #nu_roller[open],
- 
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything section.attributes-section tr:first-child th,
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything section .column-label
-{
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything #nu_roller option
-{ color: black; }
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything section.attributes-section table,
-    
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything section.column-section > :is(div, label),
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything #attributes-table tr>:nth-child(n+2),
- 
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything section .column-label 
-{
-  border-color: black;
-}
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"]
-  ) ~ #everything #nu_roller
-{ border-color: white; }
-
-:is(
-  .theme[value="1"], .theme[value="3"], .theme[value="5"], .theme[value="7"],
-  .theme[value="9"], .theme[value="11"]
-  ) ~ #everything h1 
-{
-  padding-bottom: 0;
-}
-
-:is(
-  .theme[value="2"], .theme[value="4"], .theme[value="6"], 
-  .theme[value="10"]
-  ) ~ #everything #theme_selector button,
-
-:is(
-  .theme[value="2"], .theme[value="4"], .theme[value="6"],
-  .theme[value="10"]
-  ) ~ #everything h1
-{
-  color: white;
-}
-
-.theme[value="0"] #everything h1 {
   padding: 0;
+  width: 12pt;
 }
 
-:is( .theme[value="1"], .theme[value="7"])
-~ #everything {
-  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
-  background-color: #214E9B;
-  background-position: center -125pt;
+.theme[value="0"] ~ #everything {
+  --theme-name: "Default Blue";
+  --theme-title-padding-bottom: 0;
+  --theme-title-padding-top:    0;
+  --theme-title-padding-left:   0;
+  --theme-title-padding-right:  0;
 }
 
-.theme[value="2"] ~ #everything h1
-{
-  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
-  background-position: center -260pt;
-  text-shadow: 0 0 2pt #214E9B;
+.theme[value="1"] ~ #everything {
+  --theme-name: "Fullscreen Blue Artwork";
+  --theme-background-position: center -125pt;
+  --theme-background: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
+  --theme-bgcolor: #214E9B;
+  --theme-border-color: white;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
+}
+
+.theme[value="2"] ~ #everything {
+  --theme-name: "Blue Artwork";
+  --theme-background: transparent;
+  --theme-title-background-image: url("https://img.itch.zone/aW1nLzU3MjE3MDIucG5n/original/mLdE%2FM.png");
+  --theme-title-background-position: center -260pt;
+  --theme-title-text-shadow: 0 0 2pt #214E9B;
 }
 
 .theme[value="3"] ~ #everything {
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
-  background-color: #cb410b;
+  --theme-name: "Fullscreen Orange Artwork";
+  --theme-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
+  --theme-bg-color: #cb410b;
+  --theme-border-color: white;
+  --theme-icon-text-color: black;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
 }
 
-.theme[value="3"] ~ #everything #theme_selector button 
-{
-  color: black;
-}
-
-.theme[value="4"] ~ #everything h1 
-{
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
-  background-position: center -180pt;
-  text-shadow: 0 0 2pt #ff4500;
-  border-color: #d2691e;
-}
-
-.theme[value="4"] ~ #everything #nu_roller[open]
-{ background: #faf0be;
-  border-color: #d2691e;
-}
-
-.theme[value="4"] ~ #everything section.column-section > :is(div, label),
-.theme[value="4"] ~ #everything #attributes-table tr>:nth-child(n+2)
-{ border-color: #faf0be;
-}
-
-.theme[value="4"] ~ #everything #nu_roller :is(select, option, label, button)
-{ color: #cb410b; }
-
-.theme[value="4"] ~ #everything #nu_roller summary,
-.theme[value="4"] ~ #everything #attributes-table tr th,
-.theme[value="4"] ~ #everything :is( .profile-section, .background-section) .row label span
-{ color: black; }
-
-.theme[value="4"] ~ #everything section .column-label,
-.theme[value="4"] ~ #everything #attributes-table tr>th:nth-child(n+2) {
-  border-color: #faf0be;
-  background: linear-gradient(to right, #e9692c, #f94d00, #ffd800, #f7e98e, #ffa700, #ed872d, #d2691e);
+.theme[value="4"] ~ #everything {
+  --theme-name: "Orange Artwork";
+  --theme-background: transparent;
+  --theme-section-border-color: #faf0be;
+  --theme-section--text-color: black;
+  --theme-roller-background: #faf0be;
+  --theme-roller-border-color: #d2691e;
+  --theme-roller-text-color: #cb410b;
+  --theme-subhead-background: linear-gradient(to right, #e9692c, #f94d00, #ffd800, #f7e98e, #ffa700, #ed872d, #d2691e);
+  --theme-title-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjEuanBn/794x1000/etvGu7.jpg");
+  --theme-title-background-position: center -180pt;
+  --theme-title-border-color: #d2691e;
+  --theme-title-text-shadow: 0 0 2pt #ff4500;
 }
 
 .theme[value="5"] ~ #everything {
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
+  --theme-name: "Fullscreen Rainbow Artwork";
+  --theme-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
+  --theme-border-color: white;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
 }
-
-.theme[value="6"] ~ #everything h1 {
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
-  background-position: center -30pt;
+.theme[value="6"] ~ #everything {
+  --theme-name: "Rainbow Artwork";
+  --theme-background: transparent;
+  --theme-subhead-background:  { background: radial-gradient(circle, #0abab5, #daa520, #cb410b, #8b0000, #00008b );    
+  --theme-title-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
+  --theme-title-background-position: center -30pt;
 }
-
-.theme[value="6"] ~ #everything section .column-label,
-.theme[value="6"] ~ #everything #attributes-table tr>th:nth-child(n+2)
-{ background: radial-gradient(circle, 
-                            #0abab5,
-                            #daa520,
-                            #cb410b,
-                            #8b0000,
-                            #00008b
-                             );    
-}
-
-:is( .theme[value="7"], .theme[value="8"], .theme[value="11"] ) ~ #everything h1 
-{
-  background-size: contain 100%;
-  height: 160pt;
-  width: 300pt;
-  color: transparent;
-  padding-top: 0;
-  text-shadow: 0 0 0 transparent;
-  background-image: url("https://img.itch.zone/aW1nLzU3MjE3MTUucG5n/original/yfCpBA.png");
-  background-position: left -35pt;
+.theme[value="7"] ~ #everything {
+  --theme-name: "Fullscreen Blue Artwork/Logo";
+  --theme-border-color: white;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
+  --theme-title-background-image: url("https://img.itch.zone/aW1nLzU3MjE3MTUucG5n/original/yfCpBA.png");
+  --theme-title-background-position: left -35pt;
+  --theme-title-background-size: contain 100%;
+  --theme-title-height: 160pt;
+  --theme-title-padding-top: 0;
+  --theme-title-text-color: transparent;
+  --theme-title-text-shadow: 0 0 0 transparent;
+  --theme-title-width: 300pt;
 }
 
 .theme[value="8"] ~ #everything {
-  background-color: #214E9B;
-  color: white;
-  font-size: 16pt;
-  background-image: none;
+  --theme-name: "Blue High Contrast Logo";
+  --theme-background-image: none;
+  --theme-base-font-size: 16pt;
+  --theme-bgcolor: #214E9B;
+  --theme-harm-box-width: 100%;
+  --theme-roller-background-open: white;
+  --theme-roller-background: transparent;
+  --theme-roller-border-color: transparent;
+  --theme-roller-summary-background: transparent;
+  --theme-roller-summary-font-size: 16pt;
+  --theme-roller-summary-open-background: transparent;
+  --theme-roller-summary-open-font-size: 16pt;
+  --theme-roller-summary-open-text-color: #214E9B;
+  --theme-roller-summary-text-color: white;
+  --theme-text-color: white;
+  --theme-title-background-image: url("https://img.itch.zone/aW1nLzU3MjE3MTUucG5n/original/yfCpBA.png");
+  --theme-title-background-position: left -35pt;
+  --theme-title-background-size: contain 100%;
+  --theme-title-height: 160pt;
+  --theme-title-padding-top: 0;
+  --theme-title-text-color: transparent;
+  --theme-title-text-shadow: 0 0 0 transparent;
+  --theme-title-width: 300pt;
 }
 
-.theme[value="8"] ~ #everything .harm-section .harm-box { width: 100%;
-}
-.theme[value="8"] ~ #everything #nu_roller
-{ background: transparent; 
-  border-color: transparent;
-}
-
-.theme[value="8"] ~ #everything #nu_roller[open]
-{ background: white;
-}
-
-.theme[value="8"] ~ #everything #nu_roller summary
-{ background: transparent;
-  color: white;
-  font-size: 16pt;
+.theme[value="9"] ~ #everything {
+  --theme-name: "Fullscreen Purple Artwork";
+  --theme-background-color: rgba(128, 0, 128, 0.5);
+  --theme-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+  --theme-blend-mode: overlay;
+  --theme-border-color: white;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
 }
 
-.theme[value="8"] ~ #everything #nu_roller[open] summary
-{ background: transparent;
-  color: #214E9B;
-  font-size: 16pt;
+.theme[value="10"] ~ #everything {
+  --theme-name: "Purple Artwork";
+  --theme-background: transparent;
+  --theme-section-text-color: #800080;
+  --theme-roller-open-background: background: radial-gradient(circle, #f4bbff, #e7feff, white, #0fc0fc, #b0e0e6, #e0ffff, #e6e8fa, #dcd0ff);
+  --theme-roller-open-border-color: #800080;
+  --theme-roller-summary-text-color: #800080;
+  --theme-roller-text-color: #800080;
+  --theme-subhead-background: linear-gradient(to right, #4b0082, #6a5acd, #6a5acd, #a4f4f9, #9400d3, #9400d3, #00008b, #bb00bb, #00008b, #4b0082);
+  --theme-subhead-border-color: #800080;
+  --theme-text-color: white;
+  --theme-title-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+  --theme-title-background-position: center -90pt;
+  --theme-title-border-color: #00ccFF;
+  --theme-title-text-shadow: 0 0 3pt #800080;
 }
 
-.theme[value="8"] ~ #everything :is( .profile-section, .background-section) .row label span,
-.theme[value="8"] ~ #verything #attributes-table th:first-child, 
-.theme[value="8"] ~ #verything #attributes-table th:first-child
-{ color: white;
-  font-size: 16pt;
-  background: transparent;
+.theme[value="11"] ~ #everything {
+  --theme-name: "Fullscreen Purple Artwork/Logo";
+  --theme-background-color: rgba(128, 0, 128, 0.5);
+  --theme-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
+  --theme-blend-mode: overlay;
+  --theme-border-color: white;
+  --theme-section-bgcolor: rgba(255, 255, 255, 0.75);
+  --theme-padding-bottom: 0;
+  --theme-primary-bgcolor: rgba(0, 0, 0, 0.5);
+  --theme-primary-text-color: white;
+  --theme-text-shadow: 0 0 2pt var(--theme-color);
+  --theme-title-background-image: url("https://img.itch.zone/aW1nLzU3MjE3MTUucG5n/original/yfCpBA.png");
+  --theme-title-background-position: left -35pt;
+  --theme-title-background-size: contain 100%;
+  --theme-title-height: 160pt;
+  --theme-title-padding-top: 0;
+  --theme-title-text-color: transparent;
+  --theme-title-text-shadow: 0 0 0 transparent;
+  --theme-title-width: 300pt;
 }
 
-.theme[value="8"] ~ #everything input[name],
-.theme[value="8"] ~ #everything button[name],
-.theme[value="8"] ~ #everything #nu_roller :is(button, label, select, option) {
-  background-color: white;
-  color: #214E9B;
-  font-size: 16pt;
-}
+.var-theme-name:before { content: var(--theme-name); }
 
-.theme[value="8"] ~ #everything section.column-section > :is(div, label),
-.theme[value="8"] ~ #everything #attributes-table tr>:nth-child(n+2)
-{ border-color: white;
-}
-
-
-:is( .theme[value="9"], .theme[value="11"] ) ~ #everything {
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
-  background-color: rgba(128, 0, 128, 0.5);
-  background-blend-mode: overlay;
-}
-
-.theme[value="10"] ~ #everything h1 {
-  background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjQuanBn/794x1000/vk5Gso.jpg");
-  background-position: center -90pt;
-  text-shadow: 0 0 3pt #800080;
-  border-color: #00ccFF;
-}
-
-.theme[value="10"] ~ #everything #nu_roller[open]
-{ background: radial-gradient(circle, #f4bbff, #e7feff, white, #0fc0fc, #b0e0e6, #e0ffff, #e6e8fa, #dcd0ff);
-  border-color: #800080;
-}
-
-.theme[value="10"] ~ #everything section.column-section > :is(div, label),
-.theme[value="10"] ~ #everything #attributes-table tr>:nth-child(n+2)
-{ border-color: #800080;
-}
-
-.theme[value="10"] ~ #everything #nu_roller summary,
-.theme[value="10"] ~ #everything :is( .profile-section, .background-section) .row label span,
-.theme[value="10"] ~ #verything #attributes-table th:first-child, 
-.theme[value="10"] ~ #everything #nu_roller :is(select, option, label, button)
-{ color: #800080; }
-
-.theme[value="10"] ~ #everything #attributes-table tr:first-child th
-{ color: white; }
-
-.theme[value="10"] ~ #everything section .column-label,
-.theme[value="10"] ~ #everything #attributes-table tr>th:nth-child(n+2) {
-  border-color: #800080;
-  background: linear-gradient(to right,
-            #4b0082,
-            #6a5acd,
-            #6a5acd,
-            #a4f4f9,
-            #9400d3,
-            #9400d3,
-            #00008b,
-            #bb00bb,
-            #00008b,
-            #4b0082);
-}
+header section input[type~="text"] { background-color: var(--theme-subhead-bgcolor); }
+main section input[type~="text"] { background-color: var(--theme-subhead-bgcolor); }
