@@ -9,6 +9,7 @@
   /* dimensions for "everything" */
   --theme-margin:              -20pt;
   --theme-padding:             15pt;
+  --theme-harm-box-width:      50%;
   
   /* colors */
   --theme-color:               #214E9B;
@@ -593,7 +594,7 @@ div#config div {
 .theme[value="6"] ~ #everything {
   --theme-name: "Rainbow Artwork";
   --theme-background: transparent;
-  --theme-subhead-background:  { background: radial-gradient(circle, #0abab5, #daa520, #cb410b, #8b0000, #00008b );    
+  --theme-subhead-background: background: radial-gradient(circle, #0abab5, #daa520, #cb410b, #8b0000, #00008b );    
   --theme-title-background-image: url("https://img.itch.zone/aW1hZ2UvOTkzOTI5LzU2OTUwNjIuanBn/794x1000/BDd1HN.jpg"); 
   --theme-title-background-position: center -30pt;
 }
